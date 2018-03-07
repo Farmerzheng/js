@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 小括号能够提高算数运算符的优先级
+  // var a=(123+45*78)/(34+543)-9*(324-34)
+
+  // var eggs = prompt("请输入鸡蛋个数");
+  // 计算篮子的个数
+  // parseInt()作用？ 将小数变成整数
+  // var baskets = parsetInt(eggs / 20) + 1;
+  // var baskets = (eggs - eggs % 20) / 20 + 1;
+
+  //如果今天是星期六,那么n天以后是星期几？（n是用户输入的值）
+
+  var userInput = prompt("请输入天数");
+  var weekday = userInput % 7; //声明次变量存储计算出来的星期数
+
+// switch 、case 、break 都是关键字
+// switch、case、break 组合使用，可实现多条件判断
+// switch 后面（） 里面存放要判断的变量weekday
+// case 后面是 weekday变量比较的那个值，如果值相等，执行 : 后面
+// 的语句，遇到break；跳出整个switch判断
+  switch (weekday) {
+    case 0:
+      weekday = "六";
+      break;
+    case 1:
+      weekday = "日";
+      break;
+    case 2:
+      weekday = "一";
+      break;
+
+    case 3:
+      weekday = "二";
+      break;
+
+    case 4:
+      weekday = "三";
+      break;
+
+    case 5:
+      weekday = "四";
+      break;
+
+    case 6:
+      weekday = "五";
+      break;
+     
+  }
+
+
+  alert(userInput + "天以后是星期" + weekday);
+  </script>
+</body>
+
+</html>

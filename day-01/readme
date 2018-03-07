@@ -1,0 +1,31 @@
+ECMA: 欧洲计算机制造商协会（ECMA）英文名称是European Computer Manufacturers Association
+
+ECMAScript标准是由 欧洲计算机制造商协会 制定的
+
+ECMAScript5: 简称 ES5(第五套标准)
+ECMAScript6: 简称 ES6(第六套标准)
+
+ECMAScript和javascript的区别？
+
+ECMAScript仅仅是计算机语言
+javacript包含 ECMAScript，并且还包含 DOM、BOM
+
+DOM：Document object model（文档对象模型） (使ES能够操作网页)
+BOM：Browser object model（浏览器对象模型） (使ES能够操作浏览器)
+
+对象模型就是对象
+
+ESMAScript 如何操作 网页、浏览器？？？
+
+浏览器为我们提供了 “window对象”，
+此对象封装了所有我们想要的接口（api），
+api ： application programming interface(应用程序编程接口)
+
+软件编程中的api就像电视机的按钮一样，
+
+ECMAScript语言去操作这个对象就可以操作网页和浏览器了
+
+
+
+javascript组成： ECMAScript 、 DOM、 BOM
+

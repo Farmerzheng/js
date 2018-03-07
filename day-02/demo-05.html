@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  //变量的初始化：为变量赋值的过程
+  var a; //此变量声明了，但是没有初始化
+  var b = 1; //声明变量b，并初始化
+
+  /* 
+  用户在输入框输入年份，判断该年份是否是闰年：  1.能被400整除的年份；    
+  2.能被4整除但同时不能被100整除的年份
+  */
+
+  var userInput = window.prompt("请输入年份");
+
+
+
+
+
+
+
+
+
+
+  //判断userInput是平年还是闰年
+  /*以下两个条件满足任何一个就是闰年？
+    1、userInput能被400整除
+    2、userInput 能被4整除且不能被100整除*/
+
+  //第一个条件：userInput%400 === 0
+  // 第二个条件 ： userInput%4===0 且 userInput%100!=0
+
+  if ((userInput % 400 === 0) || (userInput % 4 === 0 && userInput % 100 != 0)) {
+    //是闰年
+    alert("闰年")
+    }else{
+      alert("不是闰年")
+    }
+  </script>
+</body>
+
+</html>

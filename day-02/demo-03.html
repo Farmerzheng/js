@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+  /*	ECMASript的数据类型？
+  		五种基本类型：number、string、boolean、undefined、null
+  		一种引用类型:object
+
+  		基本类型与引用类型的区别？
+          基本数据类型变量里面存放的是值
+          引用数据类型变量里面存放的是内存地址
+  		*/
+  var a = 1;
+  var b = 1;
+  window.console.log(a == b) //true（值得比较）
+
+  var c = { name: "zhangsan" };
+  var d = { name: "zhangsan" };
+  window.console.log(c == d) //false（内存地址的比较）
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /*用户输入学生成绩
+              成绩层次
+               90~100  弹出“优秀”（包含90）
+               80~90  弹出“良好”（包含80）
+               70~80 弹出“较差”（包含70）
+               60~70 弹出“非常差”（包含60）
+               0~60  弹出“回家吧”（不包含60）
+
+  		    */
+
+  		    //多条件判断 if(){}else if(){}else if(){}……else{}
+
+  		    var studentScore = prompt("请输入成绩");
+  		    if(studentScore>=90&& studentScore<=100){
+  		    	alert("优秀")
+  		    }else if(studentScore>=80&&studentScore<90){
+               alert("良好")
+  		    } else if(studentScore>=70&&studentScore<80){
+               alert("较差")
+  		    }else if(studentScore>=60&&studentScore<70){
+  		    	alert("非常差")
+  		    }else{
+  		    	alert("回家吧")
+  		    }
+  </script>
+</body>
+
+</html>

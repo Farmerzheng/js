@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  var a = 1;
+  var b = "1";
+  //a和b相等么？
+  // a==b ? 判断a和b是否相等,不检测数据类型
+  // a===b ? 判断a和b是否相等,检测数据类型
+  // a等于b么？ 只有两个结果：等于（true）不等于(false)
+
+  var c = a == b; //将a和b进行比较，将比较的结果赋值给 c
+  var d = a === b; //将a和b进行比较，将比较的结果赋值给 d
+
+  // 运算符的优先级？
+  // 乘法运算符高于加法（小学数学）
+  //（算数运算符的优先级要高于赋值运算符，这里面==、===优先级高于=，先进行比较运算，在进行赋值运算）
+
+  //比较运算？  大于、小于、等于、大于等于、小于等于、不等于
+  // 比较运算的结果只有两个：true、false
+
+  var flag = 2 > 1; //true
+  var flag = 3 < 2; //false
+  var flag = 2 == 2; //true
+  var flag = 2 === "2"; //false
+  var flag = 2 == "2"; //true
+  var flag = 2 >= 2; //true
+  var flag = 2 <= 1; //false
+  // 不等号有两个： != 和 ！==（！=不进行类型比较、！==进行类型的比较）
+  var flag = 2 != 1 //true
+  var flag = 2 != 2 //false
+  var flag = 2 !== 2 //  false
+  var flag = 2 !== "2" //true
+  var flag = 2 != "2" //false
+
+  // “===”和 “！== ”会进行数据类型的比较
+
+  window.console.log(c, d);
+  </script>
+</body>
+
+</html>

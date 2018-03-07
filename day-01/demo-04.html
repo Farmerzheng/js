@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /*
+          为什么文字两头加引号？
+          
+          纯文本，在计算机语言里面，需要加引号      
+          
+          数据类型：数值类型（1,2,3）、字符串类型（两头有引号）
+
+          字符串类型是常量？ */
+
+  var a = "今天天气很好"; //(用引号引起来的东西，我们管他叫做字符串常量)
+
+  /*  为什么会出现
+        Uncaught SyntaxError: Invalid or unexpected token 错误？
+
+        log方法的数据类型不正确
+        log() 小括号里面可以放 变量（a,b,c）、常量（数值、字符串）
+*/
+
+  
+  window.console.log(a);
+  </script>
+</body>
+
+</html>

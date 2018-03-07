@@ -1,0 +1,16 @@
+文档 ：document
+对象：object
+浏览器：browser
+api: application programming interface 应用程序编程接口
+javascript组成：ECMAscript、BOM、DOM
+ var a = "zhangsan"
+ var person = {
+               name:"zhangsan",
+               age:18
+              }
+ window.alert()//警示框
+ window.confirm()// 提示框
+ window.prompt()//输入框
+ window.console.log()//控制台打印
+ js的数据类型？ 数值类型、字符串类型、布尔类型、对象类型
+ 布尔类型（Boolean）值有两个：true 、false

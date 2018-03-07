@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 关系运算符  或 “||”    且 “&&”    非 “！”
+  // &&:同真则真，一假则假
+  // || :一真则真，同假则假
+  // ! : 取相反值
+
+  // 运算符优先级比较难记，我们想提高某个运算的优先级怎么做？
+  // 加（）
+
+  var a = (2 > 1) && (2 < 3); //true
+  var a = 2 < 3 && 2 > 4; //false
+  var a = 2 > 4 && 2 > 3; //false
+  var a = 2 > 1 || 2 > 3; //true
+  var a = 2 > 1 || 2 > 0; //true
+  var a = 2 > 3 || 2 > 4; //false
+  var a = !true; //false
+  var a = !2 > 3 //true
+
+
+
+  console.log(a);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /*
+               姓名：张三、
+               年龄 18、
+               身高 170、
+               体重 120
+    		*/
+
+  /*	 var name = "zhangsan";
+  	 var age = 18;
+  	 var height = 170;
+  	 var weight = 120;*/
+
+  // 写成对象的形式？
+  var person = {
+    name: "张三",//字符串类型
+    age: 18,//数值类型
+    height: 170,//数值类型
+    weight: 120,//数值类型
+    speak:true,//布尔类型（Boolean）
+    friend:{//对象类型
+    	name:"李四"
+    }
+  }
+
+  // 对象 ： 属性和方法的集合 也可以解释为 “键值对”的集合
+  // 属性：属性名和属性值
+  // 方法：方法名和方法
+  // 键的类型只能是字符串类型
+  // 值的类型可以是任意类型
+  // 键值对之间用 ,链接（最后一个逗号可以省略）
+  // 键与值之间用 : 链接
+
+  window.console.log(person);
+  </script>
+</body>
+
+</html>

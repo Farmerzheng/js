@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  var a = "123";
+  var b = '123';
+
+  // 字符串单双引号包裹都可以
+  var c = a + b; //字符串链接
+  console.log(c); //123123
+  console.log("123" + '123') //123123
+
+  var c = { name: "zhangsan" };
+  /*  字符串的链接用加号
+      变量千万不要加引号，
+      因为变量加上了引号就变成了字符串常量
+      */
+  console.log("他的名字是" + c.name) //他的名字是zhangsan
+  console.log(" 他的名字是" + "c.name") //他的名字是c.name
+  console.log("他的名字是" + c.name + '年龄是18') //他的名字是zhangsan年龄是18
+
+  // 字符串中表示引号？用转义字符 \
+  console.log("他的名字是\'" + c.name + "\'") //他的名字是'zhangsan'
+  </script>
+</body>
+
+</html>

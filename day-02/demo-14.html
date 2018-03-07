@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  var userInput = prompt("请输入星期数");
+   // console.log(typeof userInput);//string
+   // 数据类型转换
+   // 重新给userInput变量赋值，
+   // Number()的作用是将string类型变成number类型
+   userInput = Number(userInput);
+  switch (userInput) {
+    case 1:
+      alert("星期一打麻将");
+      break;
+    case 2:
+      alert("星期二打游戏");
+      break;
+    case 3:
+      alert("星期三逛街");
+      break;
+    case 4:
+      alert("星期四撸串");
+      break;
+    case 5:
+      alert("星期五喝酒");
+      break;
+    case 6:
+      alert("星期六洗澡");
+      break;
+    case 7:
+      alert("星期日入殓");
+      break;
+     default://前面的判断都不符合条件，默认会执行default后面的语句
+     // default后面的break可以省略，但是前面的break一定不要省略，省略的话会穿透（语法错误）
+      alert("亲！您所输入的星期不存在")
+  }
+  </script>
+</body>
+
+</html>

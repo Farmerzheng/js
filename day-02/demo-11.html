@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 小括号能够提高算数运算符的优先级
+  // var a=(123+45*78)/(34+543)-9*(324-34)
+
+  // var eggs = prompt("请输入鸡蛋个数");
+  // 计算篮子的个数
+  // parseInt()作用？ 将小数变成整数
+  // var baskets = parsetInt(eggs / 20) + 1;
+  // var baskets = (eggs - eggs % 20) / 20 + 1;
+
+  //如果今天是星期六,那么n天以后是星期几？（n是用户输入的值）
+
+  var userInput = prompt("请输入天数");
+  var weekday = userInput % 7; //声明次变量存储计算出来的星期数
+
+  if (weekday === 0) {
+    weekday = "六"
+  }
+
+  if (weekday === 1) {
+    weekday = "日"
+  }
+
+
+  if (weekday == 2) {
+    weekday = "一"
+  }
+  if (weekday == 3) {
+    weekday = "二"
+  }
+
+  if (weekday == 4) {
+    weekday = "三"
+  }
+
+  if (weekday == 5) {
+    weekday = "四"
+  }
+
+  if (weekday == 6) {
+    weekday = "五"
+  }
+
+
+
+  alert(userInput + "天以后是星期" + weekday);
+  </script>
+</body>
+
+</html>
