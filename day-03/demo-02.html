@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  	// isNaN() 判断是不是数值 (not a number)
+  document.write(isNaN(123) + "<br>");//false
+  document.write(isNaN(-1.23) + "<br>");//false
+  document.write(isNaN(5 - 2) + "<br>");//false
+  document.write(isNaN(0) + "<br>");//false
+  document.write(isNaN("123") + "<br>");//false
+  document.write(isNaN("Hello") + "<br>");//true
+  document.write(isNaN("2005/12/12") + "<br>");//true
+
+  // infinity
+   var num = 7/0;
+   console.log(num);//Infinity
+
+   // 在javascript中，程序执行的过程是从上而下的顺序执行。遇到错误，不会再往下执行。
+
+  </script>
+</body>
+
+</html>

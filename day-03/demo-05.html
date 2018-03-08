@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 形参的个数和实参的个数一定相等么？
+  // 不一定
+
+  function sum(a, b, c) {
+    // 函数体里面可以用if语句
+    // 在if语句的()当中 undefined、null、0会自动转换成false
+    // 其他所有的(正数、负数、字符串)值都会认为是true
+
+    if (c) {
+      return a + b + c
+    } else {
+      return a + b;
+    }
+
+  }
+
+  var result = sum(2,3);
+  console.log(result);
+  </script>
+</body>
+
+</html>

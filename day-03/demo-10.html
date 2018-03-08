@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /* 判断年份是否是闰年：
+   1.能被400整除的年份；    2.能被4整除但同时不能被100整除的年份
+   编写函数，判断年份是否是闰年，如果是闰年返回true,否则返回false
+  */
+  function runYear(year) {
+    if (year % 400 === 0 || year % 4 === 0 && year % 100 != 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  /*
+  根据考试成绩，提示用户是否及格。如果及格了，弹出警告框“恭喜，你及格了” 。（80分及格）如果没有及格，那么弹出警告框“很遗憾，你没有及格 。”
+  */
+
+  function judgeScorePass(score){
+  	if(score>=80){
+  		alert("恭喜你，及格了")
+  	}else{
+  		alert("很遗憾，你没有及格")
+  	}
+  }
+  </script>
+</body>
+
+</html>

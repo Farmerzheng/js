@@ -1,0 +1,54 @@
+1、声明一个变量，变量名为a,并给a赋值，值为"zhangsan"
+    var a = "zhangsan"
+2、写出常用的算数运算符和关系运算符和逻辑运算符
+    
+    算数：+、 -、 *、 /、 %
+    关系：>、 < 、>= 、<=、 == 、=== 、!= 、!==
+    逻辑：||  && ！
+3、var a = 1 ,检测a的数据类型
+    typeof a
+4、js的数据类型有哪些？（5+1）
+  5:number string boolean undefined null
+  1:object
+5、创建一个对象，name 属性是"zhangsan"
+    var person = { name :"zhangsan"}
+6、编写程序，用户在输入框输入一个数值，当值大于5时弹出“正确”，值小于5时，弹出错误
+  var userInput = prompt("请输入数值");
+  if(userInput>5){
+   alert("正确")
+  }else{
+   alert("错误")
+  }
+7、编写程序，用户在输入框分别输入 1、2、3、4、5、6、7 ，对应弹出 "星期一"、"星期二"、"星期三"、"星期四"、"星期五"、"星期六"、"星期日"，当输入其他值时弹出"输入错误"（用switch语句实现）
+ var userInput = prompt("请输入数值");
+  // 将字符串类型转换成数值类型
+  userInput = Number(userInput);
+  switch (userInput) {
+    case 1:
+      alert("星期一");
+      break;
+    case 2:
+      alert("星期二");
+      break;
+    case 3:
+      alert("星期三");
+      break;
+    case 4:
+      alert("星期四");
+      break;
+    case 5:
+      alert("星期五");
+      break;
+    case 6:
+      alert("星期六");
+      break;
+    case 7:
+      alert("星期日");
+      break;
+    default:
+      alert("输入错误")
+  }
+8、var a = "122" , 声明一个变量b,b里面存放 a的 数值类型
+
+  var b = Number(a);
+

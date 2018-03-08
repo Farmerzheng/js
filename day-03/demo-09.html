@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//已知圆的半径,求圆的面积
+		function area(r){
+            return 3.14*r*r;
+		}
+		// 
+		var c = area(6);
+		console.log(c);
+
+/*		 世界上表示气温有两种方法：摄氏度和华氏度。两者的关系是：
+华氏度 = 9/5*摄氏度 +32
+编写函数 ，功能是：将摄氏度转换成华氏度，并返回结果
+写函数的时候需要注意什么？
+   1、函数的功能
+   2、根据函数的功能分析谁是形参
+   3、函数需不需要返回值（运算结果是否需要通知外界）
+*/
+
+ function changeToHahrenheit(centigrade){
+  return 9/5*centigrade+32;
+ }
+ var a = changeToHahrenheit(32);
+ console.log(a);
+
+	</script>
+</body>
+</html>
