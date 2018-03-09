@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		  // 用字面量方法创建一个对象bird, 此对象有name属性，属性的值是"yingwu",此对象还有fly 方法，方法的动能是在控制台打印“ yingwu can fly”
+
+  // 创建对象常用的方法：字面量方法、构造函数方法
+  // 字面量方法
+  var bird = {
+    name: "yingwu",
+    fly: function() {
+      console.log(this.name + " can fly")
+    }
+  }
+
+  // 构造函数方法 
+  // 构造函数的方法写在构造函数的原型对象上
+  // 构造函数创建出来的对象会继承Bird.prototype对象上面的方法和属性
+  // Bird构造函数的原型对象是Bird.prototype
+  // Bird构造函数创建出来的对象会继承Bird.prototype的方法和属性
+  // fly是Bird.prototype的方法
+  function Bird(name) {
+    this.name = name;
+  }
+  Bird.prototype = {
+    fly: function() {
+      console.log(this.name + " can fly")
+    },
+    speak: function() {
+      console.log(this.name + " can speak")
+    }
+  }
+  var yingwu = new Bird("yingwu")
+  // yingwu对象会继承fly和speak方法
+  yingwu.speak();//speak方法调用
+  yingwu.fly();//fly方法的调用
+	</script>
+</body>
+</html>

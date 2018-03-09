@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 所有通过 new Date() 创建出来的对象都有timeElapse方法
+  Date.prototype.timeElapse = function(datetime) {
+    var now = new Date();
+    var seconds = (Date.parse(now) -
+      Date.parse(datetime)) / 1000;
+    var daysElapse = Math.floor(seconds / (3600 * 24));
+
+    var hoursElapse = Math.floor((seconds - daysElapse * 3600 * 24) / 3600);
+    if (hoursElapse < 10) {
+      hoursElapse = "0" + hoursElapse;
+    }
+    var minutesElapse = Math.floor((seconds - daysElapse * 3600 * 24 - hoursElapse * 3600) / 60);
+    if (minutesElapse < 10) {
+      minutesElapse = "0" + minutesElapse;
+    }
+    var secondsElapse = seconds - daysElapse * 3600 * 24 - hoursElapse * 3600 - minutesElapse * 60;
+    if (secondsElapse < 10) {
+      secondsElapse = "0" + secondsElapse;
+    }
+    return {
+      days: daysElapse,
+      hours: hoursElapse,
+      minutes: minutesElapse,
+      seconds: secondsElapse
+    }
+  }
+
+
+  var firstTime = new Date();
+  firstTime.setFullYear(2017);
+  firstTime.setMonth(10);
+  firstTime.setDate(1);
+  firstTime.setHours(9);
+  firstTime.setMinutes(10);
+  firstTime.setSeconds(2);
+
+  window.setInterval(function(args) {
+    var totalTime = new Date().timeElapse(firstTime);
+    console.log("与王老师在一起的" + totalTime.days + "天" + totalTime.hours + "时" + totalTime.minutes + "分钟" + totalTime.seconds + "秒");
+  }, 1000)
+  </script>
+</body>
+
+</html>
