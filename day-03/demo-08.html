@@ -16,10 +16,17 @@
   // 三元运算后，会产生返回值
   2 > 1 ? console.log(2) : console.log(1); //2
   //2 > 1 ? var c = 5;console.log(c): console.log(1); //报错
-  var a = 2 > 1 ? 2 : 1;//会产生返回值
-  console.log(a);//2
+  var a = 2 > 1 ? 2 : 1; //会产生返回值
+  console.log(a); //2
 
   //将2 > 1 ? var c = 5;console.log(c): console.log(1);用if语句书写正确？
+
+  if (2 > 1) {
+    var c = 5;
+    console.log(c)
+  } else {
+    console.log(1);
+  }
   </script>
 </body>
 

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+<title>show e ha</title>
+<style>
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0}
+html{color:#000;overflow-y:scroll;overflow:-moz-scrollbars-vertical}
+body,button,input,select,textarea{font-size:12px;font-family:arial, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', '宋体', \5b8b\4f53, Tahoma, Arial, Helvetica, STHeiti}
+h1,h2,h3,h4,h5,h6{font-size:100%}
+em{font-style:normal}
+small{font-size:12px}
+ul,ol{list-style:none}
+a{text-decoration:none}
+a:hover{text-decoration:underline}
+legend{color:#000}
+fieldset,img{border:0}
+button,input,select,textarea{font-size:100%}
+table{border-collapse:collapse;border-spacing:0}
+img{-ms-interpolation-mode:bicubic,bottom: 0;vertical-align: top;}
+textarea{resize:vertical}
+html,body{height: 100%;}
+.left{float:left}
+.right{float:right}
+.overflow{overflow:hidden}
+.hide{display:none}
+.block{display:block}
+.inline{display:inline}
+.error{color:#F00;font-size:12px}
+label,button{cursor:pointer}
+.clearfix:after{content:'\20';display:block;height:0;clear:both}
+.clearfix{zoom:1}
+.clear{clear:both;height:0;line-height:0;font-size:0;visibility:hidden;overflow:hidden}
+.wordwrap{word-break:break-all;word-wrap:break-word}
+pre.wordwrap{white-space:pre-wrap}
+body{text-align:center}
+body,form,#s_fm{position:relative}
+td{text-align:left}
+img{border:0}
+#u_sp{color:#999;padding:14px 8px 5px 0;text-align:right;position:absolute;width:100%;z-index:1;right:0;width:800px}
+#u_sp .s-icons{display:inline-block;zoom:1;*display:inline;width:auto;height:20px;line-height:20px;vertical-align:top;padding-left:3px}
+#u_sp .s-icon{cursor:pointer;display:none !important}
+body{
+  background-color: #062741;
+}
+#box{ width:1000px; height: 650px; margin:0 auto; overflow: hidden; background: url(img/bg.png) no-repeat; background-size: 100% 100%; position: relative;}
+.tit{ width:750px; margin-top: 60px;}
+.tit h1{font-size: 30px; font-family: "微软雅黑"; text-align: center; width: 750px;height: 50px; line-height: 50px; color: #eee; font-weight: 100;} 
+#result{position: absolute;left:150px; top:210px;width:460px;height:155px;line-height:100px; float:left; font-size:46px; font-family:"微软雅黑"; color: #fff; font-weight:bold; text-align: center;;}
+.a{position: absolute; left:711px; top:231px; width: 110px;}
+.b{position: absolute;left:318px; top:330px; width:128px; height:128px;}
+#count{width:110px; height:42px; padding-left:18px; font-size:16px; color:#099; border-radius: 20px;border: 0 none;}
+.a input{ width:110px; height:42px; line-height: 42px; background-color: #ffde00;border: 0 none; cursor: pointer; font-size: 18px; color: #7a1616; margin-top: 32px;}
+.a input:hover{background-color: #ffc000;}
+#start{}
+#stop{margin-top: 36px;}
+</style>
+</head>
+<body>
+  <div id="box">
+    	<div class="tit">
+         <div class="a">
+         <SELECT id="count">
+          <option value="1">1名</option>
+          <option value="2">2名</option>
+          <option value="3">3名</option>
+          <option value="4">4名</option>
+          <option value="5">5名</option>
+         </SELECT>
+         <input type="button" value="开始" id="start">
+         <input type="button" value="停止" id="stop" disabled>
+         </div>
+      </div>
+      <div id="result"></div> 
+     <div class="b">
+        <img id="image" src="./img/5.png" />
+      </div>
+  </div>
+</body>
+</html>
+<script>
+var speed = 10;
+var k;
+var timeId1 = null;
+var timeId2 = null;
+var oStart = obj("start");
+var oStop = obj("stop");
+var arry=['顾承乐','李雪','陈瑞','兰泰峥','于伟恒','鲍展展','花领','王彬','王欢','赵加尚','黄望攀','王博逊','季宸聿','杜宗涛','包志雄','王博远','孙国栋','顾承乐','李雪','陈瑞','王腾飞','于伟恒','王倩','花领','郭建超','王彬','王欢','靳慧','王博逊','于伟恒','王倩','杜宗涛','包志雄','靳慧','顾承乐','李雪','陈瑞','王腾飞','于伟恒','鲍展展','花领','王彬','赵加尚','王博逊','朱天翔','季宸聿','杜宗涛','王博远','顾承乐','郭建超','陈瑞','王腾飞','于伟恒','鲍展展','花领','王彬','王欢','赵加尚','黄望攀','王博逊','季宸聿','杜宗涛','包志雄','王博远','孙国栋','顾承乐','李雪','陈瑞','王腾飞','于伟恒','鲍展展','花领','郭建超','王彬','王欢','赵加尚','王博逊','于伟恒','季宸聿','杜宗涛','包志雄','王博远','张国庆','顾承乐','兰泰峥','陈瑞','王腾飞','郭建超','鲍展展','花领','王彬','赵加尚','王博逊','朱天翔','季宸聿','杜宗涛','王博远'];
+
+oStart.onclick = startLuck;
+oStop.onclick = stopLuck;
+function startLuck(){
+   var luckyA = "",ld = [];
+    oStop.disabled = false;
+  obj("count").disabled = true;
+  oStart.disabled = true;
+     var n = obj("count").value;
+    if (n == 0){
+       alert("啊啊啊!!!");
+       return;
+    }
+    if(n == 1){
+      font(obj("result"),46,100)
+    }else if(n == 2){
+      font(obj("result"),40,100)
+    }else if(n == 3){
+      font(obj("result"),34,100)
+    }else if(n == 4){
+      font(obj("result"),28,100)
+    }else if(n == 5){
+      font(obj("result"),24,100)
+    }
+
+    
+    for(var j=0;j<n ;j++ ){
+       var i = Math.floor(Math.random()*46);
+       if(luckyA.indexOf(arry[i]) == -1){
+          ld[j] = arry[i];
+       }else{
+          j--;
+       }
+       luckyA = ld.join("-");
+    }
+    k = Math.floor(Math.random()*102+1);
+    obj("result").innerHTML = luckyA;
+    obj("image").src = "img/"+k+".png"
+    timeId1 = setTimeout(startLuck,speed);
+}
+function font(elem,size,line){
+    elem.style.fontSize = size+'px';
+    elem.style.lineHeight = line+'px';
+}
+function stopLuck(){
+    speed+=100;
+    timeId2 = setTimeout(stopLuck,500);
+    if (speed>=1000)
+    {
+     obj("start").disabled = false;
+     obj("count").disabled = false;
+     obj("stop").disabled = true;
+     clearTimeout(timeId2);
+     clearTimeout(timeId1);
+     speed = 100;
+    }
+   
+}
+function obj(id){return document.getElementById(id);}
+</script>
+
+
+

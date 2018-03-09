@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  function timeElapse(date) {
+    // 获取当前时间
+    var current = new Date();
+    // console.log(current);
+
+    // 取得从 1970/01/01 到 2017/03/19 的毫秒数
+    // var d = Date.parse("2017/03/19")
+
+    // 总的的秒数
+    var seconds = (Date.parse(current) - Date.parse(date)) / 1000;
+
+    // 总的天数
+    var days = Math.floor(seconds / (3600 * 24));
+
+    // 总的天数剩余的秒数
+    seconds = seconds % (3600 * 24);
+
+    // 总的天数剩余的小时数
+    var hours = Math.floor(seconds / 3600);
+
+    // 如果小于10小时前面加零
+    if (hours < 10) {
+      hours = "0" + hours;
+    }
+
+    // 总的天数剩余的小时数后面的秒数
+    seconds = seconds % 3600;
+
+    //  总的天数剩余的小时数后面的分钟数
+    var minutes = Math.floor(seconds / 60);
+
+    // 如果分钟数小于10前面加0
+    if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
+
+    // 总的天数剩余的小时数后面的分钟数后面的秒数
+    seconds = seconds % 60;
+
+    // 如果秒数小于10前面加0
+    if (seconds < 10) {
+      seconds = "0" + seconds;
+    }
+
+    console.log(days, hours, minutes, seconds)
+
+  }
+  var together = new Date();
+  together.setFullYear(2015, 1, 13);
+  together.setHours(15);
+  together.setMinutes(34);
+  together.setSeconds(20);
+  together.setMilliseconds(0);
+
+  setInterval(function() {
+    timeElapse(together);
+  }, 1000)
+  </script>
+</body>
+
+</html>

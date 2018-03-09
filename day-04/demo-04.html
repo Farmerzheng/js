@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+ 
+   // "类"与"对象"（人类与zhangsan）
+   //  通过类可以创建对象（特点：类中的属性和方法对会被创建的对象拥有）
+
+
+  // 创建对象的第二种方式：构造函数的形式
+  // 构造函数和普通函数本质一样，只是首字母大写
+  // 构造函数中的this指新创建的对象
+  // 在javascript中，构造函数就是"类"
+  // 声明一个构造函数
+  function Person(name, age) {
+  	// name、age属性
+  	
+
+    this.name = name;
+    // this.name 中的name指创建对象的属性，后面的name是形参
+    this.age = age;
+    // speak方法
+    this.speak = function(){
+    	console.log(this.name+"会说话")
+    }
+  }
+  // 利用构造函数创建对象
+  // 如何创建？  new 构造函数名(参数)
+  // 构造函数 也叫作 “构造器”
+  // 利用构造函数可以创建无数个对象，这种创建对象的方式我们管他叫做“工厂模式”
+
+  // 构造函数中的this是动态变化的，和程序的运行环境有关系
+  //运行下面代码时，this指zhangsan
+  var zhangsan = new Person("zhangsan", 18);
+  //运行下面代码时，this指lisi
+  var lisi = new Person("lisi", 20);
+
+  // 创建一个构造函数Car,Car有name属性和speed方法，
+  // 利用Car创建对象benz和bmw
+  </script>
+</body>
+
+</html>

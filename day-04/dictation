@@ -1,0 +1,21 @@
+1、a += 1 <====>?a = a + 1
+2、声明一个函数,函数名是mutiply，此函数的功能是返回两个数的乘积，并对mutiply函数进行调用，将调用的结果赋值给result变量，最后在控制台打印出result
+
+ function mutiply(num1,num2){
+    return num1*num2
+ }
+ var result = mutiply(3,4);
+ console.log(result)
+3、声明一个函数judgeOdd，函数的功能是判断一个数是不是奇数，如果是奇数，返回true,否则返回false，函数体采用三元运算符进行书写
+
+ function judgeOdd(num){
+    return num%2!=0?true:false
+ }
+
+4、求1~1000的和，并将结果打印在控制台
+  
+  var sum = 0 ;
+  for(var i = 1 ; i < 1000 ; i++){
+    sum+=i
+  }
+  console.log(sum);

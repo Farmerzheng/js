@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 创建一个构造函数Car,Car有name属性和speed方法，
+  // 利用Car创建对象benz和bmw
+
+  function Car(name, speed) {
+    this.name = name;
+    this.speed = speed;
+    this.run = function() {
+      //对象方法当中的this指对象本身
+      console.log(this.name + "的速度是" + this.speed)
+    }
+  }
+  // new 关键字，作用是：创建对象
+  var benz = new Car("benz", 180);
+  var bmw = new Car("bmw", 200);
+  </script>
+</body>
+
+</html>

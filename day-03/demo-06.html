@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+  <meta charset="UTF-8">
+  <title>Document</title>
 </head>
+
 <body>
-	<script>
-		// return  关键字，作用是返回函数体的运算结果
-		function sum(a,b){
-			return a+b
-		}
-		sum(1,2);
-	</script>
+  <script>
+  // return  关键字，作用是返回函数体的运算结果
+  function sum(a, b) {
+    // 函数体里面可以有一条语句，也可能有多条语句
+    // return 后面的语句不会执行
+    a += 1;
+    b += 1;
+    return a + b;
+    console.log(a, b) //不会执行
+  }
+
+
+  // 函数一定有return语句么？（函数一定有返回值么？）
+  // 函数可以有返回值也可以没有返回值
+
+  // 如何才能得到函数的返回值（函数的计算结果）？
+  // 调用函数就能够得到函数的返回值
+  var result = sum(1, 2);
+  </script>
 </body>
+
 </html>

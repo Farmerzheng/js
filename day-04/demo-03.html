@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // MDN : Mozilla Developer Network
+
+  // 面试官： 你平时怎么学习？
+  // 我：浏览一些csdn博客（例如阮一峰、廖雪峰）、或者网站（MDN）、或者直接看(api文档)
+
+  // 对象：属性和方法的集合（键值对的集合）
+  // 当属性的值是一个函数（匿名函数）的时候，我们管他叫做对象的方法
+  // zhangsan有name属性和run、speak方法
+  // {}这种创建对象的方式是“字面量”的方式
+  var zhangsan = {
+    name: "zhangsan", //name属性
+    run: function() {
+      console.log("我会跑步")
+    },
+    speak: function(name) {
+      alert(name+"我会说话")
+    },
+    eat:function(){
+    	// this是函数内部提供给我们的一个变量
+    	// this指zhangsan这个对象本身
+    	alert(this.name+"会吃饭")
+    }
+  }
+
+  // 如何改变对象属性的值？
+  zhangsan.name = "zhangsi"
+
+
+  // zhangsan.speak("zhangsan")
+  // 如何调用对象的方法？
+  //zhangsan.run(); //对象.方法名()
+  // 如何访问对象的属性(对象.属性名)
+  //console.log(zhangsan.name) //"zhangsan"
+
+  //window是浏览器提供给我们的对象,
+  // window.alert()
+  // window.confirm()
+  // window.prompt()
+  </script>
+</body>
+
+</html>
