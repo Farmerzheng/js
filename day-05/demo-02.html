@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  function judgeEven() {
+    var userInput = prompt("请输入数字");
+    return userInput % 2 === 0 ? true : false
+  }
+
+  // 封装一个函数，此函数的功能是：1~n 所有奇数的和
+
+  function oddSum(num) {
+    var sum = 0;
+    for (var i = 0; i < num; i++) {
+      // 判断i是否是奇数
+      if (i % 2 != 0) {
+        sum += i
+      }
+    }
+    return sum;
+  }
+  </script>
+</body>
+
+</html>

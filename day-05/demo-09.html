@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  function judgeAge(func1, func2, func3) {
+    var userInput = prompt("请输入年龄");
+    if (userInput <= 10) {
+      func1();
+    } else if (userInput > 10 && userInput <= 20) {
+      func2();
+    } else if (userInput > 20 && userInput <= 30) {
+      func3();
+    }
+  }
+
+  judgeAge(function() {
+
+  }, function() {
+
+  }, function() {
+
+  })
+  </script>
+</body>
+
+</html>

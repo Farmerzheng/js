@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /*
+      setTime: 设置 年、月、日、时、分、秒
+      year:要设置的年份
+      month:要设置的月份
+      date:要设置的天
+      hour:要设置的小时
+      minute:要设置的分钟
+      second:要设置的秒
+    */
+  function setTime(year, month, date, hour, minute, second) {
+    // 获取当前时间对象
+    // Date 是系统提供的构造函数，功能是处理时间
+    // new Date() 创建一个日期对象，此对象对应着当前系统时间
+    var firstTime = new Date();
+    // console.log(firstTime);
+    // 改变当前日期对象的时间
+    firstTime.setFullYear(year);//年
+    month-=1;// 日期对象中月份对应的值 0~11
+    firstTime.setMonth(month);//月 
+    firstTime.setDate(date);//日
+    firstTime.setHours(hour);//时
+    firstTime.setMinutes(minute);//分
+    firstTime.setSeconds(second);//秒
+    // 将设置好的日期对象返回（通知外界）
+    return firstTime;
+  }
+
+  // 需求： 得到2018/5/6 07:56:10 对应的时间对象？
+  var date = setTime(2018, 5, 6, 7, 56, 10);
+  console.log(date);
+ 
+  </script>
+</body>
+
+</html>

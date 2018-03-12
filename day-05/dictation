@@ -1,0 +1,71 @@
+1、js的组成？
+  ECMAScript 、BOM（浏览器对象） 、DOM（文档对象）
+  学过的接口：window.alert()
+             window.prompt()
+             Date.prototype.getFullYear()
+             Math.floor()
+  BOM、DOM对象为我们提供了一些接口、通过调用这些接口，就能够实现与网页的动态交互           
+
+2、js常见的数据类型？
+  string、number、boolean、undefined、null
+  object
+3、对象的概念？
+  属性与方法的集合（键值对的集合）
+4、分别用两种方式（字面量和构造函数）创建对象zhangsan
+  zhangsan拥有name、age 属性和 speak、eat方法，name属性的值是"zhangsan" , age属性的值是18,speak和eat方法的作用分别是在浏览器弹出“我会说话”、“我会吃饭”
+
+   // 字面量
+  var zhangsan = {
+    name: "zhangsan",
+    age: 18,
+    speak: function() {
+      alert("我会说话")
+    },
+    eat: function() {
+      alert("我会吃法")
+    }
+  }
+
+  // 构造函数
+  function Person(name, age) {
+    this.name = name;
+    this.age = age;
+    // 构造函数当中，方法写在原型对象上面
+  }
+  Person.prototype = {
+    speak: function() {
+      alert(this.name+"会说话")
+    },
+    eat: function() {
+      alert(this.name+"会吃饭")
+    }
+  }
+  var zhangsan= new Person("zhangsan",18);
+  var lisi = new Person("lisi",20);
+
+  zhangsan.speak();
+  lisi.speak();
+
+5、封装一个函数，此函数的功能是：用户在输入框输入数字，判断是否是偶数，如果是返回true，否则返回false
+
+   function judgeEven() {
+    var userInput = prompt("请输入数字");
+    return userInput % 2 === 0 ? true : false
+  }
+
+6、求1~100内所有奇数的和
+
+ function oddSum(num) {
+    var sum = 0;
+    for (var i = 0; i < num; i++) {
+      // 判断i是否是奇数
+      if (i % 2 != 0) {
+        sum += i
+      }
+    }
+    return sum;
+  }
+  oddSum(100)
+7、声明一个匿名函数并执行
+  (function(){//函数体})()
+  

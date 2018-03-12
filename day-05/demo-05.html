@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  function Person(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  Person.prototype = {
+  	// 动态方法，能够被new出来的对象继承
+    speak: fuction() {
+      console.log(this.name + " can speak")
+    }
+  }
+
+  
+  // 静态方法，不能够被new出来的对象继承
+  Person.eat = function() {
+    console.log(this.name + " can eat")
+  }
+  var zhangsan = new Person("zhangsan",18);
+  zhangsan.speak();
+  Person.eat();
+  zhangsan.eat();//错误
+
+  </script>
+</body>
+
+</html>

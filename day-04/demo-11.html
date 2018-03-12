@@ -9,6 +9,7 @@
 <body>
   <script>
   // 所有通过 new Date() 创建出来的对象都有timeElapse方法
+  // 为系统内置的Date函数添加自定义方法
   Date.prototype.timeElapse = function(datetime) {
     var now = new Date();
     var seconds = (Date.parse(now) -

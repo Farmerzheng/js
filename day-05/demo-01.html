@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 字面量
+  var zhangsan = {
+    name: "zhangsan",
+    age: 18,
+    speak: function() {
+      alert("我会说话")
+    },
+    eat: function() {
+      alert("我会吃法")
+    }
+  }
+
+  // 构造函数
+  function Person(name, age) {
+    this.name = name;
+    this.age = age;
+    // 构造函数当中，方法写在原型对象上面
+  }
+  Person.prototype = {
+    speak: function() {
+      alert(this.name+"会说话")
+    },
+    eat: function() {
+      alert(this.name+"会吃饭")
+    }
+  }
+  var zhangsan= new Person("zhangsan",18);
+  var lisi = new Person("lisi",20);
+
+  zhangsan.speak();
+  lisi.speak();
+  </script>
+</body>
+
+</html>

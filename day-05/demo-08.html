@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 函数的扩展性
+  // 函数暴露的参数越多，可扩展性越强
+  function judgeNum(num1, num2, success, error) {
+    var userInput = prompt("请输入数字");
+    if (userInput >= num1 && userInput <= num2) {
+      success();
+    } else {
+      error();
+    }
+  }
+  // 回调函数
+  // 回调函数的特点？函数作为参数传入
+  judgeNum(
+    50,
+    100,
+    function() {
+      //输入正确后的回调函数
+      alert("亲，您输入正确了")
+    },
+    function() {
+      // 输入错误后的回调函数
+      alert("亲，您输入错误了")
+    }
+  );
+  </script>
+</body>
+
+</html>

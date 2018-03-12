@@ -24,7 +24,7 @@
     // console.log(seconds);
 
     // Math.floor() 方法的作用是“向下取整”
-    // Math 是系统为我们提供的一个对象，此对象的作用是为我们提供了常用的数学运算
+    // Math 是系统为我们提供的一个对象(js当中，对象===函数)，此对象的作用是为我们提供了常用的数学运算
     var daysElapse = Math.floor(seconds / (3600 * 24));
 
     var hoursElapse = Math.floor((seconds - daysElapse * 3600 * 24) / 3600);
@@ -56,21 +56,26 @@
 
 
   // 假设第一次见面的时间是2017/11/1 9:10:02
+  function setTime(year, month, date, hour, minute, second) {
+    // 获取当前时间对象
+    // Date 是系统提供的构造函数，功能是处理时间
+    // new Date() 创建一个日期对象，此对象对应着当前系统时间
+    var firstTime = new Date();
+    // console.log(firstTime);
+    // 改变当前日期对象的时间
+    firstTime.setFullYear(year); //年
+    month -= 1; // 日期对象中月份对应的值 0~11
+    firstTime.setMonth(month); //月 
+    firstTime.setDate(date); //日
+    firstTime.setHours(hour); //时
+    firstTime.setMinutes(minute); //分
+    firstTime.setSeconds(second); //秒
+    // 将设置好的日期对象返回（通知外界）
+    return firstTime;
+  }
+  
+   var meetTime = setTime(2017,11,1,9,10,12);
 
-  // 获取当前时间对象
-  var firstTime = new Date();
-  // 将当前时间对象的年份改变成2017年
-  // Date.prototype.setYear()
-  firstTime.setFullYear(2017);
-  // js里面月份表示 0~11
-  firstTime.setMonth(10);
-  firstTime.setDate(1);
-  firstTime.setHours(9);
-  firstTime.setMinutes(10);
-  firstTime.setSeconds(2);
-
-
-  // 得到逝去的时间
 
 
   /*  
@@ -82,7 +87,7 @@
   window.setInterval(function(args) {
     // 每隔1000ms运行一次此函数
     // 每隔1s计算一次逝去的时间
-    var totalTime = timeElapse(firstTime);
+    var totalTime = timeElapse(meetTime);
     // 将时间显示在页面上
     console.log("与王老师在一起的" + totalTime.days + "天" + totalTime.hours + "时" + totalTime.minutes + "分钟" + totalTime.seconds + "秒");
 

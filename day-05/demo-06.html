@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 随机返回m-n之间的随机整数（包含m和n , m和n是正整数）
+
+  function randomNum(num1, num2) {
+    //Math.random()*(num2-num1) 0~5之间的随机小数（包括0，不包括5）
+
+    return Math.round(Math.random() * (num2 - num1)) + num1;
+  }
+
+
+  console.log(randomNum(0, 24));
+  </script>
+</body>
+
+</html>
