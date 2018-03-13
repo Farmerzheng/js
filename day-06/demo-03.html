@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 循环嵌套
+  /*  for (var i = 0; i < 10; i++) {
+      //打印一行
+      for (var j = 0; j <= i; j++) {
+        document.write("*")
+      }
+      // 换行
+      document.write("<br>");
+    }
+  */
+  // 封装一个函数，此函数的功能是打印n行XXX（形状是三角形）？
+
+  /*  function triangle(n, m) {
+      for (var i = 0; i < n; i++) {
+        //打印一行
+        for (var j = 0; j <= i; j++) {
+          document.write(m)
+        }
+        // 换行
+        document.write("<br>");
+      }
+    }
+
+    triangle(10,"☆");*/
+
+  for (var i = 1; i <= 9; i++) {
+
+    // 打印一行
+    for (var j = 1; j <= i; j++) {
+      if (i == 3 && j == 2 || i == 4 && j == 2) {
+        document.write(j + "*" + i + "=" + j * i + "&nbsp;&nbsp;&nbsp;&nbsp;");
+      } else {
+        document.write(j + "*" + i + "=" + j * i + "&nbsp;&nbsp;");
+      }
+
+    }
+    document.write("<br>")
+  }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 1:接收用户输入的数字，如果是偶数在页面中提示该数字为偶数，如果是奇数那么提示该数字为奇数
+
+  /*  var userInput = prompt("请输入数字");
+
+    function judgeEvenOdd(userInput) {
+      if (userInput % 2 === 0) {
+        alert("偶数")
+      } else {
+        alert("奇数")
+      }
+    }
+    judgeEvenOdd(userInput);*/
+
+  // 2:写一个程序接收用户输入的值，该值和随机产生的随机数（0-99）做比较，如果用户输入的值大于随机数输出：您赢了，否则您输了
+  /*  function compare(userInput) {
+      if (Math.floor(Math.random() * 100) < userInput) {
+        alert("你赢了")
+      } else {
+        alert("你输了")
+      }
+    }*/
+
+  // 当点击确定，弹出消息提示“您已退出”     当点击取消  弹出消息“您已取消退出
+
+  /*  var flag = window.confirm("你是否退出");
+
+    function login(flag) {
+      if (flag) {
+        alert("您已退出")
+      } else {
+        alert("您已取消退出")
+      }
+    }
+    login(flag);*/
+
+  /* 一个加油站为了鼓励车主多加油，所以加的多有优惠。
+         92号汽油，每升6元；如果大于等于20升，那么每升5.9；
+         97号汽油，每升7元；如果大于等于30升，那么每升6.95
+        编写JS程序，用户输入自己的汽油编号，然后输入自己加多少升，弹出价格。*/
+  /*
+    var oilNum = prompt("请输入汽油编号");
+    var litre = "";
+
+    var price = 0;
+
+    if (oilNum == 92) {
+      //92
+      litre = prompt("请输入汽油升数");
+      if (litre >= 20) {
+        price = 5.9;
+      } else {
+        price = 6;
+      }
+
+      alert("缴费" + price * litre + "元")
+    } else if (oilNum == 97) {
+      litre = prompt("请输入汽油升数");
+      if (litre >= 30) {
+        price = 6.95
+      } else {
+        price = 7
+      }
+      alert("缴费" + price * litre + "元")
+    } else {
+      alert("输入的汽油编号错误")
+    }*/
+
+  // 2：写出以下程序：
+  //        先接收用户输入的用户名，判断该用户名是否是admin,如果不是提示用户名不正确，如果是那么再次提示让用户输入密码,如果密码是88888,那么提示登录成功，否则提示登录失败。
+
+  /*  var userName = prompt("请输入用户名");
+    if (userName === "admin") {
+      var password = prompt("请输入密码");
+      if (password === "88888") {
+        alert("登录成功")
+      } else {
+        alert("密码错误")
+      }
+    } else {
+      alert("用户名不正确")
+    }*/
+
+  // 写一个程序，接收用户输入的三个数字，使用三元运算表达式找出最大值
+  var num1 = prompt("请输入第一个数字");
+  var num2 = prompt("请输入第二个数字");
+  var num3 = prompt("请输入第三个数字");
+
+  function max(num1, num2, num3) {
+    var max1 = (num1 > num2 ? num1 : num2)
+    alert(max1 > num3 ? max1 : num3)
+  }
+  max(num1, num2, num3)
+  </script>
+</body>
+
+</html>

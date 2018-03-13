@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  var a = 1;
+  a++;
+  console.log(a) //2
+
+  var b = 2;
+  b--;
+  console.log(b) //1
+
+  // b++  先运算后自增
+  // ++b  先自增后运算
+
+  var c = a + (b++);
+  console.log(c) //3
+
+  var d = a + (++b);
+  console.log(d);//5
+  </script>
+</body>
+
+</html>
