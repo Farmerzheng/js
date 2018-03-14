@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  function Counter() {
+    this.sum = 0;
+    this.count = 0;
+  }
+  Counter.prototype.add = function(array) {
+    array.forEach(function(entry) {
+      // this.sum += entry;
+      // ++this.count;
+      console.log(this);
+    });
+    // ^---- Note
+  };
+
+  const obj = new Counter();
+  obj.add([2, 5, 9]);
+  // obj.count;
+  // 3 
+  // obj.sum;
+  // 16
+  </script>
+</body>
+
+</html>

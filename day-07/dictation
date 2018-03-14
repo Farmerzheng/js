@@ -1,0 +1,62 @@
+1、分别用字面量方法和构造函数方法创建对象zhangsan , 
+   张三拥有name、age属性  speak和 eat方法
+
+		var zhangsan = {
+			name:"zhangsan",
+			age:18,
+			speak:function(){
+			},
+			eat:function(){
+			}
+		}
+
+		function Person(name,age){
+			this.name = name;
+			this.age = age;
+		}
+		Person.prototype = {
+			speak:function(){
+			},
+			eat:function(){
+			}
+		}
+		var zhangan = new Person("zhangsan",18)
+
+
+2、为1题中的构造函数添加静态方法run，并调用run方法
+    
+	     Person.run = function(){}
+	     Person.run()
+
+3、封装一个函数，此函数的功能是返回1~n中所有奇数的和
+	   function oddSum(n){
+	      var sum = 0;
+	      for(var i = 1 ; i <= n ; i++){
+		      if(i%2!=0){
+		        sum+=i
+		      }       
+	      }
+	      return sum;
+	   }
+
+4、封装一个函数，此函数的功能是返回m~n之间的随机整数(m、n为正整数，包含m 、n)
+
+	   function randomNum(m,n){
+	      return Math.round(Math.random()*(n-m))+m
+	   }
+
+5、写出while循环的两种格式
+	   while(){}  和 do{}while()
+ 
+6、在循环当中 ,break和continue的作用分别是什么？
+	    break: 跳出整个循环体，执行循环体下面的语句
+	    continue:跳出本次循环，执行下一次循环
+
+7、写出Math对象的常见静态方法（标出方法的作用）
+	   Math.ceil() 向上取整
+	   Math.floor() 向下取整
+	   Math.round() 四舍五入
+	   Math.random() 生成0~1之间的随机数
+	   Math.max(x,y) 返回x、y的最大值
+	   Math.min(x,y) 返回 x、y的最小值
+	   Math.pow(x,y) 返回x的y次方

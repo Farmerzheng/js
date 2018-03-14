@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /*  	作用域（变量或者函数的作用范围）
+   */
+
+  /* var b = 2; //全局变量
+
+   function sum() { //全局函数
+
+     var a = 1; //局部变量
+     console.log(a);
+
+     function add() { //局部函数
+
+     }
+   }*/
+
+
+
+  // 在函数外面访问变量a
+  // console.log(a, b) //undefined、2
+
+  // a是局部变量，b是全局变量
+  // 全局变量？ 直接声明在script标签下面的变量
+  // 局部变量？声明在函数体内部的变量
+
+  //全局函数？局部函数？
+
+  /*  全局函数、全局变量是window对象的属性或者方法
+
+    sum() === window.sum()
+    a === window.a
+    alert() === window.alert()
+    prompt() === window.prompt()
+     */
+
+
+  /*
+    ES5：存在“全局作用域”和“函数作用域”，不存在“块作用域”
+    ES6：新增加了“块作用域”
+  */
+  /*
+    if (true) {
+      var a = 1
+    }
+    console.log(a); //1
+
+    for (var i = 0; i < 10; i++) {
+      var b = 11;
+    }
+    console.log(i, b) //10 、11*/
+
+  // ES6 新增了let、const 两个关键字用来声明变量
+
+  if (true) {
+    let a = 3
+    const b = 4 //const 声明的变量的值不能够改变
+    // b = 5 //报错
+  }
+  console.log(a, b) //报错
+
+  // 变量的污染？如果全局变量的名称相同就会造成变量污染
+  // 能不用全局变量就不用！！！
+
+  /*  var 、let 、 const 三个声明变量的关键字的使用优先级？
+     能用 const就不用let，能用let就不用var*/
+
+
+  </script>
+</body>
+
+</html>

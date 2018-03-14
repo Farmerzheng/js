@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 数组是元素的有序集合（数组的本质是对象）
+  // 数组当中的元素可以是任意数据类型
+
+  // 将handsomeArr的元素的name属性打印在控制台
+  var handsomeArr = [{
+      name: "wangtao",
+      speak: function() {
+        console.log("wangtao is a handsome boy")
+      }
+    },
+    {
+      name: "chechangxing",
+      speak: function() {
+        console.log("chechangxing is a handsome boy")
+      }
+    },
+
+    {
+      name: "chengeng",
+      speak: function() {
+        console.log("chengeng is a handsome boy")
+      }
+    }
+  ];
+
+  // 访问数组当中的元素：arr[元素对应的索引值]
+
+  for (var i = 0; i < handsomeArr.length; i++) {
+    console.log(handsomeArr[i].name)
+  }
+
+  handsomeArr.forEach(function(item, index) {
+  	// item 数组的元素
+  	// index 数组元素对应的索引值
+    console.log(item.name)
+  })
+
+
+
+
+
+
+  // 通过循环能够访问数组当中的元素
+  var arr = ["苗条", "淑女", "王老湿", "喜欢"]
+
+  // 在控制台打印出数组的所有元素
+
+  // 数组的遍历
+  for (var i = 0; i < arr.length; i++) {
+    console.log(arr[i], i + "\n")
+  }
+
+  arr.forEach(function(item, index) {
+    console.log(item, index);
+    console.log(this);
+  }, this)
+
+  //  数组遍历可以通过for循环和forEach方法
+  </script>
+</body>
+
+</html>

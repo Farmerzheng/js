@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 动态作用域和词法作用域（静态作用域）
+  // 词法作用域？变量的值在词法分析阶段确定
+  // 动态作用域？变量的值在程序运行阶段确定
+  // js的作用域是词法作用域, 但是有个变态的this是个例外（函数当中的this是动态作用域）
+/*  var array = [2, 5, 9]
+  array.forEach(function(entry) {
+    console.log(this); //window
+  });
+
+
+  var zhangsan = {
+    name: "zhangsan";
+    run: function() {
+      console.log(this); 
+      setInterval(function() {
+        console.log(this);
+      }, 1000);
+    }
+  }*/
+
+  setInterval(function(){
+   console.log(1);
+  },1000)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 方法当中的this指拥有这个方法的对象！！！
+  // this
+  function sum() {
+    console.log(this); //window
+  }
+  // sum()===window.sum();
+  window.sum();
+
+
+  var zhangsan = {
+  	name:"zhangsan",
+  	speak:function(){
+  		console.log(this.name);//this指zhangsan
+  	}
+  }
+  zhangsan.speak();
+  </script>
+</body>
+
+</html>

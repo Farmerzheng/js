@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /*    let arr = ["zhangsan","lisi","wangwu"];
+
+      		arr.forEach(function(item,index){
+                  console.log(item,index)
+      		})
+
+      		*/
+
+
+  /*  let arr = ["zhangsan", "lisi", "wangwu"];
+
+    arr.forEach(function(item, index) {
+      console.log(this);//window
+    })
+    */
+
+    let arr = ["zhangsan", "lisi", "wangwu"];
+
+    arr.forEach(function(item, index) {
+      console.log(this);//arr
+    },arr)//
+  </script>
+</body>
+
+</html>
