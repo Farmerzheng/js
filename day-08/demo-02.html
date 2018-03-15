@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /*  var obj = {
+      	"1":2,
+      	"2":3,
+      	"3":1,
+      	"4":3,
+      	"5":2,
+      	"9":2
+      }*/
+
+  var arr = [1, 1,1,1,1,1, 2, 2, 2, 3, 4, 4, 4, 5, 5, 9, 9,9,9];
+
+  function change(array) {
+    // 将数组转化成对象
+    var obj = {};
+    var previous = null;
+    for (var i = 0; i < array.length; i++) {
+      if (previous == array[i]) {
+        obj[array[i]] = ++num;
+      } else {
+        var num = 1;
+        obj[array[i]] = num;
+      }
+      // 记录一下上次的i值
+      previous = array[i];
+    }
+    return obj
+  }
+  var obj = change(arr);
+  console.log(obj)
+  </script>
+</body>
+
+</html>

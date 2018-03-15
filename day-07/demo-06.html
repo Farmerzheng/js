@@ -10,11 +10,11 @@
   <script>
   /*    let arr = ["zhangsan","lisi","wangwu"];
 
-      		arr.forEach(function(item,index){
-                  console.log(item,index)
-      		})
+        		arr.forEach(function(item,index){
+                    console.log(item,index)
+        		})
 
-      		*/
+        		*/
 
 
   /*  let arr = ["zhangsan", "lisi", "wangwu"];
@@ -24,11 +24,14 @@
     })
     */
 
-    let arr = ["zhangsan", "lisi", "wangwu"];
+  let arr = ["zhangsan", "lisi", "wangwu"];
 
-    arr.forEach(function(item, index) {
-      console.log(this);//arr
-    },arr)//
+  arr.forEach(function(item, index) {
+    console.log(this); //arr
+  }, arr) //
+
+
+
   </script>
 </body>
 

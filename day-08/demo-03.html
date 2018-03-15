@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 后台返回给我们的数据
+  var obj = {
+    data: [{
+        name: "车畅行",
+        age: 18,
+        love: "运动"
+      },
+      {
+        name: "董帆",
+        age: 18,
+        love: "篮球"
+      },
+      {
+        name: "张浩欣",
+        age: 18,
+        love: "吃鸡"
+      }
+    ],
+    status: { // 返回数据状态
+      msg: "succ",
+      code: 0
+    }
+  }
+
+  // 需求：如果status的code == 0 ,将data中的数据展示到页面上（document.write）
+
+  function show(data) {
+    if (data.status.code == 0) {
+      data.data.forEach(function(item) {
+        document.write(item.name + "的年龄是" + item.age + " ,爱好是" + item.love + "<br>")
+      })
+    }
+  }
+  show(obj)
+  </script>
+</body>
+
+</html>

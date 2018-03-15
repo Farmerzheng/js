@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // for……in
+  var zhangsan = {
+    name: "zhangsan",
+    age: 18,
+    height: 180,
+    weight: 140,
+  }
+
+  //在控制台打印zhangsan的所有属性值？
+  // console.log(zhangsan.name, zhangsan.age, zhangsan.height, zhangsan.weight) //zhangsan 18 180 140
+
+  // 如何访问对象的属性？
+/*  var a = "name"
+  console.log(zhangsan.name)//"zhangsan"
+  console.log(zhangsan["name"])//"zhangsan"
+  console.log(zhangsan[a])//"zhangsan"
+  console.log(zhangsan[name])//undefined
+*/
+
+  for (var key in zhangsan) {
+    console.log(key);
+    console.log(zhangsan[key]);
+  }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 抓取新浪网的数据
+  function jsonp() {
+    var script = document.createElement("script");
+    script.src = "https://cre-dp.sina.cn/api/v3/get?callback=func&timestamp=1521102812825&cateid=sina_all&cre=tianyi&mod=whome&merge=3&statics=1&up=0&down=0&ad={%22rotate_count%22:2868,%22page_url%22:%22https%3A%2F%2Fsina.cn%2F%3Ffrom%3Dweb%22,%22platform%22:%22wap%22,%22timestamp%22:1521102812000,%22net%22:null,%22channel%22:%2210000%22}&length=13&offset=0&action=0";
+    document.body.appendChild(script);
+    document.body.removeChild(script);
+  }
+
+  jsonp();
+
+  // 看懂后台返回的数据
+  // 解析数据（拿到）
+
+  function func(res) {
+    console.log(res)
+    // 解析数据
+    res.data.forEach(function(item) {
+      console.log(item.title)
+    })
+
+  }
+  </script>
+</body>
+
+</html>

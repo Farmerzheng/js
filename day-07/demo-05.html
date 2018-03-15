@@ -8,22 +8,74 @@
 
 <body>
   <script>
+  // 全局变量是window对象的属性
+  // 全局函数是window对象的方法
   // 方法当中的this指拥有这个方法的对象！！！
   // this
-  function sum() {
-    console.log(this); //window
-  }
+  // function sum() {
+  // console.log(this); //window
+  // }
   // sum()===window.sum();
-  window.sum();
+  // window.sum();
 
 
-  var zhangsan = {
-  	name:"zhangsan",
-  	speak:function(){
-  		console.log(this.name);//this指zhangsan
-  	}
-  }
-  zhangsan.speak();
+  // var zhangsan = {
+  //   name: "zhangsan",
+  //   speak: function() {
+
+  //     console.log(this); //zhangsan
+
+  //     window.setInterval(function() {
+  //       console.log(this); //window
+  //     }, 1000)
+
+  //   }
+  // }
+
+  // zhangsan.speak();
+
+/*  var zhangsan = {
+    name: "zhangsan",
+    age: 18,
+    growUp: function() {
+      var self = this;
+      window.setInterval(function() {
+        //this ---> window
+        //console.log(self); //zhangsan
+        self.age++;
+      }, 1000)
+
+    }
+  }*/
+
+/*   var zhangsan = {
+    name: "zhangsan",
+    age: 18,
+    growUp: function() {
+      window.setInterval(()=>{
+        // ES6新增了箭头函数
+        // 箭头函数当中的this是词法作用域（静态作用域），和执行环境没有关系
+        this.age++;
+      }, 1000)
+
+    }
+  }*/
+
+
+
+
+
+  // 回调函数在sum当中执行
+  /*  function sum(func1) {
+      if (typeof func1 == "function") {
+        // 执行环境？ window
+        func1();
+      }
+    }
+
+    sum(function() {
+      console.log(this);//window
+    })*/
   </script>
 </body>
 

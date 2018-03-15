@@ -1,0 +1,104 @@
+1、分别用两种方法创建对象zhangsan(字面量方法和构造函数方法)
+   属性：name/age
+   动态方法：speak/run
+   静态方法：eat
+   调用静态方法和动态方法
+
+  var zhangsan = {
+    name: "zhangsan",
+    age: 18,
+    speak: function() {
+    },
+    run: function() {
+    }
+  }
+
+  function Person(name,age) {
+    this.name = name
+      this.age = age
+  }
+  Person.prototype = {
+    speak: function() {
+    },
+    run: function() {
+    }
+  }
+  Person.eat = function(){}
+  var zhangsan = new Person("zhangsan",18)
+  zhangsan.speak()
+  zhangsan.run()
+  Person.eat();
+
+2、已知数组 arr = ["张三","李四","王五"]
+   将数组当中的元素打印到控制台（两种方法：for循环和forEach方法）
+  var arr = ["张三", "李四", "王五"]
+
+  for (var i = 0; i < arr.length; i++) {
+    console.log(arr[i])
+  }
+  arr.forEach(function(item) {
+    console.log(item)
+  })
+
+3、已知数组：arr = [1,2,3,4,5,6]
+  
+   在数组的最后添加一个元素 7 arr.push(7)
+   在数组的最前面添加一个元素 0 arr.unshift(0)
+   删除数组的最后一个元素 arr.pop()
+   删除数组的第一个元素 arr.shift()
+   截取数组的第二到第四个元素 arr.slice(2,4)
+
+4、默写随机函数（m到n的随机整数）
+       function randomNum(m,n){
+    	  return Math.round(Math.random()*(n-m))+m
+       }
+5、ES6中新增的声明变量的关键字有哪些？
+    let const
+6、变量的作用域是什么？
+   变量的作用范围
+7、求1~100所有能被5整除的数字的和
+      var sum = 0;
+	  for (var i = 1; i <= 100; i++) {
+	    // sum += i % 5 === 0 ? i : 0;
+	    if(i%5===0){
+	    	sum+=i
+	    }
+	  }
+8、利用for循环，在控制台打印出 1、2、3、4、6、7、8、9、10
+  for (var i = 1; i <= 10; i++) {
+    if(i===5)continue;
+    console.log(i)
+  }
+9、在控制台打印出
+   *
+   **
+   ***
+   ****
+   *****
+   ******
+
+	  for (var i = 0; i <= 6; i++) {
+	    for (var j = 0; j < i; j++) {
+	      document.write("*")
+	    }
+	     document.write("<br>")
+	  }
+10、js常见的数据类型？string number boolean undefined null object
+11、var a = 1; 将a转换成字符串类型（两种方法）
+    String(a) a.toString()
+    var b = "1" ;将b转换成数值类型（两种方法）
+    Number(b) Number.parseInt(b)
+12、匿名函数的执行？（至少写出三种方法）
+    (function(){})()
+    !function(){}()
+    +function(){}()
+    -function(){}()
+13、封装一个函数，判断是否是闰年？（考察逻辑运算符）
+    闰年 ：1、能被400整除的年份
+           2、内被4整除且不能被100整除的年份
+
+      function runYear(year){
+        if(year%400===0||year%4===0&&year%100!=0){
+           alert("是闰年")
+        }
+      }     
