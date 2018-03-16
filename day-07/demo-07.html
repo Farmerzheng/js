@@ -12,9 +12,11 @@
     this.sum = 0;
     this.count = 0;
   }
+
+  // studentArr
   Counter.prototype.add = function(array) {
-    array.forEach(function(entry) {
-      this.sum += entry;
+    array.forEach(function(item) {
+      this.sum += item;
       ++this.count;
       // console.log(this);
     },this);

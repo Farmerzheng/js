@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /*	var str = "123a456a789a"
+                		console.log(str.lastIndexOf("a"))//11
+
+                		console.log(str.slice(2,5))//3a4
+
+                		*/
+
+  var url = "https://www.baidu.com/s?tn=99006304_1_oem_dg&isource=infinity&wd=放假&datetime=2018/3/16";
+  //  {
+  // tn: '99006304_1_oem_dg',
+  // isource: 'infinity',
+  // wd: '放假'
+  //  }
+
+  /* 
+   解析网址，返回一个对象，对象有两个属性
+   返回的obj 
+
+   obj = {
+	url:'https://www.baidu.com/s',  
+	parameter: {
+			    tn: '99006304_1_oem_dg',
+			    isource: 'infinity',
+			    wd: '放假' //obj.parameter.wd
+               }
+   }
+
+ */
+/*  function analysisUrl(strigToAnalysis) {
+    let obj = {};
+
+        obj.parameter = {}
+
+    obj.url = strigToAnalysis.split("?")[0];
+
+    let parameterArr = strigToAnalysis.split("?")[1].split("&");
+    for (let i = 0; i < parameterArr.length; i++) {
+      let arr = parameterArr[i].split("=");
+      obj.parameter[arr[0]] = arr[1]
+    }
+    return obj;
+  }
+
+  let obj = analysisUrl(url);
+  console.log(obj)*/
+
+  // 截取字符串(截取数组用slice)
+  // str.substr(start[, length])
+  // str.substring(indexStart[, indexEnd])
+  var str = "jintianfangjia"
+  // console.log(str.substr(2,5))//ntian
+  //console.log(str.substring(2,5))//nti
+
+  // str.trim()
+  var str = " 12345 ";
+  console.log(str.length);//7
+  console.log(str.trim().length)//5
+  </script>
+</body>
+
+</html>

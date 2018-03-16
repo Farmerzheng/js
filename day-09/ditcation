@@ -1,0 +1,85 @@
+1、创建对象zhangsan，name属性的值是"zhangsan",age属性的值是18 ,growUp方法的作用是每隔一秒钟让age属性的值自增1（growUp方法用两种方式实现 普通函数、箭头函数）
+var zhangsan = {
+    name: "zhangsan",
+    age: 18,
+    growUp: function() {
+      // document.write()
+      var self = this;
+      window.setInterval(function() {
+        self.age++;
+      }, 1000)
+    }
+  }
+  var zhangsan = {
+    name: "zhangsan",
+    age: 18,
+    growUp: function() {
+      window.setInterval(()=>{
+        this.age++;
+      }, 1000)
+    }
+  }
+
+2、var zhangsan = {
+	 name:"zhangsan",
+	 age:18,
+	 height:180,
+	 weight:140
+  }
+  对zhangsan进行遍历（访问对象的键和值）
+
+   for (var key in zhangsan) {
+     console.log(key, zhangsan[key])
+   }
+3、var response = {
+	      data:[
+	        {
+	          name:"zhangsan",age:18
+	        },
+	        {
+	          name:"lisi",age:19
+	        },
+	      status:{
+	          code:0,
+	          message:"success"
+	      }
+      ]
+   }
+   需求：编写函数，此函数的功能是 ： 当status的code属性值是0且message属性值是"success"时，将data中的name和age属性值打印在控制台
+
+4、
+    for(let i = 1 ; i < 10 ; i++){
+      console.log(1)
+    }
+    console.log(i)//i的输出结果是？undefined
+
+5、在控制台打印
+	  ******
+	  *****
+	  ****
+	  ***
+	  **
+	  *
+6、编写函数，判断是否是闰年？
+  闰年：能被400整除的年份
+       能被4整除且不能被100整除
+7、 var a = 1 ; 将a变成字符串类型（两种方法）
+    String(a)  a.toString()
+   var b = "1";将b变成数值类型（两种方法）
+   Number(b)  Number.parseInt(b)
+8、var arr = [1,2,4,6,8,"9",5,8]
+  遍历数组，如果数组中有字符串类型的元素，就不再遍历，执行下面的语句
+
+  for (let i = 0; i < arr.length; i++) {
+    if (typeof arr[i] === "string") {
+      break;
+    } else {
+      console.log(arr[i])
+    }
+  }
+
+9、编写随机函数
+
+  function randomNum(m,n){
+  return Math.round (Math.random()*(n-m))+n;
+  }

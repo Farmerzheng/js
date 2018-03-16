@@ -37,7 +37,15 @@
   function show(data) {
     if (data.status.code == 0) {
       data.data.forEach(function(item) {
-        document.write(item.name + "的年龄是" + item.age + " ,爱好是" + item.love + "<br>")
+        // ES5字符串与变量的链接方式
+        // document.write(item.name + "的年龄是" + item.age + " ,爱好是" + item.love + "<br>")
+
+        // ES6字符串与变量的链接方式
+        // 不用 "+"
+        // 字符串外面用``包裹
+        // 变量写在 ${}里面
+        document.write(`${item.name}的年龄是${item.age}爱好是${item.love}<br>`)
+
       })
     }
   }

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // var str = "1234567"
+  // console.log(str.length);
+
+  // ES5字符串与变量的链接方式
+  // document.write(item.name + "的年龄是" + item.age + " ,爱好是" + item.love + "<br>")
+
+  // ES6字符串与变量的链接方式
+  // 不用 "+"
+  // 字符串外面用``包裹
+  // 变量写在 ${}里面
+  // document.write(`${item.name}的年龄是${item.age}爱好是${item.love}<br>`)
+
+  /* 
+   访问字符串中的字符
+   console.log('cat'.charAt(1))//a
+   console.log('cat'[1])//a
+   */
+
+
+  // 字符串比较(不是比较的字符串长度,比较的是字符串第一个字符的编码)
+  /*  var a = 'ca';
+    var b = 'bjdfkgk';
+    if (a < b) {
+      console.log(a + ' is less than ' + b);
+    } else if (a > b) {
+      // 执行此行代码
+      console.log(a + ' is greater than ' + b);
+    } else {
+      console.log(a + ' and ' + b + ' are equal.');
+    }*/
+
+  /*
+  var s_prim = 'foo';//字面量的形式创建
+  var s_obj = new String(s_prim);//构造函数形式创建
+
+  console.log(typeof s_prim); // Logs "string"
+  console.log(typeof s_obj);  // Logs "object"
+
+  */
+
+  // eval会执行字符串里面的表达式
+  /* function func() {
+     console.log(1)
+   }
+   console.log(eval("2+2")) //4
+   eval("func()") //func函数会执行
+   eval("alert(1)") //会弹出1*/
+
+  // 替换字符串中的某个字符
+  /*  var num1 = '15';
+    console.log(num1.replace('1', '2')); //25
+    var num2 = '15asdf24hjkl34';
+    console.log(num2.replace(/\d/g,""));//asdfhjkl*/
+
+  // indexOf()
+
+  /*  const str = "abcdefg"
+    console.log(str.indexOf("a")) //0
+    console.log(str.indexOf("f")) //5
+    console.log(str.indexOf("1")) //-1
+    */
+
+  // const arr = ["高德地图", "高峰", "高加林", "地图", "终结者"];
+  // 当用户在输入框输入对应的汉字时，打印出数组当中的相应元素
+  // 例如 :输入"高" ,打印出"高德地图","高峰","高加林"
+
+/*  let userInput = prompt("请输入汉字");
+  for (let i = 0; i < arr.length; i++) {
+
+    if (arr[i].indexOf(userInput) != -1) {
+      console.log(arr[i])
+    }
+
+  }*/
+  </script>
+</body>
+
+</html>
