@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 编写函数，功能是：生成1、2 、3 、4组成不重复的所有三位数，并放入数组当中返回
+
+  function threeNumArr() {
+    let arr = [];
+    for (let i = 1; i <= 4; i++) {
+      // i 百位
+      for (let j = 1; j <= 4; j++) {
+        // j 十位
+        if (i != j) {
+
+          // i j 拿到了
+          for (let m = 1; m <= 4; m++) {
+            //m 个位
+            if (m != i && m != j) { //个位不能和十位、百位相等
+              let num = i.toString() + j.toString() + m.toString();
+              arr.push(Number(num))
+            }
+          }
+
+        }
+      }
+
+    }
+
+    /*	1**
+    	 12*
+    	  123
+    	  124
+    	 13*
+    	 14*
+    	2**
+    	3**
+    	4***/
+    return arr;
+  }
+  console.log(threeNumArr());
+  </script>
+</body>
+
+</html>

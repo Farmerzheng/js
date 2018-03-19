@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 编写函数，功能是返回一个数组，数组当中有1、2、3、4、5五个元素，且这五个元素的顺序是随机的
+  function randomArr() {
+    let arr = [];
+    while(arr.length<5){
+	    // 往数组当中添加1~5的随机数
+	    let randomNum = Math.ceil(Math.random() * 5)
+	    // 将数组当中所有的元素和randomNum进行比较，如果没有一个元素和randomNum相等,那麽将randomNum添加到数组当中
+	    let flag = false;
+	    for (let i = 0; i < arr.length; i++) {
+	      if (randomNum == arr[i]) {
+	        flag = true
+	      }
+	    }
+	    if (flag == false) {
+	      arr.push(randomNum)
+	    }
+    }
+    return arr;
+  }
+  </script>
+</body>
+
+</html>

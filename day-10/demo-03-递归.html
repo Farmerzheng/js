@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 递归 (函数里面调用函数本身)
+  // 递归特点？ 递归比循环应用范围更加广泛
+  // 求1~100的和,不利用循环如何求？
+
+  let sum = 0;
+  let i = 1
+
+  function fn() {
+    sum += i;
+    i++;
+    if (i <= 100) {
+      fn();
+    }
+  }
+  fn();
+  console.log(sum);//5050
+  </script>
+</body>
+
+</html>

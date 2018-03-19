@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /*
+               
+
+        rowNum（可选参数） : Number类型，决定着三角形的行数
+        item（可选参数）:String类型，决定着组成三角形的元素形状（默认形状是“*”） 
+        oppositieBoolean:optional(可选参数) Boolean类型，此参数有两个值，false和true,true则三角形是正三角形，fale则是倒三角形，默认是true
+
+  		*/
+  /*  function consoleTriangle(rowNum, item, oppositeBoolean) {
+      // 默认参数的书写用 "||""
+      // 重新给形参赋值
+      rowNum = rowNum || 5;
+      item = item || "*";
+      oppositeBoolean = oppositeBoolean || false;
+
+
+      // console.log(Boolean)
+      if (!oppositeBoolean) {
+        for (let i = 0; i <= rowNum; i++) {
+          for (let j = 0; j < i; j++) {
+            document.write(item);
+          }
+          document.write("<br>")
+        }
+      } else {
+        for (let i = 0; i <= rowNum; i++) {
+          for (let j = rowNum; j > i; j--) {
+            document.write(item);
+          }
+          document.write("<br>")
+        }
+      }
+
+    }
+
+    consoleTriangle(11,"%",true);*/
+
+  /* 
+   ES6 默认参数的写法
+  */
+  /*function consoleTriangle(rowNum = 5, item = "*", oppositeBoolean = false) {
+    // console.log(Boolean)
+    if (!oppositeBoolean) {
+      for (let i = 0; i <= rowNum; i++) {
+        for (let j = 0; j < i; j++) {
+          document.write(item);
+        }
+        document.write("<br>")
+      }
+    } else {
+      for (let i = 0; i <= rowNum; i++) {
+        for (let j = rowNum; j > i; j--) {
+          document.write(item);
+        }
+        document.write("<br>")
+      }
+    }
+
+  }
+
+  consoleTriangle();*/
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /*	请用二维数组输出如下图形
+                	       0 0 0 0 0 
+                	       1 2 5 6 7
+                	       0 9 8 9 0 
+                	       9 0 0 0 0
+                       */
+  /*  let arr = [
+      [0, 0, 0, 0, 0],
+      [1, 2, 5, 6, 7],
+      [0, 9, 8, 9, 0],
+      [9, 0, 0, 0, 0]
+    ];
+
+
+
+    for(let i = 0 ; i < arr.length ; i++){
+    	for(let j = 0 ; j < arr[i].length ; j++){
+    		document.write(arr[i][j]);
+    	}
+    	document.write("<br>");
+    }*/
+
+
+  // 编写函数，传入一个数字，返回一个数组，数组里面存放着所有它能够整除的数字，例如传入48，返回[1,2,3,4,6,8,12,16,24,48]
+
+  /*  function numArr(num) {
+      let arr = [];
+
+      for (let i = 0; i <= num; i++) {
+        if (num % i == 0) {
+          arr.push(i);
+        }
+      }
+
+      return arr;
+    }
+    let arr = numArr(48);
+    console.log(arr)*/
+
+  // 如果2038年12月25日是世界末日，那么计算一下，你还能活多少天，写出代码
+
+  /*  // 设置某个时间的日期对象
+    const future = new Date('dec 25, 2038, 00:00:00 GMT+00:00');
+    // 设置当前时间的日期对象
+    const now = new Date();
+
+    // date.getTime 获取自1970.1.1.00.00.00 到 date时间的毫秒数
+
+
+    // 总共的毫秒数(时间差)
+    const totalMillSeconds = future.getTime()-now.getTime();
+
+    // 总共的天数
+    const totalDays = parseInt(totalMillSeconds/(1000*3600*24));
+
+    console.log(totalDays);*/
+
+
+  /*  运用所学date方法写一个当前时间显示效果
+        —年—月—日--小时--分钟--秒--星期
+        */
+  // 获取当前时间的日期对象
+  function nowTime() {
+    let now = new Date();
+    let years = now.getFullYear();
+    let months = now.getMonth()+1;
+    let dates = now.getDate();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+    let weekday = now.getDay();
+    /*let nowStr = years + "年" + months + "月" + dates + "日" + hours + "时" + minutes + "分" + seconds + "秒" +  "星期"+weekday;*/
+
+    // 利用ES6中的模板字符串拼接nowStr?
+     let nowStr = `${years}年${months}月${dates}日${hours}时${minutes}分${seconds}秒${weekday}星期`
+
+    return nowStr;
+  }
+
+  setInterval(function(args) {
+  	console.log(nowTime());
+  },1000)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  //  需求： 编写函数max, 调用max(1,2,8,11)会返回实参中的最大值;
+  // this ? 在创建函数的时候，函数内部会默认提供两个变量，this、arguments
+
+  /*  function sum(a, b) {
+      // arguments是一个存放形参的数组
+      // console.log(arguments[0],arguments[1]);// 1 2
+
+      let max = 0;
+      for (let i = 0; i < arguments.length; i++) {
+        if (max < arguments[i]) {
+          max = arguments[i]
+        }
+      }
+      return max;
+    }
+    let result = sum(1, 2,4,7,100,300,45);
+    console.log(result)//300*/
+
+  // 反序
+  //函数需求：传入一个字符串，返回反序字符串
+  function reverseStr(str) {
+    let strArr = str.split(""); //["a","s","d","f"]
+    let newStr = "";
+    for (let i = strArr.length - 1; i >= 0; i--) {
+      newStr += strArr[i];
+    }
+
+    return newStr;
+  }
+  let newStr = reverseStr("asdf");
+  console.log(newStr) //fdsa
+  </script>
+</body>
+
+</html>
