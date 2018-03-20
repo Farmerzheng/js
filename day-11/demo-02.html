@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /*
+        js 执行过程？
+        一、预解析：1、先判断程序是否有语法错误
+                  2、预先读取所有的全局变量和全局函数（知道全局变量和全局函数是什么）
+        二、自上而下执行代码
+    	*/
+
+  sum(); //在第28行打印1
+  console.log(b); //undefined
+
+  // let const 不存在变量提升（不存在预解析）
+  console.log(a); //报错 a is not defined
+
+  let a = 2;
+  var b = 3;
+
+  function sum() {
+    console.log(1)
+  }
+  /*	浏览器内置的对象（浏览器提供给我们的对象）？
+   window
+   Date (new Date())
+   Array (push 、pop 、 shift 、 unshift 、 slice 、 splice 、sort 、 concat、forEach 、 indexof 、length)
+   Math (ceil、max、min、round、random、floor、pow、abs)
+   String(charAt、split、indexof、slice、replace、substr、substring、trim)
+   Number(Number.parseFloat()、Number.isNaN()、 Number.parseInt()、Number.prototype.toString())
+   Boolean
+   null (指向空对象的指针 typeof null ：object)
+   undefined (未定义)
+   Function(Inheritance)
+   Object(Inheritance)
+  	*/
+  </script>
+</body>
+
+</html>

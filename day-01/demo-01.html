@@ -1,53 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+  <meta charset="UTF-8">
+  <title>Document</title>
 </head>
 <!-- css写在style标签里面 -->
+
 <body>
-	<!-- js写在script标签里面 -->
-	<script>
-        // widow对象为我们提供了alert接口
-        // "." 操作对象的符号
-        // alert() 对象内置的方法
+  <!-- js写在script标签里面 -->
+  <script>
+  // widow对象为我们提供了alert方法
 
-        // 对象 ：  属性和方法的集合（集合里面的元素没有顺序）
 
-        var person = {
-        	name:"zhangsan",
-        	age:18
-        }
+  // "." 属性操作符（方法操作符）
 
-        // var :  是ECMASCript 语言当中的关键字
+  /*
+  全局变量是window对象的属性
+  全局函数是window对象的方法
+  alert() === window.alert()  
+  */
 
-        关键字？任何计算机语言都有自己的关键字，关键字就好像英语里面的单词
+  // 方法和函数的区别？
+  // 函数作用对象属性的值的时候，这个函数就叫做对象的方法
 
-        英语？ 语法、单词-----> 句子------>文章
-        计算机语言？语法、关键字----->句子----->程序
-        
-        person? 是一个我们自己创建的对象
-        
-        创建对象？  var person = {
-        	               name: "zhangsan",
-        	               age : 18,
-        	               girlfriend: "lisi"
-        	           }
+  //对象：属性和方法的集合（键值对的集合）
+  // 集合是没有顺序的
 
-        person ： 对象名称
-         =  ： 赋值操作符
-        语法（   {}   、   ：   、   ,  ）
-
-        name、age、girlfriend  ----> 对象的特征（对象的属性）
-        ：后面是属性的值
-
-        
-        数据类型？ 数值类型、字符串类型（需要加引号）
-
-       
+  var person = {
+    name: "zhangsan",
+    age: 18
+  }
 
 
 
+  //关键字？ 任何计算机语言都有自己的关键字， 关键字就好像英语里面的单词
+
+  //英语？ 语法、 单词-- -- - > 句子-- -- -- > 文章
+  //计算机语言？ 语法、 关键字-- -- - > 表达式-- -- - > 程序
+
+
+  //创建对象方法？ 字面量方法和构造函数方法
+
+  // 字面量方法
+  var person = {
+    name: "zhangsan",
+    age: 18,
+    girlfriend: "lisi",
+    speak: function() {
+      console.log(this.name + "can speak");
+    }
+  }
+  //构造函数方法？
+
+  function person(name,age,girlfriend){
+    this.name=name,
+    this.age=age,
+    this.girlfriend=girlfriend
+  }
+  person.prototype={
+    speak:function(){
+        alert(this.name+'can speak')
+    }
+    
+  }
+  var zhangsan = new Person('zhangsan',18,'lisi');
+
+
+
+
+
+
+
+
+  person： 对象名称
+    = ：赋值操作符
+  语法（ {}、：、, ）
+
+  name、 age、 girlfriend-- -- > 对象的特征（ 对象的属性）： 后面是属性的值
+
+
+  数据类型？ 数值类型、 字符串类型（ 需要加引号）
 
 
 
@@ -59,23 +92,28 @@
 
 
 
-        编程里面的对象？
-
-        开一个婚庆公司？
-
-        方式一
-        租一个门面--->装修--> 注册、招聘人才、打广告、交税、买几辆时风婚庆车、买设备（气球、烟花、红包、音响）、被台词
-        
-        方式二
-        开婚庆公司？找一个会计、策划、司机、摄影、秘书
 
 
-        编程？可以和开公司类比
-              面向过程编程（方式一）
-              面向对象编程 （方式二）
-         
-		window.alert("欢迎");
 
-	</script>
+
+
+  编程里面的对象？
+
+  开一个婚庆公司？
+
+  方式一
+  租一个门面-- - > 装修-- > 注册、 招聘人才、 打广告、 交税、 买几辆时风婚庆车、 买设备（ 气球、 烟花、 红包、 音响）、 被台词
+
+  方式二
+  开婚庆公司？ 找一个会计、 策划、 司机、 摄影、 秘书
+
+
+  编程？ 可以和开公司类比
+  面向过程编程（ 方式一）
+  面向对象编程（ 方式二）
+
+  window.alert("欢迎");
+  </script>
 </body>
+
 </html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /*作用域？变量或者函数的作用范围
+            		作用域的种类？全局作用域、函数作用域、块作用域
+            		ES5中存在的作用域？全局作用域、函数作用域
+            		ES6新增了什么作用域？块作用域
+            		*/
+  /*
+  全局作用域？
+    变量或者函数的作用范围是全局的（变量或者函数在哪里都能被访问到）
+    全局的变量或者函数要声明在script标签底下
+  函数作用域？
+    在函数内部声明的变量或者函数，在函数外部访问不到 
+  块作用域？
+    在{}内声明的变量或者函数（{}不包括函数中的{}），在{}外访问不到 
+
+  var 、let 、const ??
+  三个都是声明变量的关键字
+  let 、 const 是ES6新增的关键字
+  var 声明的变量不存在块作用域
+  let、const 声明的变量存在块作用域（在{}里面用let、const声明的变量在{}外面访问不到）
+  在函数内部用 let、const、var声明的变量在函数外部访问不到
+  
+  const与let的相同点与不同点？
+  相同点：两者都存在块作用域（在{}里面用两者声明的变量在{}外面访问不到）
+  不同点：const声明的变量不能够修改
+
+  */
+
+  let a = 1;
+  var f = 6;
+  const g = 7;
+  //g = 8;//错误的，const声明的变量的值不能修改
+  (function() { //函数作用域
+    let b = 2;
+    var e = 5;
+  })();
+  if (true) { //块作用域
+    var c = 3;
+    let d = 4;
+    const h = 8
+  }
+  console.log(a) //1
+  //console.log(b) //undefined
+  console.log(c) //3
+  //console.log(d) //undefined
+  //console.log(e) //undefined
+  console.log(f) //6
+  console.log(g) //7
+  //console.log(h) //undefined
+  </script>
+</body>
+
+</html>

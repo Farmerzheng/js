@@ -8,23 +8,47 @@
 
 <body>
   <script>
-  /*	猴子吃桃问题。猴子第一天摘下若干个桃子，每天都吃了前一天剩下的一半零一个，到第10天早上想再吃的时候，就剩下一个桃子. 求第一天共摘多少个桃子。      
-          
-              10天：num = 1
-              9天:  num = (num+1)*2
-              8天:  num = (num+1)*2
-              7天:
-              6天:
-              5天:
-              4天:
-              3天:
-              2天:
-              1天:?*/
+  /*  猴子吃桃问题。猴子第一天摘下若干个桃子，每天都吃了前一天剩下的一半零一个，到第10天早上想再吃的时候，就剩下一个桃子. 求第一天共摘多少个桃子。      
+            
+                10天：num = 1
+                9天:  num = (num+1)*2
+                8天:  num = (num+1)*2
+                7天:
+                6天:
+                5天:
+                4天:
+                3天:
+                2天:
+                1天:?*/
   let num = 1;
   for (let i = 1; i < 10; i++) {
     num = (num + 1) * 2
   }
   console.log(num);
+
+  let zhangsan = {
+    name: "zhangan",
+    age: 18,
+    speak: function() {
+      console.log(this.name + "会说话")
+    }
+  }
+  let lisi = {
+    name: "lisi",
+    age: 19,
+    speak: function() {
+      console.log(this.name + "会说话")
+    }
+  }
+  // call、bind方法都能改变对象内部this指针的指向，但是call方法直接执行了对象的方法， bind方法有返回值
+
+  // lisi.speak.call(zhangsan);//zhangan会说话
+
+  // console.log(lisi.speak.call(zhangsan));//undefined
+
+  // bind方法有返回值，返回方法本身，call方法没有返回值，call方法直接执行对象的函数
+  console.log(lisi.speak.bind(zhangsan)) //function
+  lisi.speak.bind(zhangsan)(); //zhangsan会说话
   </script>
 </body>
 
