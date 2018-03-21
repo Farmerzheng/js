@@ -52,19 +52,18 @@
     }
   }
   //构造函数方法？
-
-  function person(name,age,girlfriend){
-    this.name=name,
-    this.age=age,
-    this.girlfriend=girlfriend
+  function Person(name, age, girlfriend) {
+    this.name = name;
+    this.age = age;
+    this.girlfriend = girlfriend
   }
-  person.prototype={
-    speak:function(){
-        alert(this.name+'can speak')
+  Person.prototype = {
+    speak: function() {
+      alert(this.name + 'can speak')
     }
-    
+
   }
-  var zhangsan = new Person('zhangsan',18,'lisi');
+  var zhangsan = new Person('zhangsan', 18, 'lisi');
 
 
 
@@ -73,15 +72,18 @@
 
 
 
-  person： 对象名称
-    = ：赋值操作符
-  语法（ {}、：、, ）
 
-  name、 age、 girlfriend-- -- > 对象的特征（ 对象的属性）： 后面是属性的值
+  /* 赋值操作符:+ 、+=、 -= 、*= 、/=
+   算数运算符：+ - * / % 
+   关系运算符：< > <= >= == != !== ===
+   逻辑运算符： && || !*/
 
 
-  数据类型？ 数值类型、 字符串类型（ 需要加引号）
+/*  数据类型？
 
+  number string boolean null undefined
+  object
+*/
 
 
 

@@ -8,20 +8,34 @@
 
 <body>
   <script>
-  // 用户输入摄氏度，提示华氏度
-
-  // 声明一个变量centigrate用来存储用户输入的值
-  var centigrate = window.prompt("请输入摄氏度"); //摄氏度
-
-  // 根据centigrate来计算出华氏温度，并存储在Fahrenheit变量中
-  // 变量在使用前要事先声明
-  var Fahrenheit = 9 / 5 * centigrate + 32;//华氏度
-
-  // 字符串与变量之间连接用 "+" 
-  window.alert("华氏温度是"+Fahrenheit);
+  //封装一个函数，功能是： 传入摄氏度，返回华氏度
+  // Fahrenheit = 9 / 5 * centigrate + 32;
 
 
+  //白兆龙
+  /*  var centigrate = prompt("输入摄氏度");
+    var Fahrenheit = 9 / 5 * centigrate + 32;
+    alert(Fahrenheit);*/
 
+  //高峰
+  /*  function temperature(userinput) {
+      var result = ((9 / 5) * userinput + 32)
+      alert(result)
+    }
+    temperature(11)*/
+  //齐召强
+  /*  function userInput() {
+      let centigrate = prompt("请输入摄氏度");
+      let Fahrenheit = 9 / 5 * centigrate + 32;
+      alert(Fahrenheit);
+    }
+    userInput()*/
+  //车畅行
+  function changeToHahrenheit(centigrade) {
+    return 9 / 5 * centigrade + 32
+  }
+  var a = changeToHahrenheit(32);
+  console.log(a);
   </script>
 </body>
 

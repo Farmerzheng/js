@@ -13,35 +13,59 @@
   var b = 1; //声明变量b，并初始化
 
   /* 
-  用户在输入框输入年份，判断该年份是否是闰年：  1.能被400整除的年份；    
+ 封装一个函数，功能是：传入年份，判断是否是闰年，是闰年返回true,否则返回false
+  1.能被400整除的年份；    
   2.能被4整除但同时不能被100整除的年份
   */
 
-  var userInput = window.prompt("请输入年份");
+  //朱克飞z
+  /*  let n = prompt("请输入年份");
 
+    function yearnum(n) {
+      if (n % 400 == 0 || n % 4 == 0 && n % 100 != 0) {
+        alert("true");//应该改成 return true
+      } else {
+        alert("false");//应该改成 return false
+      }
+    }*/
+  //小欣欣
+  /*  function year(userinput) {
+      if (userinput % 400 == 0 || (userinput % 4 == 0 && userinput % 100 != 0)) {
+        return true
+      } else {
+        return false
+      }
+    }*/
+  // 变量的命名要遵循驼峰命名法
+  // 驼峰命名法：第一个单词字母小写，后面的单词首字母大写
+  //var Newyear = year() //变量命名不正确、函数调用不正确
 
+  // 张舒予
+  /*  var userInput = window.prompt("请输入年份");
 
+    if (userInput % 400 === 0 || userInput % 4 === 0 && userInput % 100 != 0) {
+      return true
+    } else {
+      return false
+    }*/
 
+  // 郭银龙
+  /*  function function_name(userInput) {
+      if ((userInput % 400 === 0) || (userInput % 4 === 0 && userInput % 100 != 0)) {
+        return (true)
+      } else {
+        return (false)
+      }
+    }*/
 
-
-
-
-
-
-  //判断userInput是平年还是闰年
-  /*以下两个条件满足任何一个就是闰年？
-    1、userInput能被400整除
-    2、userInput 能被4整除且不能被100整除*/
-
-  //第一个条件：userInput%400 === 0
-  // 第二个条件 ： userInput%4===0 且 userInput%100!=0
-
-  if ((userInput % 400 === 0) || (userInput % 4 === 0 && userInput % 100 != 0)) {
-    //是闰年
-    alert("闰年")
-    }else{
-      alert("不是闰年")
-    }
+  // 侯艺杰
+  // 函数的可扩展性、复用性  
+/*  let userInput = prompt("请输入年份");
+   function Year(year) {
+     return year % 400 == 0 || year % 4 == 0 && year % 100 != 0 ? true : false
+   }
+   let flag = Year(userInput);
+   flag?alert("闰年"):alert("不是闰年")*/
   </script>
 </body>
 

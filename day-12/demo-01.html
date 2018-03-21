@@ -17,25 +17,35 @@
   <button id="btn">点击</button>
   <div id="box"></div>
   <script>
-  /*  	 
-       将要操作的标签转化成 DOM 对象
-  	 因为DOM对象里面为我们提供了操作标签的接口
-  	 query 查找
-  	 selector 选择器
-  	 querySelector（“选择器”） 的作用？ 
-  	 查找文档当中选择器对应的标签，并将标签转化成DOM对象
-    */
+  /*     
+             将要操作的标签转化成 DOM 对象
+           因为DOM对象里面为我们提供了操作标签的接口
+           query 查找
+           selector 选择器
+           querySelector（“选择器”） 的作用？ 
+           查找文档当中选择器对应的标签，并将标签转化成DOM对象
+          */
   let btn = document.querySelector("#btn");
   let box = document.querySelector("#box");
   // 为按钮添加事件监听器
   // 事件监听器？监听事件是否被触发
   // 浏览器时刻在监听着挂接在各个DOM对象上面的事件
 
+  //add 添加
+  // event 事件
+  // listener 监听器，监听着
   // DOM.addEventListener("事件名称"，事件触发时执行的函数)
   btn.addEventListener("click", btnClickHandler);
 
-  function btnClickHandler(){
-  	box.style.display = "none";
+  let showBoolean = true;
+
+  function btnClickHandler() {
+    if (showBoolean) {
+      box.style.display = "none";
+    } else {
+      box.style.display = "block";
+    }
+    showBoolean = !showBoolean;
   }
   </script>
 </body>

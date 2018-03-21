@@ -1,33 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+  <meta charset="UTF-8">
+  <title>Document</title>
 </head>
+
 <body>
-	<script>
-	/*	浏览器内置的对象（浏览器提供给我们的对象）？
-         window
-         Date (new Date())
-         Array (new Array())
-         Math (ceil、max、min、round、random、floor、pow、abs)
-         String(charAt、split、indexof、slice、replace、substr、substring、trim)
-         Number(toString、parseInt、parseFloat、)
-         Boolean
-         Null
-         Undefined
-         Function
-         Object
-	*/
-        // prompt  是window对象的一个方法，功能是？弹窗
+  <script>
+  /*	浏览器内置的对象（浏览器提供给我们的对象）？
+   window
+   Date (new Date())
+   Array (push 、pop 、 shift 、 unshift 、 slice 、 splice 、sort 、 concat、forEach 、 indexof 、length)
+   Math (ceil、max、min、round、random、floor、pow、abs)
+   String(charAt、split、indexof、slice、replace、substr、substring、trim)
+   Number(Number.parseFloat()、Number.isNaN()、 Number.parseInt()、Number.prototype.toString())
+   Boolean
+   null (指向空对象的指针 typeof null ：object)
+   undefined (未定义)
+   Function(Inheritance)
+   Object(Inheritance)
+  	*/
+  var a = window.prompt("你饿了么？");
 
-        // “.” 功能？ 让我们能够访问到对象的属性或者方法
-
-        // prompt 方法会返回用户输入的值
-		var a = window.prompt("你饿了么？");
-        
-        window.console.log(a);
-
-	</script>
+  window.console.log(a);
+  </script>
 </body>
+
 </html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+#box {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+</style>
+
+<body>
+  <button id="btn">点击</button>
+  <div id="box"></div>
+  <script>
+  /*
+          对象：属性和方法的集合
+          属性？按钮、盒子
+          方法？事件处理函数、为按钮绑定事件
+        */
+  var obj = {
+    init: function() { //对象的初始化方法
+      // this指 obj
+      // 为obj天加了 btn、box、showBoolean属性
+      this.btn = document.querySelector("#btn");
+      this.box = document.querySelector("#box");
+      this.showBoolean = true;
+      
+      //挂接事件
+      this.bindEvent();
+    },
+    bindEvent: function() { //绑定事件
+      // 为btn挂接事件监听器
+      this.btn.addEventListener("click", this.btnClickHandler.bind(this))
+    },
+    btnClickHandler: function() {
+      // this 指 this.btn
+      // 在事件处理函数当中，this指挂接的DOM对象
+      // 通过bind方法，可以改变this指针指向，使this指向obj
+      if (this.showBoolean) {
+        this.box.style.display = "none";
+      } else {
+        this.box.style.display = "block";
+      }
+      this.showBoolean = !this.showBoolean;
+    }
+  }
+  obj.init();
+  </script>
+</body>
+
+</html>

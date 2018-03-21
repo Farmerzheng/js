@@ -17,42 +17,201 @@
   // var baskets = parsetInt(eggs / 20) + 1;
   // var baskets = (eggs - eggs % 20) / 20 + 1;
 
-  //如果今天是星期六,那么n天以后是星期几？（n是用户输入的值）
 
-  var userInput = prompt("请输入天数");
-  var weekday = userInput % 7; //声明次变量存储计算出来的星期数
+  // 封装一个函数，功能是：自星期六开始计算n天以后是星期几，并将结果返回
 
-  if (weekday === 0) {
-    weekday = "六"
-  }
+  //郭银龙
+  /* var userInput = prompt("请输入天数");
 
-  if (weekday === 1) {
-    weekday = "日"
-  }
+  function weekday(userInput){  
+    let weekday = userInput % 7; 
+    switch (weekday) {
+      case 0:
+        weekday = 6;//为变量重新赋值
+        break;
+      case 1:
+        weekday = 7;
+        break;
+      case 2:
+        weekday = 1;
+        break;
+      case 3:
+        weekday = 2;
+        break;
+      case 4:
+        weekday = 3;
+        break;
+      case 5:
+        weekday = 4;
+        break;
+      case 6:
+        weekday = 5;
+        break;   
+       
+    } 
+     // return (userInput + "日以后是星期" + weekday);
+      return weekday;//提高了函数的可扩展性
+  }*/
+  // 齐召强
+  /*let userInput = prompt("请输入天数");
+    let weekday = userInput % 7;//移入函数内部
+
+    function day(userInput) {
+        switch(weekday){
+            case 0:
+                weekday = "六";
+                break;
+            case 1:
+                weekday = "日";
+                break;
+            case 2:
+                weekday = "一";
+                break;
+            case 3:
+                weekday = "二";
+                break;
+            case 4:
+                weekday = "三";
+                break;
+            case 5:
+                weekday = "四";
+                break;
+            case 6:
+                weekday = "五";
+                break;
+        }
+        return weekday;
+    }
+   */
+  // 张浩欣
+  /*   function week(userinput) {
+      switch(userinput % 7) {//最后return一次就可以了
+        case 0:
+          return "星期六"//“星期六” 改成 6
+          break;
+        case 1:
+          return "星期日"
+          break;
+        case 2:
+          return "星期一"
+          break;
+        case 3:
+          return "星期二"
+          break;
+        case 4:
+          return "星期三"
+          break;
+        case 5:
+          return "星期四"
+          break;
+        case 6:
+          return "星期五"
+          break;
+      }
+    }
+    var newWeek = week(7)*/
+
+  /*
+      function userInput() {
+          var userInput = prompt("请输入天数");//移出到函数外部
+          var weekday = userInput % 7;
+          userInput = Number(userInput);
+          switch (userInput) {//最后return一次就行了
+              case 0:
+                  return("星期六");//没必要加括号
+                  break;
+              case 1:
+                  return("星期日");
+                  break;
+              case 2:
+                  return("星期一");
+                  break;
+              case 3:
+                  return("星期二");
+                  break;
+              case 4:
+                  return("星期三");
+                  break;
+              case 5:
+                  return("星期四");
+                  break;
+              case 6:
+                  return("星期五");
+                  break;
+          }
+      }*/
+
+  // 兆龙
+  /*    function weekDay(day){
+      let weekDay = userInput % 7;
+      switch(weekday){
+        case 0:
+        weekday = "六";
+        break;
+         case 1:
+        weekday = "日";
+        break;
+         case 2:
+        weekday = "一";
+        break;
+         case 3:
+        weekday = "二";
+        break;
+         case 4:
+        weekday = "三";
+        break;
+         case 5:
+        weekday = "四";
+        break;
+         case 6:
+        weekday = "五";
+        break;
+      }
+      
+      return weekday;
+    }
+  let weekday = weekDay(4);
+      console.log(weekady);*/
+
+  // 张秀薇
+  /*    function week() {
+          var userInput = prompt("请输入天数")//把函数写死了
+          var weekday = userInput % 7;
+          switch (weekday) {
+              case 0:
+                  return "星期六";
+                  break;
+
+              case 1:
+                  return "星期日";
+                  break;
+
+              case 2:
+                  return "星期一";
+                  break;
+
+              case 3:
+                  return "星期二";
+                  break;
+
+              case 4:
+                  return "星期三";
+                  break;
+
+              case 5:
+                  return "星期四";
+                  break;
+
+              case 6:
+                  return "星期五";
+                  break;
 
 
-  if (weekday == 2) {
-    weekday = "一"
-  }
-  if (weekday == 3) {
-    weekday = "二"
-  }
+              default://没必要
 
-  if (weekday == 4) {
-    weekday = "三"
-  }
-
-  if (weekday == 5) {
-    weekday = "四"
-  }
-
-  if (weekday == 6) {
-    weekday = "五"
-  }
-
-
-
-  alert(userInput + "天以后是星期" + weekday);
+          }
+      }
+      console.log(week())  */
   </script>
 </body>
 
