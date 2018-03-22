@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  position: absolute;
+  left: 300px;
+  top: 100px;
+}
+
+.line {
+  background-color: black;
+  width: 1px;
+  height: 100vh;
+  position: absolute;
+  left: 600px;
+  top: 0px;
+}
+
+.line2 {
+  background-color: black;
+  width: 1px;
+  height: 100vh;
+  position: absolute;
+  left: 100px;
+  top: 0px;
+}
+</style>
+
+<body>
+  <button id="btn">开始</button>
+  <div class="box"></div>
+  <div class="line"></div>
+  <div class="line2"></div>
+  <script>
+  /*
+    点击按钮才让盒子运动？  
+
+    */
+
+  let box = document.querySelector(".box");
+  btn = document.querySelector("#btn");
+  moveBoolean = false;//开关按钮
+
+  btn.addEventListener("click", btnClickHandler);
+
+  function btnClickHandler(){
+  	//让box运动
+    moveBoolean = true;
+  }
+
+  animation();
+  function animation() {
+    requestAnimationFrame(animation);
+    // console.log(1);
+    if(moveBoolean){
+      box.style.left = box.offsetLeft + 1 + "px";
+    }    
+  }
+  </script>
+</body>
+
+</html>

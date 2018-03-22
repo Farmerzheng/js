@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  position: absolute;
+  left: 300px;
+  top: 100px;
+}
+
+.box2 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: absolute;
+  left: 300px;
+  top: 300px;
+}
+
+.line {
+  background-color: black;
+  width: 1px;
+  height: 100vh;
+  position: absolute;
+  left: 600px;
+  top: 0px;
+}
+
+.line2 {
+  background-color: black;
+  width: 1px;
+  height: 100vh;
+  position: absolute;
+  left: 100px;
+  top: 0px;
+}
+</style>
+
+<body>
+  <button id="btn">开始</button>
+  <div class="box"></div>
+  <div class="box2"></div>
+  <div class="line"></div>
+  <div class="line2"></div>
+  <script>
+  
+    /*
+       if (DOM.offsetLeft == iTarget) //终止的条件存在问题
+
+       终止的条件是什么？
+       "DOM.offsetLeft和iTarget之间的距离" 小于 "速度的绝对值"
+
+       终点与盒子之间存在间隙？
+       DOM.offsetLeft = iTarget + "px"
+
+    */
+
+  let box = document.querySelector(".box");
+  let box2 = document.querySelector(".box2");
+  let btn = document.querySelector("#btn");
+  let speed = 2;
+  let timer = null;
+  btn.addEventListener("click", btnClickHandler);
+
+  function btnClickHandler() {
+    move(box2, 100, 7)
+  }
+
+  function move(DOM, iTarget, speed) {
+    if (timer) {
+      clearInterval(timer);
+    }
+    if(DOM.offsetLeft > iTarget){
+    	speed = -speed;
+    }
+
+    timer = setInterval(function() {
+      if (Math.abs(DOM.offsetLeft-iTarget)<Math.abs(speed)) {
+      //终止的条件存在问题
+        DOM.style.left = iTarget + "px"
+        clearInterval(timer);
+      } else {
+        DOM.style.left = DOM.offsetLeft + speed + "px";
+      }
+    }, 10);
+  }
+  </script>
+</body>
+
+</html>

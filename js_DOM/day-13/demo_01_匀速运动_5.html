@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  position: absolute;
+  left: 300px;
+  top: 100px;
+}
+
+.box2 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: absolute;
+  left: 300px;
+  top: 300px;
+}
+
+.line {
+  background-color: black;
+  width: 1px;
+  height: 100vh;
+  position: absolute;
+  left: 600px;
+  top: 0px;
+}
+
+.line2 {
+  background-color: black;
+  width: 1px;
+  height: 100vh;
+  position: absolute;
+  left: 100px;
+  top: 0px;
+}
+</style>
+
+<body>
+  <button id="btn">开始</button>
+  <div class="box"></div>
+  <div class="box2"></div>
+  <div class="line"></div>
+  <div class="line2"></div>
+  <script>
+  /*
+    让盒子向相反的方向运动
+  */
+
+  let box = document.querySelector(".box");
+  let box2 = document.querySelector(".box2");
+  let btn = document.querySelector("#btn");
+  let speed = 2;
+  let timer = null;
+  btn.addEventListener("click", btnClickHandler);
+
+  function btnClickHandler() {
+    move(box2, 100, 5)
+  }
+
+  function move(DOM, iTarget, speed) {
+    if (timer) {
+      clearInterval(timer);
+    }
+    
+    // 判断是否是相反的方向
+    if(DOM.offsetLeft > iTarget){
+    	speed = -speed;//将速度变成相反的值
+    }
+
+    timer = setInterval(function() {
+      if (DOM.offsetLeft == iTarget) {
+        clearInterval(timer);
+      } else {
+        DOM.style.left = DOM.offsetLeft + speed + "px";
+      }
+    }, 10);
+  }
+  </script>
+</body>
+
+</html>

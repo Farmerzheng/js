@@ -14,13 +14,24 @@
     this.age = age
   }
   // prototype是Person的原型对象，通过Person创建的对象都会继承Person.prototype的属性和方法
+
   // prototype是构造函数的一个属性，属性的值是构造函数的原型对象
-  Person.prototype.speak = function() {
-    console.log(this.name + " can speak")
-  }
-    Person.prototype.run = function() {
-    console.log(this.name + " can run")
-  }
+  // Person.prototype.speak = function() {
+  //   console.log(this.name + " can speak")
+  // }
+  //   Person.prototype.run = run() {
+  //   console.log(this.name + " can run")
+  // }
+
+   // 第二种写法
+  // Person.prototype = {
+  //   speak:function(){
+  //     console.log(this.name+"can speak")
+  //   },
+  //   run:function(){
+  //     console.log(this.name+"can run")
+  //   }
+  // }
   
 
 

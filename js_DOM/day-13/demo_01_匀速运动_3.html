@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  position: absolute;
+  left: 300px;
+  top: 100px;
+}
+
+.line {
+  background-color: black;
+  width: 1px;
+  height: 100vh;
+  position: absolute;
+  left: 600px;
+  top: 0px;
+}
+
+.line2 {
+  background-color: black;
+  width: 1px;
+  height: 100vh;
+  position: absolute;
+  left: 100px;
+  top: 0px;
+}
+</style>
+
+<body>
+  <button id="btn">开始</button>
+  <div class="box"></div>
+  <div class="line"></div>
+  <div class="line2"></div>
+  <script>
+  //重复点击速度变快？
+  //因为重复点击会开启多个定时器！！！
+  // 如何解决？ 开启定时器的时候先清除上一次开启的定时器
+  let box = document.querySelector(".box");
+  let btn = document.querySelector("#btn");
+  let speed = 2;
+  let timer = null;
+
+  btn.addEventListener("click", btnClickHandler);
+
+
+  /*
+    函数内部的局部变量，在函数外部访问不到
+    每次执行btnClickHandler函数的时候需要清除上次开启的定时器
+    可以利用全局变量 “传值” 的特点(全局变量在整个程序运行过程当中都不会销毁)
+    全局变量传值---->important!!!!
+  */
+  function btnClickHandler() {
+    // 清空的timer就是上一次的timer
+    if (timer) {
+      clearInterval(timer);
+    }
+
+    // 每次点击就将定时器赋值给全局变量timer
+    timer = setInterval(function() {
+      if (box.offsetLeft == 600) {
+        clearInterval(timer);
+      } else {
+        box.style.left = box.offsetLeft + speed + "px";
+      }
+    }, 10);
+  }
+  </script>
+</body>
+
+</html>

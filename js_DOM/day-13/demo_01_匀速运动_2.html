@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  position: absolute;
+  left: 300px;
+  top: 100px;
+}
+
+.line {
+  background-color: black;
+  width: 1px;
+  height: 100vh;
+  position: absolute;
+  left: 600px;
+  top: 0px;
+}
+
+.line2 {
+  background-color: black;
+  width: 1px;
+  height: 100vh;
+  position: absolute;
+  left: 100px;
+  top: 0px;
+}
+</style>
+
+<body>
+  <button id="btn">开始</button>
+  <div class="box"></div>
+  <div class="line"></div>
+  <div class="line2"></div>
+  <script>
+  // 周一听写（定时器的使用）
+  let box = document.querySelector(".box");
+  let btn = document.querySelector("#btn");
+  let speed = 20;
+
+  btn.addEventListener("click", btnClickHandler);
+
+  function btnClickHandler() {
+    // 让box运动起来
+    let timer = setInterval(function() {
+      if (box.offsetLeft == 600) { // 盒子停止的条件
+        // 清空定时器
+        // clearInterval(定时器对象)
+        clearInterval(timer);
+      } else { //不满足停止的条件就继续运动
+        box.style.left = box.offsetLeft + speed + "px";
+      }
+    }, 100);
+  }
+  </script>
+</body>
+
+</html>

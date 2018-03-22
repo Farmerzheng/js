@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  position: absolute;
+  left: 300px;
+  top: 100px;
+}
+
+.line {
+  background-color: black;
+  width: 1px;
+  height: 100vh;
+  position: absolute;
+  left: 600px;
+  top: 0px;
+}
+
+.line2 {
+  background-color: black;
+  width: 1px;
+  height: 100vh;
+  position: absolute;
+  left: 100px;
+  top: 0px;
+}
+</style>
+
+<body>
+  <button id="btn">开始</button>
+  <div class="box"></div>
+  <div class="line"></div>
+  <div class="line2"></div>
+  <script>
+  /*第一秒打印1 第二秒打印2 第三秒打印3 第四秒打印4 …………………… */
+  /*  let i = 0;
+    setInterval(function() {
+        i++;
+        console.log(i)
+      },
+      1000)*/
+
+  /*
+    什么时候需要清空定时器
+    运动终止的条件 
+
+  */
+
+
+
+  let box = document.querySelector(".box");
+  btn = document.querySelector("#btn");
+  speed = 20;
+
+  btn.addEventListener("click", btnClickHandler);
+
+  function btnClickHandler() {
+    // 让box运动起来（开启一个定时器）
+    // setInterval(函数，时间)
+    setInterval(function() {
+      // 每隔100ms执行一次
+      box.style.left = box.offsetLeft + speed + "px";
+    }, 100);
+  }
+
+  /*
+    自定义定时器函数(回调函数)
+    回调函数：函数作为参数
+  */
+
+  /*  function myInterval(callback,time){
+      let timer = setInterval(function(){
+        callback();
+      },time*1000);
+      return timer;
+    }
+
+    myInterval(function(){
+      console.log(1);
+    },1)*/
+  </script>
+</body>
+
+</html>
