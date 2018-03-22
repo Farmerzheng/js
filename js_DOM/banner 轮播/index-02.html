@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>carousel</title>
+  <style media="screen">
+  /**
+         * global
+         */
+
+  * {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+  }
+  /**
+         * box size
+         */
+
+  #carousel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 1200px;
+    height: 600px;
+    border: solid 5px rgba(0, 0, 0, .5);
+    overflow: hidden;
+  }
+  /**
+         * FIG bed
+         */
+
+  #carousel .gallery {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 999999px;
+    height: 100%;
+  }
+
+  #carousel .gallery li {
+    float: left;
+    width: 1200px;
+    height: 100%;
+  }
+
+  #carousel .gallery img {
+    width: 100%;
+    height: auto;
+  }
+  /**
+         * pagination
+         */
+
+  #carousel .pagination {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    height: 30px;
+    text-align: center;
+  }
+
+  #carousel .pagination li {
+    margin: 0 5px;
+    display: inline-block;
+    width: 30px;
+    line-height: 30px;
+    color: #fff;
+    background: rgba(0, 0, 0, .5);
+    transition: all .5s;
+    -o-transition: all .5s;
+    -moz-transition: all .5s;
+    -webkit-transition: all .5s;
+  }
+  /**
+         * left button & right button
+         */
+
+  #carousel .side-btn {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+  }
+
+  #carousel .side-btn button {
+    float: left;
+    font-size: 30px;
+    width: 50px;
+    line-height: inherit;
+    ;
+    border: none;
+    outline: none;
+    background: rgba(0, 0, 0, .5);
+    text-align: center;
+    color: #fff;
+    transition: all .5s;
+    -o-transition: all .5s;
+    -moz-transition: all .5s;
+    -webkit-transition: all .5s;
+  }
+
+  #carousel .side-btn button:nth-child(1) {}
+
+  #carousel .side-btn button:nth-child(2) {
+    float: right;
+  }
+
+  #carousel .pagination li:hover,
+  #carousel .side-btn button:hover {
+    background: #000;
+  }
+
+  #carousel .pagination .active {
+    background: #000;
+  }
+  </style>
+</head>
+
+<body>
+  <section id="carousel">
+    <ul class="gallery">
+      <li class="gallery_item"><img src="img/1.jpg" alt="carousel" /></li>
+      <li class="gallery_item"><img src="img/2.jpg" alt="carousel" /></li>
+      <li class="gallery_item"><img src="img/3.jpg" alt="carousel" /></li>
+      <li class="gallery_item"><img src="img/4.jpg" alt="carousel" /></li>
+    </ul>
+    <div class="side-btn">
+      <button>&lt;</button>
+      <button>&gt;</button>
+    </div>
+    <ol class="pagination">
+      <li class="pagination_item" class="active">1</li>
+      <li class="pagination_item">2</li>
+      <li class="pagination_item">3</li>
+      <li class="pagination_item">4</li>
+    </ol>
+    <span></span>
+  </section>
+  <script type="text/javascript">
+  let liArr = document.querySelectorAll(".pagination_item");
+  liArr.forEach(function(item,index){
+     item.addEventListener("click",function(){
+     	console.log(index);
+     })
+  })
+ 
+  </script>
+</body>
+
+</html>

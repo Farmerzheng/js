@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>carousel</title>
+  <style media="screen">
+  /**
+         * global
+         */
+
+  * {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+  }
+  /**
+         * box size
+         */
+
+  #carousel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 1200px;
+    height: 600px;
+    border: solid 5px rgba(0, 0, 0, .5);
+    overflow: hidden;
+  }
+  /**
+         * FIG bed
+         */
+
+  #carousel .gallery {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 999999px;
+    height: 100%;
+  }
+
+  #carousel .gallery li {
+    float: left;
+    width: 1200px;
+    height: 100%;
+  }
+
+  #carousel .gallery img {
+    width: 100%;
+    height: auto;
+  }
+  /**
+         * pagination
+         */
+
+  #carousel .pagination {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    height: 30px;
+    text-align: center;
+  }
+
+  #carousel .pagination li {
+    margin: 0 5px;
+    display: inline-block;
+    width: 30px;
+    line-height: 30px;
+    color: #fff;
+    background: rgba(0, 0, 0, .5);
+    transition: all .5s;
+    -o-transition: all .5s;
+    -moz-transition: all .5s;
+    -webkit-transition: all .5s;
+  }
+  /**
+         * left button & right button
+         */
+
+  #carousel .side-btn {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+  }
+
+  #carousel .side-btn button {
+    float: left;
+    font-size: 30px;
+    width: 50px;
+    line-height: inherit;
+    ;
+    border: none;
+    outline: none;
+    background: rgba(0, 0, 0, .5);
+    text-align: center;
+    color: #fff;
+    transition: all .5s;
+    -o-transition: all .5s;
+    -moz-transition: all .5s;
+    -webkit-transition: all .5s;
+  }
+
+  #carousel .side-btn button:nth-child(1) {}
+
+  #carousel .side-btn button:nth-child(2) {
+    float: right;
+  }
+
+  #carousel .pagination li:hover,
+  #carousel .side-btn button:hover {
+    background: #000;
+  }
+
+  #carousel .pagination .active {
+    background: #000;
+  }
+  </style>
+</head>
+
+<body>
+  <section id="carousel">
+    <ul class="gallery">
+      <li><img src="img/1.jpg" alt="carousel" /></li>
+      <li><img src="img/2.jpg" alt="carousel" /></li>
+      <li><img src="img/3.jpg" alt="carousel" /></li>
+      <li><img src="img/4.jpg" alt="carousel" /></li>
+    </ul>
+    <div class="side-btn">
+      <button>&lt;</button>
+      <button>&gt;</button>
+    </div>
+    <ol class="pagination">
+      <li class="active">1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ol>
+    <span></span>
+  </section>
+  <script type="text/javascript">
+  "use strict";
+
+  (function() {
+    var data = [],
+      carousel = document.querySelector('#carousel'),
+      gallery = document.querySelector('.gallery'),
+      imgLi = gallery.querySelectorAll('li'),
+      aButton = document.querySelectorAll('button'),
+      pagination = document.querySelector('.pagination'),
+      paginationLi = document.querySelectorAll('.pagination li'),
+      len = paginationLi.length,
+      timer = null,
+      myTimer = null,
+      carouselWidth = carousel.clientWidth,
+      index = 0;
+
+    function Carousel() {};
+
+    // 获取index
+    Carousel.prototype.getIndex = function(parent, node) {
+      return [].indexOf.call(parent, node);
+      // return parent.indexOf.call(node);
+    };
+
+    // 初始化 ul li
+    Carousel.prototype.addimgLi = function(data, curLi) {
+      var newLi = document.createElement('li');
+      newLi.innerHTML = data;
+      if (curLi) {
+        gallery.insertBefore(newLi, curLi);
+      } else {
+        gallery.appendChild(newLi);
+      };
+    };
+
+    // 动画定时器
+    Carousel.prototype.galleryMove = function(iTarget) {
+      clearInterval(timer);
+      timer = setInterval(function() {
+        var speed = (iTarget - gallery.offsetLeft) / 10;
+        speed = speed < 0 ? Math.floor(speed) : Math.ceil(speed);
+        if (iTarget === gallery.offsetLeft) {
+          clearInterval(timer);
+        } else {
+          gallery.style.left = gallery.offsetLeft + speed + 'px';
+        };
+      }, 20);
+    };
+
+    // ol li 改变类名
+    Carousel.prototype.active = function(index) {
+      for (var i = 0; i < len; i++) {
+        paginationLi[i].className = '';
+      };
+      paginationLi[index].className = 'active';
+    };
+
+
+    // 初始化
+    var initialization = new Carousel();
+    initialization.addImg = function() {
+      var aLi = [].slice.call(imgLi);
+      console.log(imgLi,aLi);
+      aLi.map(function(item) {
+        data.push(item.innerHTML);
+      });
+
+      gallery.innerHTML = '<li></li>';
+
+      imgLi = gallery.querySelectorAll('li');
+      console.log(imgLi[0].parentNode);
+      initialization.addimgLi(data[0], gallery.firstChild);
+      imgLi = gallery.querySelectorAll('li');
+      console.log(imgLi.length);
+
+
+    };
+
+    // 按钮点击
+    var buttonClick = new Carousel();
+
+    // 左按钮点击
+    buttonClick.leftClick = function() {
+      aButton[0].onclick = function() {
+        imgLi[0].innerHTML = data[index];
+        index++;
+        if (index > data.length - 1) {
+          index = 0;
+        };
+
+        buttonClick.active(index);
+
+        imgLi[1].innerHTML = data[index];
+        buttonClick.galleryMove(-carouselWidth);
+        gallery.style.left = 0;
+      };
+    };
+
+    // 右按钮点击
+    buttonClick.rightClick = function() {
+      aButton[1].onclick = function() {
+        imgLi[1].innerHTML = data[index];
+        index--;
+        if (index < 0) {
+          index = data.length - 1;
+        };
+        buttonClick.active(index);
+
+        imgLi[0].innerHTML = data[index];
+        buttonClick.galleryMove(0);
+        gallery.style.left = -carouselWidth + 'px';
+      };
+    };
+
+    // ol 点击
+    var paginationClick = new Carousel();
+    paginationClick.olClick = function() {
+      pagination.onclick = function(e) {
+        var liIndex = paginationClick.getIndex(paginationLi, e.target)
+        buttonClick.active(liIndex);
+        imgLi[0].innerHTML = data[liIndex];
+
+        imgLi[1].innerHTML = data[index];
+        index = liIndex;
+
+        buttonClick.galleryMove(0);
+        gallery.style.left = -carouselWidth + 'px';
+      };
+    };
+
+    // 自动轮播
+    var auto = new Carousel();
+    auto.move = function() {
+      myTimer = setInterval(function() {
+        aButton[0].click();
+      }, 3000);
+    };
+
+    // 鼠标移入
+    auto.over = function() {
+      carousel.onmouseover = function() {
+        clearInterval(myTimer);
+      };
+    };
+
+    // 鼠标移出
+    auto.out = function() {
+      carousel.onmouseout = function() {
+        auto.move();
+      };
+    };
+
+    function init() {
+      initialization.addImg();
+      buttonClick.leftClick();
+      buttonClick.rightClick();
+      paginationClick.olClick();
+      auto.move();
+      auto.over();
+      auto.out();
+    };
+
+    init();
+  })();
+  </script>
+</body>
+
+</html>
