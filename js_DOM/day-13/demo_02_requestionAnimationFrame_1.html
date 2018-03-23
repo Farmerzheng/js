@@ -41,45 +41,48 @@
   <div class="line2"></div>
   <script>
   /*
-      定时器可以让game函数每隔1ms执行一次
-      function game(){
-    	 person1.update();
-    	 person2.update();
-    	 ……………………
-    	 person100.update();
-      }
+        一个定时器可以搞定游戏当中的所有运动
+        function game(){
+         person1.update();
+         person2.update();
+         ……………………
+         person100.update();
+        }
 
-      动画原理？
-      假设盒子每隔1s运动10px
-      浏览器每隔16s刷新一次
-      人肉眼能够看到的是每隔16s盒子运动160px
-      
+        动画原理？
+        假设盒子每隔1s运动10px
+        浏览器每隔16s刷新一次
+        人肉眼能够看到的是 ： 每隔16s盒子运动160px
+        
 
-      浏览器实际上是1s钟刷新60次（约16.7ms刷新一次）
-      盒子动画如何才能流畅的显示？--->浏览器刷新的时候才改变盒子的位置
-      
+        浏览器实际上是1s钟刷新60次（约16.7ms刷新一次）
+        盒子动画如何才能流畅的显示？--->浏览器刷新的时候才改变盒子的位置      
 
-    */
-
+      */
 
 
-  let box = document.querySelector(".box");
-  btn = document.querySelector("#btn");
 
+  let box = document.querySelector(".box"); //DOM
 
-  btn.addEventListener("click", btnClickHandler);
-
-  function btnClickHandler(){
-  	//让box运动
+  box.update = function(speed) {
+    this.style.left = this.offsetLeft + speed + "px"
   }
 
   animation();
+  // 自定义animation函数
   function animation() {
     // 将animation函数放入刷新浏览器刷新队列
-    // 浏览器刷新的时候就会执行animation函数
+    // 浏览器刷新的时候就会执行animation函数    
+    // requestAnimationFrame 是系统提供给我们的检测浏览器刷新的函数
+    // 自定义函数第一行
     requestAnimationFrame(animation);
-    // console.log(1);
-    box.style.left = box.offsetLeft + 1 + "px";
+
+    // 更新小鸟 bird.update()
+    // 更新弹弓 dagong.update()
+    // 更新房子 house.update()
+
+    //跟新盒子
+    box.update(2);
   }
   </script>
 </body>

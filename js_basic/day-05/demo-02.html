@@ -15,19 +15,69 @@
     // userInput%2===0?console.log(1):console.log(2);
   }
 
-  // 封装一个函数，此函数的功能是：1~n 所有奇数的和
 
-  function oddSum(num) {
-    var sum = 0;// 声明变量存储运算出来的数据
-    for (var i = 0; i < num; i++) {
-      // 判断i是否是奇数
+
+
+
+
+
+  // 封装一个函数，此函数的功能是：反回1~n 所有奇数的和
+
+  // 张浩欣
+  function even(num) {
+    for (let i = 0; i < num; i++) {
+      let sum = 0; //sum应该声明在循环的外面
+      if (i % 2 != 0) {
+        return sum += i
+      } else { //if语句理解不透彻
+
+      }
+    }
+    //函数没有返回值
+  }
+  let newEven = even(1000)
+  console.log(newEven)
+
+  //王贺 
+  function Sum(num) {
+    var sum = 0;
+    for (var i = 0; i < num; i++) //循环结构不对
+      /*   if (i % 2 != 0) {
+           sum += i
+         }*/
+      应该写在循环体当中
+  }
+  //陈赓
+  var sum = 0; //sum声明在函数里面
+  //形参只能是变量
+  function oddsum(1, n) { //形参设计不合理
+    for (i = 1; i <= n; i++) {
+      if (i % 2 != 0) {
+        sum += i;
+      }
+    }
+  }
+  // 克飞
+  function sum(n) {
+    let sumNum = 0;
+    for (let i = 1; i <= n; i++) {
+      if (i % 2 != 0) {
+        return sumNum += i; //循环外面return
+      }
+    }
+  }
+
+
+  // 正确答案
+  function sumOdd(n) {
+    let sum = 0;
+    for (let i = 0; i < n; i++) {
       if (i % 2 != 0) {
         sum += i
       }
     }
     return sum;
   }
-
   </script>
 </body>
 

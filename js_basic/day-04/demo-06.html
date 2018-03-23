@@ -23,7 +23,7 @@
   //   console.log(this.name + " can run")
   // }
 
-   // 第二种写法
+  // 第二种写法
   // Person.prototype = {
   //   speak:function(){
   //     console.log(this.name+"can speak")
@@ -32,14 +32,12 @@
   //     console.log(this.name+"can run")
   //   }
   // }
-  
-
 
   var zhangsan = new Person("zhangsan", 18);
   // 如何给对象添加方法(给张三对象添加coding方法)
   // coding本身是一个函数，我们这里把coding叫做zhangsan 的方法
-  zhangsan.coding = function(){
-  	 console.log(this.name+" can coding")
+  zhangsan.coding = function() {
+    console.log(this.name + " can coding")
   }
 
   // 函数和方法？

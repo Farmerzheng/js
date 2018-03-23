@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  </script>
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+li,
+ul {
+  list-style: none
+}
+
+#list li {
+  margin: 10px;
+}
+
+.delete {
+  background-color: red;
+}
+</style>
+
+<body>
+  <button id="add">添加</button>
+  <ul id="list">
+    <li>1<span class="delete">删除</span></li>
+    <li>2<span class="delete">删除</span></li>
+    <li>3<span class="delete">删除</span></li>
+    <li>4<span class="delete">删除</span></li>
+    <li>5<span class="delete">删除</span></li>
+  </ul>
+  <div class="box2"></div>
+  <script>
+  /*
+      生成的删除按钮不能够点击删除
+    */
+  let addBtn = document.querySelector("#add");
+  let list = document.querySelector("#list");
+  let deleteBtnArr = document.querySelectorAll(".delete");
+  addBtn.addEventListener("click", btnClickHandler);
+  let i = 5;
+
+  for (let i = 0; i < deleteBtnArr.length; i++) {
+    deleteBtnArr[i].addEventListener("click", deleteClickHandler);
+  }
+
+  function deleteClickHandler() {
+    this.parentNode.remove();
+  }
+
+  function btnClickHandler() {
+    i++;
+    let oLi = document.createElement("li");
+    oLi.innerText = i;
+    let deleteBtn = document.createElement("span");
+    // 为生成的删除按钮挂接事件
+    deleteBtn.addEventListener("click", deleteClickHandler)
+    deleteBtn.innerText = "删除";
+    deleteBtn.className = "delete";
+    oLi.appendChild(deleteBtn);
+    list.appendChild(oLi)
+  }
+  </script>
+</body>
+
+</html>

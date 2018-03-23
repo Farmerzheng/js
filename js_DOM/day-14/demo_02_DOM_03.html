@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  </script>
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+li,
+ul {
+  list-style: none
+}
+
+#list li {
+  margin: 10px;
+}
+
+.delete {
+  background-color: red;
+}
+</style>
+
+<body>
+  <button id="add">添加</button>
+  <ul id="list">
+    <li>1<span class="delete">删除</span></li>
+    <li>2<span class="delete">删除</span></li>
+    <li>3<span class="delete">删除</span></li>
+    <li>4<span class="delete">删除</span></li>
+    <li>5<span class="delete">删除</span></li>
+  </ul>
+  <div class="box2"></div>
+  <script>
+  let addBtn = document.querySelector("#add");
+  let list = document.querySelector("#list");
+  // querySelectorAll 获取对应选择器的所有元素
+  let deleteBtnArr = document.querySelectorAll(".delete");
+  addBtn.addEventListener("click", btnClickHandler);
+  
+  // 为按钮添加点击事件（按钮数组要循环）
+  for (let i = 0; i < deleteBtnArr.length; i++) {
+  	// 拿到数组当中的每一个按钮
+    deleteBtnArr[i].addEventListener("click", deleteClickHandler);
+  }
+
+  function deleteClickHandler() {
+    this.parentNode.remove();
+  }
+
+  function btnClickHandler() {
+    // createElement 创建标签节点
+    let oLi = document.createElement("li");
+    let deleteBtn = document.createElement("span");
+    // 为节点添加文本内容
+    deleteBtn.innerText = "删除";
+    // appendChild 往标签最后的位置添加子节点
+    oLi.appendChild(deleteBtn);
+    list.appendChild(oLi)
+  }
+  </script>
+</body>
+
+</html>

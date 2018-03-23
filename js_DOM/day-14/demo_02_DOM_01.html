@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="add">添加</button>
+  <ul id="list">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+  </ul>
+  <div class="box2"></div>
+  <script>
+  	let addBtn = document.querySelector("#add");
+  let list = document.querySelector("#list");
+  /* console.log(list.nodeType); //节点类型
+
+  标签节点：1 
+  文本节点：3 
+  注释节点：８
+
+  console.log(list.nodeName); //节点名称
+  console.log(list.childNodes); //所有子节点（包括空格和换行）
+  console.log(list.firstChild); //第一个子节点(不是标签节点，是换行)
+  console.log(list.lastChild); //第一个子节点(不是标签节点，是换行)
+  console.log(list.parentNode); //父节点
+  console.log(list.previousSibling) //上一个兄弟节点(不是标签节点，是换行)
+  console.log(list.nextSibling) //下一个兄弟节点(不是标签节点，是换行)
+
+*/
+
+  // 需求？得到 ul 的第一个标签节点
+  function firstElementChild(DOM) {
+    let childNodes = DOM.childNodes;
+    for (let i = 0; i < childNodes.length; i++) {
+      if (childNodes[i].nodeType === 1) {
+        return childNodes[i];
+        break;
+      }
+    }
+  }
+  // console.log(firstElementChild(list));
+
+  //需求？ 得到所有的标签节点 
+  function elementChildren(DOM) {
+    let childNodes = DOM.childNodes;
+    let arr = [];
+    for (let i = 0; i < childNodes.length; i++) {
+      if (childNodes[i].nodeType === 1) {
+        arr.push(childNodes[i])
+      }
+    }
+    return arr;
+  }
+
+  // console.log(elementChildren(list))
+
+  // 需求？ sibling(element,str) 返回上一个兄弟标签和下一个兄弟标签
+  // function sibling(cur, dir) {
+  	// console.log(cur,cur[dir])
+    // while ((cur = cur[dir]) && cur.nodeType !== 1) {}
+    // return cur;
+  // }
+
+  console.log(list["nextSibling"]);
+  console.log(list.nextSibling);
+  </script>
+</body>
+
+</html>

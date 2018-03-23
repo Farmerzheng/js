@@ -36,38 +36,42 @@
 
 <body>
   <button id="start">开始</button>
-  <button id="end">停止</button>
   <div class="box"></div>
   <div class="line"></div>
   <div class="line2"></div>
   <script>
-  /*     听写
-         点击按钮，让盒子运动
-         requestAnimationFrame优点？
-         没必要考虑定时器什么时候关闭
-       */
+  /*
+                 点击按钮，让盒子运动到某一个位置
+               */
 
   let box = document.querySelector(".box");
   startBtn = document.querySelector("#start");
-  endBtn = document.querySelector("#end")
   moveBoolean = false; //开关按钮
 
   startBtn.addEventListener("click", startClickHandler);
-  endBtn.addEventListener("click", endClickHandler)
 
   function startClickHandler() {
-
     moveBoolean = true
   }
 
-  function endClickHandler() {
 
-    moveBoolean = false
-  }
+  // box.update()方法 每隔16.7ms就会运行一次
+  box.update = function(iTarget, speed) {
 
+    speed = speed || 2;
 
-  box.update = function(speed) {
-    this.style.left = this.offsetLeft + speed + "px"
+    // 判断速度正负
+    if (iTarget < this.offsetLeft) {
+      speed = -speed;
+    }
+
+    // 运动终止条件
+    if (Math.abs(iTarget - this.offsetLeft) <= speed) {
+      this.style.left = iTarget + "px";
+      moveBoolean = false;
+    } else { // 运动
+      this.style.left = this.offsetLeft + speed + "px"
+    }
   }
 
   animation();
@@ -76,8 +80,8 @@
     requestAnimationFrame(animation);
 
     //跟新盒子
-    if(moveBoolean){
-      box.update(20)
+    if (moveBoolean) {
+      box.update(600);
     }
 
   }
