@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <img src="img/nature2.jpg" alt="" class="img">
+  <script>
+  let oImg = document.querySelector(".img");
+
+  // 为图片挂接事件（鼠标移入事件、鼠标移出事件）
+  oImg.addEventListener("mouseover", mouseoverHandler);
+  oImg.addEventListener("mouseout", mouseoutHandler);
+
+  function mouseoverHandler() {
+    oImg.style.opacity = 0
+  }
+
+  function mouseoutHandler() {
+    oImg.style.opacity = 1
+  }
+  </script>
+</body>
+
+</html>

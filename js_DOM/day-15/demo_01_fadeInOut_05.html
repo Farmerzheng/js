@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <!-- 有的浏览器不支持requestAnimationFrame方法，引入此文件解决浏览器兼容性问题 -->
+  <script src="requestAnimationFrame.js"></script>
+</head>
+<style>
+.wrap {
+  width: 1000px;
+  margin: 0 auto;
+  font-size: 0;
+}
+
+.img {
+  width: 250px;
+  height: 140px;
+  /*原始值*/
+  opacity: 1;
+  /*过度动画*/
+  transition: 1s;
+}
+
+.img:hover {
+  /*状态值*/
+  opacity: 0
+}
+</style>
+
+<body>
+  <div class="wrap">
+    <img src="img/nature1.jpg" alt="" class="img">
+    <img src="img/nature2.jpg" alt="" class="img">
+    <img src="img/nature3.jpg" alt="" class="img">
+    <img src="img/nature4.jpg" alt="" class="img">
+  </div>
+</body>
+
+</html>

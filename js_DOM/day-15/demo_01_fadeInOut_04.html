@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <!-- 有的浏览器不支持requestAnimationFrame方法，引入此文件解决浏览器兼容性问题 -->
+  <script src="requestAnimationFrame.js"></script>
+</head>
+<style>
+.wrap{
+  width:1000px;
+  margin:0 auto;
+  font-size:0;
+}
+.img {
+  width: 250px;
+  height: 140px;
+}
+</style>
+
+<body>
+  <div class="wrap">
+    <img src="img/nature1.jpg" alt="" class="img">
+    <img src="img/nature2.jpg" alt="" class="img">
+    <img src="img/nature3.jpg" alt="" class="img">
+    <img src="img/nature4.jpg" alt="" class="img">
+  </div>
+  <script src="Fade_class.js"></script>
+  <script>
+  let imgArr = document.querySelectorAll(".img");
+
+  //arr = new Array(1,2,3) === arr = [1,2,3]
+  // imgArr = new Array(imgArr);
+
+  // 单个图片
+  // let fade = new Fade(oImg);
+  // 图片数组
+  let fade = new Fade(imgArr,5);
+  fade.init();
+
+  animation();
+  function animation() {
+    requestAnimationFrame(animation);
+    fade.update();    
+  }
+  </script>
+</body>
+
+</html>

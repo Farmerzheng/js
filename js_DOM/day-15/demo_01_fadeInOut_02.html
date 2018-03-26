@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <!-- 有的浏览器不支持requestAnimationFrame方法，引入此文件解决浏览器兼容性问题 -->
+  <script src="requestAnimationFrame.js"></script>
+</head>
+
+<body>
+  <img src="img/nature2.jpg" alt="" class="img">
+  <script>
+  /*
+      淡入淡出效果
+      opacity ---->缓慢变化
+      opacity ---> 变量（0---->1）
+    */
+  let oImg = document.querySelector(".img");
+  let opacity = 1;
+  let mouseoverBoolean = false; //鼠标移入移出开关
+
+  oImg.addEventListener("mouseover", mouseoverHandler);
+  oImg.addEventListener("mouseout", mouseoutHandler);
+
+  //鼠标移入移出就是开关的过程
+  function mouseoverHandler() {
+    mouseoverBoolean = true;
+  }
+
+  function mouseoutHandler() {
+    mouseoverBoolean = false;
+  }
+
+  // 更新图片
+  function update() {
+    // 让opacity变量缓慢的变化
+    if (mouseoverBoolean && opacity >= 0) {
+      // 鼠标移入
+      opacity -= 0.1
+    }
+
+    if (!mouseoverBoolean && opacity < 1) {
+      //鼠标移出
+      opacity += 0.1
+    }
+
+
+    oImg.style.opacity = opacity;
+  }
+
+  animation();
+
+  function animation() {
+    requestAnimationFrame(animation);
+    //更新图片
+    update();
+  }
+  </script>
+</body>
+
+</html>

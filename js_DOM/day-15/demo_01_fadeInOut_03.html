@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <!-- 有的浏览器不支持requestAnimationFrame方法，引入此文件解决浏览器兼容性问题 -->
+  <script src="requestAnimationFrame.js"></script>
+</head>
+
+<body>
+  <img src="img/nature2.jpg" alt="" class="img"> 
+  <!-- 引入封装好类 -->
+  <script src="Fade.js"></script>
+  <script>
+  let oImg = document.querySelector(".img");
+  
+  //构造函数创建对象
+  let fade = new Fade(oImg,1);
+  // 对象的初始化
+  fade.init();
+  
+  // 创建永动机
+  animation();
+  function animation() {
+    requestAnimationFrame(animation);
+    // 在永动机里面更新对象
+    fade.update();
+  }
+  </script>
+</body>
+
+</html>
