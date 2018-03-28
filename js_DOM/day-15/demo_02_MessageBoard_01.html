@@ -42,25 +42,18 @@
   let submitBtn = document.getElementsByName("submit")[0];
   // 存放内容的盒子
   let messageContent = document.getElementsByClassName("message_content")[0];
-
-
   submitBtn.addEventListener("click", submitHandler);
-
   function submitHandler() {
     // 获取到用户输入的内容
     let userInput = title.value;
     // console.log(userInput)
     let item = document.createElement("p");
      item.innerText = userInput;
-
     let deleteBtn = document.createElement("button");
-    deleteBtn.innerText = "删除";
-    
+    deleteBtn.innerText = "删除";    
     console.log(deleteBtn,item)
     deleteBtn.addEventListener("click", deleteClickHandler);
-    item.appendChild(deleteBtn);
-
-    
+    item.appendChild(deleteBtn);    
     messageContent.appendChild(item);
   }
 

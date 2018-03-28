@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>carousel</title>
+  <style media="screen">
+  /**
+         * global
+         */
+
+  * {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+  }
+
+  #carousel {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .gallery {
+    width: 600px;
+    height: 200px;
+    position: absolute;
+  }
+
+  .gallery_item {
+    float: left;
+    width: 300px;
+    height: 200px;
+  }
+
+  .gallery_item img {
+    width: 100%;
+    height: 100%
+  }
+  /*   .side-btn {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  width: 100%;
+  height: 50px;
+  line-height: 30px;
+}
+
+.side-btn button {
+  float: left;
+  font-size: 20px;
+  width: 30px;
+  line-height: inherit;
+  ;
+  border: none;
+  outline: none;
+  background: rgba(0, 0, 0, .5);
+  text-align: center;
+  color: #fff;
+}
+
+.side-btn button:nth-child(1) {}
+
+.side-btn button:nth-child(2) {
+  float: right;
+} */
+  </style>
+</head>
+
+<body>
+  <section id="carousel">
+    <!-- 轮播的画廊 -->
+    <ul class="gallery">
+      <li class="gallery_item"><img src="img/1.jpg" alt="carousel" class="img" /></li>
+      <li class="gallery_item"><img src="img/2.jpg" alt="carousel" class="img" /></li>
+    </ul>
+    <!-- 左右按钮 -->
+    <div class="side-btn">
+      <button class="left_btn">&lt;</button>
+      <button class="right_btn">&gt;</button>
+    </div>
+    <!-- 分页 -->
+    <ol class="pagination">
+      <li class="pagination_item" class="active">1</li>
+      <li class="pagination_item">2</li>
+      <li class="pagination_item">3</li>
+      <li class="pagination_item">4</li>
+    </ol>
+    <!-- <span></span> -->
+  </section>
+  <script src="js/Carousel_02.js"></script>
+  <script src="js/requestAnimationFrame.js"></script>
+  <script type="text/javascript">
+  let gallery = document.querySelector(".gallery");
+  let imgSrcArr = ["img/1.jpg", "img/2.jpg", "img/3.jpg", "img/4.jpg"];
+  let leftBtn = document.querySelector(".left_btn");
+  let rightBtn = document.querySelector(".right_btn");
+
+  let carousel = new Carousel(gallery, 10, leftBtn, rightBtn, imgSrcArr);
+  carousel.init();
+  animation();
+
+  function animation() {
+    requestAnimationFrame(animation);
+    carousel.update();
+  }
+  </script>
+</body>
+
+</html>

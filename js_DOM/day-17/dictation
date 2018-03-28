@@ -1,0 +1,36 @@
+1、function Person(){
+     this.name = "zhangsan";
+     this.age = 18; 
+  }
+  //speak为动态方法
+  Person.prototype = {
+    speak:function(){}
+  }
+  //eat为静态方法
+  Person.eat = function(){}
+
+  //调用
+  let zhangsan = new Person();
+  zhangsan.speak();
+  Person.eat();
+  zhangsan.eat()//错误的
+
+6、  let str = "abcd";
+    let str2 = str.reverse();
+    //函数：函数的声明、函数的调用、函数的参数、函数的返回值
+    //字符串的常用方法
+    //何时需要声明变量
+    //循环
+    //数组
+    function strReverse(string){
+      let strArr = string.split();
+      let reverseStr = "";
+      for(let i = strArr.length-1 ; i >= 0  ; i--){
+         reverseStr += strArr[i];
+      }
+      return reverseStr;
+    }
+    strReverse(str);
+
+
+

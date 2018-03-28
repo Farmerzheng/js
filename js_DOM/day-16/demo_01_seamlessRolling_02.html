@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.seamless_rolling {
+  width: 800px;
+  height: 150px;
+  margin: 0 auto;
+  border: 1px solid red;
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* .gallery {
+  width: 1600px;
+  height: 100%;
+  position: absolute;
+  left:0;
+  top:0;
+}
+
+.gallery_item {
+  width: 200px;
+  height: 100%;
+  float: left;
+}
+
+.gallery_link {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.gallery_link img {
+  width: 100%;
+  height: 100%;
+} */
+</style>
+
+<body>
+  <div class="seamless_rolling">
+  
+  </div>
+  <script src="js/seamlessRolling.js"></script>
+  <script>
+
+  let seamless_rolling = document.querySelector(".seamless_rolling");
+
+  let imgSrcArr = ["img/1.jpg", "img/2.jpg", "img/3.jpg", "img/4.jpg","img/5.png"];
+
+  let imgWidth = 200;
+  let scroll = new SeamlessRolling(seamless_rolling, imgSrcArr, imgWidth,2);
+  scroll.init();
+
+  animation();
+
+  function animation() {
+    requestAnimationFrame(animation);
+    scroll.update();
+  }
+  </script>
+</body>
+
+</html>

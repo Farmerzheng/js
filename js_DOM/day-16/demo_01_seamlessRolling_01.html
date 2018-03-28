@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.seamless_rolling {
+  width: 800px;
+  height: 150px;
+  margin: 0 auto;
+  border: 1px solid red;
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery {
+  width: 1600px;
+  height: 100%;
+  position: absolute;
+  left:0;
+  top:0;
+}
+
+.gallery_item {
+  width: 200px;
+  height: 100%;
+  float: left;
+}
+
+.gallery_link {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.gallery_link img {
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<body>
+  <div class="seamless_rolling">
+    <ul class="gallery">
+      <li class="gallery_item"><a href="" class="gallery_link"><img src="img/1.jpg" alt=""></a></li>
+      <li class="gallery_item"><a href="" class="gallery_link"><img src="img/2.jpg" alt=""></a></li>
+      <li class="gallery_item"><a href="" class="gallery_link"><img src="img/3.jpg" alt=""></a></li>
+      <li class="gallery_item"><a href="" class="gallery_link"><img src="img/4.jpg" alt=""></a></li>
+      <li class="gallery_item"><a href="" class="gallery_link"><img src="img/1.jpg" alt=""></a></li>
+      <li class="gallery_item"><a href="" class="gallery_link"><img src="img/2.jpg" alt=""></a></li>
+      <li class="gallery_item"><a href="" class="gallery_link"><img src="img/3.jpg" alt=""></a></li>
+      <li class="gallery_item"><a href="" class="gallery_link"><img src="img/4.jpg" alt=""></a></li>
+    </ul>
+  </div>
+  <script>
+  // 两种方式可以获取到gallery
+  let gallery = document.querySelector(".gallery");
+  // let gallery = document.getElementsByClassName("gallery")[0];
+  let seamless_rolling = document.querySelector(".seamless_rolling");
+
+  let pauseBoolean = false;
+
+
+  let speed = 2;
+
+  // let a = "5px"
+  // console.log(parseInt(a));
+   
+  seamless_rolling.addEventListener("mouseover",mouseoverHandler);
+  seamless_rolling.addEventListener("mouseout",mouseoutHandler);
+
+  function  mouseoverHandler(){
+    pauseBoolean = true;
+  }
+  function mouseoutHandler(){
+   pauseBoolean = false;
+  }
+
+  function update(){  
+  	if(pauseBoolean)return;
+  	if(gallery.offsetLeft === -gallery.offsetWidth/2){
+       gallery.style.left = 0;
+  	}
+    gallery.style.left = gallery.offsetLeft - speed + "px";
+  }
+
+  animation();
+
+  function animation() {
+    requestAnimationFrame(animation);
+    update();
+  }
+  </script>
+</body>
+
+</html>
