@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+#cart {
+  border-collapse: collapse;
+}
+</style>
+
+<body>
+  <table id="cart" border="1">
+  </table>
+  <script>
+  var data = [
+    { checked: false, name: "姓名", age: "年龄", sex: "性别", hobby: "爱好", time: "时间", price: "价格", total: "总价", num: 0 },
+    { checked: true, name: "张三", age: 30, sex: "男", hobby: "旅行", time: "2016/3/15", price: 35.2, total: '35.20', num: 1 },
+    { checked: false, name: "王三", age: 30, sex: "女", hobby: "旅行,游泳", time: "2016/4/15", price: 18.2, total: '18.2', num: 2 },
+    { checked: true, name: "李三", age: 30, sex: "男", hobby: "旅行,打球", time: "2016/5/15", price: 30.2, total: '30.2', num: 4 },
+    { checked: false, name: "赵三", age: 30, sex: "女", hobby: "读书", time: "2016/6/15", price: 24, total: '24', num: 3 }
+  ];
+
+  let table = document.querySelector("#cart");
+
+  function ShopingCart(goodData) {
+    this.goodData = goodData;
+  }
+
+  ShopingCart.prototype = {
+    init: function() {
+
+      // 展示商品
+      this.show();
+    },
+    show: function() {
+      // 遍历数组
+      for (let i = 0; i < this.goodData.length; i++) {
+        // 创建一行
+        let tr = document.createElement("tr");
+        // 遍历对象
+        for (let key in this.goodData[i]) {
+          // 创建单元格
+          let td = document.createElement("td");
+
+          if (key === "checked") {
+            // 创建了一个input对象
+            let checkbox = document.createElement("input");
+            // 通过 MDN 查询 DOM 对象的属性
+            // 指定input对象的类型
+            checkbox.type = "checkbox";
+            // 判断this.goodData当中的checked属性的值，如果是true，就让创建的checkbox被选中
+            // 数据决定着页面的显示效果
+            if (this.goodData[i][key] === true) {
+              // 让创建的checkbox默认是选中的
+              checkbox.checked = true;
+            }
+            td.appendChild(checkbox);
+          } else if (key === "num") {
+            // 1、创建减号
+            let subtractBtn = document.createElement("input");
+            subtractBtn.type = "button";
+            subtractBtn.value = "-";
+            // 2、创建商品输入框
+            let num = document.createElement("input");
+            num.type = "text";
+            num.value = this.goodData[i][key];
+            // 3、创建加号
+            let addBtn = document.createElement("input");
+            addBtn.type = "button";
+            addBtn.value = "+";
+
+            tr.appendChild(subtractBtn);
+            tr.appendChild(num);
+            tr.appendChild(addBtn);
+          } else {
+            td.innerText = this.goodData[i][key];
+          }
+
+          // 为单元格添加内容
+          // 将单元格添加到行
+          tr.appendChild(td);
+        }
+        //将行添加到表格当中 
+        table.appendChild(tr);
+
+      }
+    }
+  }
+
+  let cart = new ShopingCart(data);
+  cart.init();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  position: absolute;
+  left: 300px;
+  top: 100px;
+}
+.line {
+  background-color: black;
+  width: 1px;
+  height: 100vh;
+  position: absolute;
+  left: 600px;
+  top: 0px;
+}
+.line2 {
+  background-color: black;
+  width: 1px;
+  height: 100vh;
+  position: absolute;
+  left: 100px;
+  top: 0px;
+}
+</style>
+
+<body>
+  <button id="start">开始</button>
+  <button id="end">停止</button>
+  <div class="box"></div>
+  <div class="line"></div>
+  <div class="line2"></div>
+  <script>
+  /* 面向对象
+    面向对象书写过程？ 缺什么补什么（缺属性就补属性，缺方法就补方法）
+
+  */
+
+  let box = {
+    init: function() {
+      this.box = document.querySelector(".box");
+      this.startBtn = document.querySelector("#start");
+      this.endBtn = document.querySelector("#end");
+      this.moveBoolean = false;
+      this.speed = 2;
+      this.bindEvent();
+    },
+    bindEvent: function() {
+      // 事件处理函数当中的this指针指向的是挂接的那个按钮
+      //  startClickHandler.bind(this)  当中的this指 obj
+      //  startClickHandler.bind(this) 改变了事件处理函数当中this指针的指向
+      //  startClickHandler.bind(this) 并不是执行函数，bind方法有返回值，返回函数本身
+
+      this.startBtn.addEventListener("click", this.startClickHandler.bind(this));
+      this.endBtn.addEventListener("click", this.endClickHandler.bind(this));
+    },
+    startClickHandler: function() {
+      this.moveBoolean = true
+    },
+    endClickHandler: function() {
+      this.moveBoolean = false
+    },
+    update: function() {
+      console.log(this.moveBoolean)
+      if (this.moveBoolean) {
+        this.box.style.left = this.box.offsetLeft + this.speed + "px"
+      }
+    }
+  }
+  box.init()
+
+  // 永动机（循环体）
+  animation();
+
+  //盒子没有运动 ---> this.moveBoolean
+  // 断点调试？  --- > 点击不了开始按钮
+  // 另一种调试方法？ ----> 控制台打印(this.moveBoolean)
+  // 点击开始的时候moveBoolean没有改变
+  // 初始化对象（box.init()）没必要放入永动机当中
+
+  function animation() {
+    requestAnimationFrame(animation);
+    box.update();
+  }
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+#cart {
+  border-collapse: collapse;
+}
+
+td {
+  padding: 5px 10px;
+}
+</style>
+
+<body>
+  <table id="cart" border="1">
+  </table>
+  <script>
+  /*为单个商品添加功能？
+              1、点击加号,商品数量增加，总价改变
+              2、点击减号，商品数量减小，总价改变
+              3、改变商品输入框输入的数量值，总价改变
+              4、将商品是否被选中通知给外界
+             */
+
+
+  var single = { checked: true, name: "张三", age: 30, sex: "男", hobby: "旅行", time: "2016/3/15", price: 35.2, total: '35.20', num: 1 }
+
+  let box = document.querySelector("#cart");
+
+  function SingleCart(data, box) {
+    this.data = data;
+    this.box = box;
+  }
+  SingleCart.prototype = {
+    init: function() {
+
+      this.show();
+      this.bindEvent();
+    },
+    bindEvent() {
+      this.subtractBtn.addEventListener("click", this.subtractHandler.bind(this));
+      this.addBtn.addEventListener("click", this.addHandler.bind(this));
+    },
+    subtractHandler: function() {
+      if (this.num === 0) return;
+      this.num--; //会调用num的set方法
+      // this.num-- <===> this.num = this.num - 1
+    },
+    addHandler: function() {
+      this.num++; //会调用num的set方法
+    },
+    show: function() {
+      let tr = document.createElement("tr");
+      // 向tr中添加内容
+      for (let key in this.data) {
+        let td = document.createElement("td");
+
+        if (key === "checked") {
+          let checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          if (this.data[key] === true) {
+            checkbox.checked = true;
+          }
+          td.appendChild(checkbox);
+        } else if (key === "num") {
+          let subtractBtn = document.createElement("input");
+          subtractBtn.type = "button";
+          subtractBtn.value = "-";
+          // 将创建的按钮作为对象的属性
+          this.subtractBtn = subtractBtn;
+          let numInput = document.createElement("input");
+          numInput.type = "text";
+          numInput.value = this.data[key];
+          this.numInput = numInput;
+          let addBtn = document.createElement("input");
+          addBtn.type = "button";
+          addBtn.value = "+";
+          // 将创建的按钮作为对象的属性
+          this.addBtn = addBtn;
+          td.appendChild(subtractBtn);
+          td.appendChild(numInput);
+          td.appendChild(addBtn);
+        } else if (key === "total") {
+          // 为标签添加class
+          td.className = "total";
+          td.innerText = this.data[key];
+          this.totalPrice = td;
+        } else {
+
+          td.innerText = this.data[key];
+        }
+        tr.appendChild(td);
+      }
+      this.box.appendChild(tr);
+    },
+    // num属性值改变 ----> 调用num的set方法 ---->渲染页面
+    set num(value) {
+      // 只要调用 set方法就说明数据发生变化了
+      this.data.num = value;
+      //数据改变，渲染页面
+      this.render();
+    },
+    get num() {
+      return this.data.num;
+    },
+    render: function() {
+      // 改变商品数量
+      this.numInput.value = this.data.num;
+      // 改变总价
+      this.totalPrice.innerText = (this.data.price*this.data.num).toFixed(2);
+
+    }
+  }
+
+  let singleCart = new SingleCart(single, box);
+  singleCart.init();
+  </script>
+</body>
+
+</html>

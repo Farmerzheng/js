@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	.box{
+		background-color: red;
+		width: 100px;
+		height: 100px;
+		margin: 0 auto;
+	}
+</style>
+<body>
+	
+	<div class="box"></div>
+	<button id="start">开始</button>
+	<button id="end">停止</button>
+</body>
+<script>
+	let box=document.querySelector('.box');
+	startBtn=document.querySelector('#start');
+	endBtn=document.querySelector('#end');
+	moveBoolean=false;
+	startBtn.addEventListener('click',startClickHandler);
+	endBtn.addEventListener('click',endClickHandler);
+	function startClickHandler(){
+		moveBoolean=true
+	};
+	function endClickHandler(){
+		moveBoolean=false
+	};
+	box.update=function(speed){
+		this.style.left=this.offsetLeft+speed+'px'
+	}
+	animation();
+	function animation(){
+		requestAnimationFrame(animation);
+		if(moveBoolean){
+			box.update(20)
+		}
+	}
+	
+
+
+
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+#cart {
+  border-collapse: collapse;
+}
+td{
+	padding:5px 10px;
+}
+</style>
+
+<body>
+  <table id="cart" border="1">
+  </table>
+  <script>
+  var single =  { checked: true, name: "张三", age: 30, sex: "男", hobby: "旅行", time: "2016/3/15", price: 35.2, total: '35.20', num: 1 }
+
+  let box = document.querySelector("#cart");
+
+  function SingleCart(data,box) {
+    this.data = data;
+    this.box = box;
+  }
+  SingleCart.prototype = {
+    init: function() {
+       this.show();
+    },
+    show: function() {
+      let tr = document.createElement("tr");
+      // 向tr中添加内容
+      for (let key in this.data) {
+        //this.data :{ checked: false, name: "姓名", age: "年龄", sex: "性别", hobby: "爱好", time: "时间", price: "价格", total: "总价", num: 0 }
+
+        // key : checked name age  ……
+        // this.data[key] : false "姓名" "年龄"....
+        let td = document.createElement("td");
+
+        if (key === "checked") {
+          // 创建了一个input对象
+          let checkbox = document.createElement("input");
+          // 通过 MDN 查询 DOM 对象的属性
+          // 指定input对象的类型
+          checkbox.type = "checkbox";
+          // 判断this.goodData当中的checked属性的值，如果是true，就让创建的checkbox被选中
+          // 数据决定着页面的显示效果
+          if (this.data[key] === true) {
+            // 让创建的checkbox默认是选中的
+            checkbox.checked = true;
+          }
+          td.appendChild(checkbox);
+        } else if (key === "num") {
+          // 1、创建减号
+          let subtractBtn = document.createElement("input");
+          subtractBtn.type = "button";
+          subtractBtn.value = "-";
+          // 2、创建商品输入框
+          let num = document.createElement("input");
+          num.type = "text";
+          num.value = this.data[key];
+          // 3、创建加号
+          let addBtn = document.createElement("input");
+          addBtn.type = "button";
+          addBtn.value = "+";
+
+          td.appendChild(subtractBtn);
+          td.appendChild(num);
+          td.appendChild(addBtn);
+        } else {
+          td.innerText = this.data[key];
+        }
+        tr.appendChild(td);
+
+      }
+      // 将tr放入父盒子
+      this.box.appendChild(tr);
+
+    }
+
+  }
+  let singleCart = new SingleCart(single,box);
+  singleCart.init();
+  </script>
+</body>
+
+</html>

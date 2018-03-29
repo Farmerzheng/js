@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <form action="">
+        <div>
+            <label for="title">标题</label>
+            <input type="text" name="title" id="title">
+        </div>
+        <div>
+            <input type="button" value="提交" name="submit">
+        </div>
+    </form>
+    <p class="list-text">显示留言</p>
+    <div class="text-content">
+        <p>第一条留言</p>
+    </div>
+    <script>
+        let title = document.getElementsByName("title")[0];
+        let submitBtn = document.getElementsByName("submit")[0];
+        let textContent = document.getElementsByClassName("text-content")[0];
+
+        submitBtn.addEventListener("click", submitHandler);
+
+        function submitHandler() {
+            let userInput = title.value;
+            let item = document.createElement("p");
+            item.innerText = userInput;
+
+            let deleteBtn = document.createElement("button");
+            deleteBtn.innerText = "删除";
+
+            console.log(deleteBtn, item)
+            deleteBtn.addEventListener("click", deleteClickHandler);
+            item.appendChild(deleteBtn);
+
+
+            textContent.appendChild(item);
+        }
+
+        function deleteClickHandler() {
+            this.parentNode.remove();
+        }
+    </script>
+</body>
+
+</html>

@@ -33,6 +33,7 @@ Carousel.prototype = {
       this.gallery.style.left = this.gallery.offsetLeft - this.speed + "px";
       // 当移动完一张图片后就停止移动
       if (this.gallery.offsetLeft == -this.gallery.offsetWidth/2) {
+      	// 关闭开关
         this.directLeft = false;
       }
     }

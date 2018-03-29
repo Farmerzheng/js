@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 在面向对象编程当中
+    // 操作属性？  读取属性值（zhangsan.age）、设置属性值(zhangsan.age = 10)
+    // 只读属性？只允许读取，不允许设置的属性
+    // 属性一般有两个方法？ set 方法 和 get 方法
+
+  let  zhangsan1 = {
+    num: 10,
+    name: "zhangsan",
+    // 把 age 属性 改写成了 set和get方法的形式
+    // 书写形式  ： set(get) 属性名(){} 
+    // set 方法当中必须有参数
+    // get 方法当中必须有返回值
+    // 访问属性一定会调用get方法
+    // 设置属性值（改变属性值）一定会调用set方法
+    set age(value) {
+      this.num = value;
+      console.log("调用age属性的set方法")
+    },
+    get age() {
+      console.log("调用age属性的get方法")
+      return this.num;
+    }
+  }
+ 
+  //console.log(zhangsan1.age)//会调用get方法
+  //zhangsan1.age = 20 //会调用set方法
+ 
+  let zhangsan2 = {
+    num : 10,
+    name : "zhangsan",
+    age:10
+  }
+
+  // zhangsan1 ==== zhangsan2
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+ // 在面向对象编程当中
+    // 操作属性？  读取属性值（zhangsan.age）、设置属性值(zhangsan.age = 10)
+    // 只读属性？只允许读取，不允许设置的属性
+    // 属性一般有两个方法？ set 方法 和 get 方法
+
+  let  zhangsan1 = {
+    num: 10,
+    name: "zhangsan",
+    // 把 age 属性 改写成了 set和get方法的形式
+    // 书写形式  ： set(get) 属性名(){} 
+    // set 方法当中必须有参数
+    // get 方法当中必须有返回值
+    // 访问属性一定会调用get方法
+    // 设置属性值（改变属性值）一定会调用set方法
+    set age(value) {
+      this.num = value;
+      console.log("调用age属性的set方法")
+    },
+    get age() {
+      console.log("调用age属性的get方法")
+      return this.num;
+    }
+  }
+ 
+  //console.log(zhangsan1.age)//会调用get方法
+  //zhangsan1.age = 20 //会调用set方法
+ 
+  let zhangsan2 = {
+    num : 10,
+    name : "zhangsan",
+    age:10
+  }
+
+  // zhangsan1 ==== zhangsan2
+
+
+    /*为单个商品添加功能？
+        3、改变商品输入框输入的数量值，总价改变
+        4、将商品是否被选中通知给外界
+    */
+
+
+  var single = { checked: true, name: "张三", age: 30, sex: "男", hobby: "旅行", time: "2016/3/15", price: 35.2, total: '35.20', num: 1 }
+
+  let box = document.querySelector("#cart");
+
+  function SingleCart(data, box) {
+    this.data = data;
+    this.box = box;
+  }
+  SingleCart.prototype = {
+    init: function() {
+
+      this.show();
+      this.bindEvent();
+    },
+    bindEvent() {
+      this.subtractBtn.addEventListener("click", this.subtractHandler.bind(this));
+      this.addBtn.addEventListener("click", this.addHandler.bind(this));
+      // 表单的输入框有两个事件： 获取焦点（focus）和失去焦点(blur)
+      this.numInput.addEventListener("blur", this.inputFinishHandler.bind(this));
+    },
+    subtractHandler: function() {
+      if (this.num === 0) return;
+      this.num--;
+    },
+    addHandler: function() {
+      this.num++;
+    },
+    inputFinishHandler: function() {
+      // this ：singleCart
+      // this.numInput  : 输入框
+      // this.numInput.value ： 输入框当中的值
+
+      // 我们只需要关心数据的变化，页面渲染已经写好了
+      if (this.numInput.value < 0) this.numInput.value = 0;
+      this.num = this.numInput.value;
+    },
+    show: function() {
+      let tr = document.createElement("tr");
+      for (let key in this.data) {
+        let td = document.createElement("td");
+        // key值不同，做的事情不一样
+        if (key === "checked") {
+          let checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          if (this.data[key] === true) {
+            checkbox.checked = true;
+          }
+          td.appendChild(checkbox);
+        } else if (key === "num") {
+          let subtractBtn = document.createElement("input");
+          subtractBtn.type = "button";
+          subtractBtn.value = "-";
+          this.subtractBtn = subtractBtn;
+          let numInput = document.createElement("input");
+          numInput.type = "text";
+          numInput.value = this.data[key];
+          this.numInput = numInput;
+          let addBtn = document.createElement("input");
+          addBtn.type = "button";
+          addBtn.value = "+";
+          this.addBtn = addBtn;
+          td.appendChild(subtractBtn);
+          td.appendChild(numInput);
+          td.appendChild(addBtn);
+        } else if (key === "total") {
+          td.className = "total";
+          td.innerText = this.data[key];
+          this.totalPrice = td;
+        } else {
+
+          td.innerText = this.data[key];
+        }
+        tr.appendChild(td);
+      }
+      this.box.appendChild(tr);
+    },
+    set num(value) {
+      this.data.num = value;
+      this.render();
+    },
+    get num() {
+      return this.data.num;
+    },
+    render: function() {
+      this.numInput.value = this.data.num;
+      this.totalPrice.innerText = (this.data.price * this.data.num).toFixed(2);
+
+    }
+  }
+
+  let singleCart = new SingleCart(single, box);
+  singleCart.init();

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	.box{width: 100px;height: 100px;background-color: red;position: absolute;left:300px;}
+
+
+
+
+</style>
+
+<body>
+
+
+<form action="">
+	
+<div>
+	<label for="title">标题</label>
+	<input type="text" name="title" id="title">
+</div>
+<div>
+	<input type="button" value="提交" name="submit">
+</div>
+</form>
+
+<p class="list_message">显示留言</p>
+
+<div class="message_content">
+	<p>第一条留言</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<input type="button" value="开始" id="start">
+<input type="button" value="停止" id="end">
+<div class="box"></div>
+
+	<script>	
+// 让盒子开始再停止
+// 第一种方法面向过程
+// let box =document.querySelector(".box")
+// let startBtn = document.querySelector("#start")
+// let endBtn = document.querySelector("#end")
+// let speed = 5
+// let moveBoolean = false
+
+// startBtn.addEventListener("click",startClickHandler)
+// endBtn.addEventListener("click",endClickHandler)
+
+// function startClickHandler() {
+// 		moveBoolean = true
+// }
+
+// function endClickHandler() {
+// 		moveBoolean = false
+// }
+
+// function update() {
+// 	if (moveBoolean) {
+
+// 		box.style.left = box.offsetLeft + speed + "px"
+// 	}
+// }
+// animation()
+// function animation() {
+// 	requestAnimationFrame(animation)
+// 	update()
+// }
+// 第二种方法面向对象
+
+// let box = {
+// init:function () {
+// 	this.box = document.querySelector(".box")
+// 	this.startBtn = document.querySelector("#start")
+// 	this.endBtn = document.querySelector("#end")
+// 	this.moveBoolean = false
+// 	this.speed = 10
+// 	this.bindEvent()
+// },
+
+// bindEvent:function () {
+// 	this.startBtn.addEventListener("click",this.startClickHandler.bind(this))
+// 	this.endBtn.addEventListener("click",this.endClickHandler.bind(this))
+// },
+
+// startClickHandler:function () {
+// 	this.moveBoolean = true
+// },
+// endClickHandler:function () {
+// 	this.moveBoolean = false
+// },
+
+// update:function () {
+// 	if (this.moveBoolean) {
+// this.box.style.left = this.box.offsetLeft + this.speed + "px"
+
+// 	}
+// }
+
+// }
+// box.init()
+
+
+// animation()
+// function animation() {
+// 	requestAnimationFrame(animation)
+// 	box.update()
+// }
+
+// =====================================================================
+
+
+let title = document.getElementsByName("title")[0]
+
+let submitBtn = document.getElementsByName("submit")[0]
+
+let messageContent = document.getElementsByClassName("message_content")[0]
+
+submitBtn.addEventListener("click",submitHandler)
+
+function submitHandler(){
+	let userInput = title.value
+	let item = document.createElement("p")
+		
+item.innerText = userInput
+
+let deleteBtn = document.createElement("button")
+deleteBtn.innerText = "删除"
+console.log(deleteBtn,item)
+
+deleteBtn.addEventListener("click",deleteClickHandler)
+
+item.appendChild(deleteBtn)
+
+messageContent.appendChild(item)
+
+}
+
+function deleteClickHandler(){
+	this.parentNode.remove()
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>
