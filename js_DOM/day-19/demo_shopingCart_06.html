@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+tr:nth-child(even) {
+  background-color: pink;
+}
+
+tr:nth-child(odd) {
+  background-color: lightblue;
+}
+</style>
+
+<body>
+  <table id="cart" border="1"></table>
+  <script src="js/SingleCart.js"></script>
+  <script>
+  	// 选中就是粉色的，不选中就是无色的
+  let cart = document.querySelector("#cart");
+  var data = [
+    { checked: false, name: "姓名", age: "年龄", sex: "性别", hobby: "爱好", time: "时间", price: "价格", total: "总价", num: 0 },
+    { checked: true, name: "张三", age: 30, sex: "男", hobby: "旅行", time: "2016/3/15", price: 35.2, total: '35.20', num: 1 },
+    { checked: false, name: "王三", age: 30, sex: "女", hobby: "旅行,游泳", time: "2016/4/15", price: 18.2, total: '18.2', num: 2 },
+    { checked: true, name: "李三", age: 30, sex: "男", hobby: "旅行,打球", time: "2016/5/15", price: 30.2, total: '30.2', num: 4 },
+    { checked: false, name: "赵三", age: 30, sex: "女", hobby: "读书", time: "2016/6/15", price: 24, total: '24', num: 3 },
+    { checked: true, name: "李三", age: 30, sex: "男", hobby: "旅行,打球", time: "2016/5/15", price: 30.2, total: '30.2', num: 4 },
+    { checked: true, name: "李三", age: 30, sex: "男", hobby: "旅行,打球", time: "2016/5/15", price: 30.2, total: '30.2', num: 4 },
+    { checked: true, name: "李三", age: 30, sex: "男", hobby: "旅行,打球", time: "2016/5/15", price: 30.2, total: '30.2', num: 4 },
+    { checked: true, name: "李三", age: 30, sex: "男", hobby: "旅行,打球", time: "2016/5/15", price: 30.2, total: '30.2', num: 4 },
+    { checked: true, name: "李三", age: 30, sex: "男", hobby: "旅行,打球", time: "2016/5/15", price: 30.2, total: '30.2', num: 4 }
+  ];
+
+  function Cart(cartData, box) {
+    this.cartData = cartData;
+    this.box = box;
+  }
+  Cart.prototype = {
+    init: function() {
+      this.show();
+    },
+    show: function() {
+      for (let i = 0; i < this.cartData.length; i++) {
+        // this.cartData[i]--> { checked: false, name: "姓名", age: "年龄", sex: "性别", hobby: "爱好", time: "时间", price: "价格", total: "总价", num: 0 }
+        // this.box :  <table id="cart" border="1"></table>
+        // 创建的每一个 singleCart 对象，事件不用挂接
+        let singleCart = new SingleCart(this.cartData[i], this.box);
+        singleCart.init();
+      }
+    }
+  }
+  let myCart = new Cart(data, cart);
+  // cart  --->
+  myCart.init();
+  </script>
+</body>
+
+</html>

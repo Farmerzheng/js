@@ -20,11 +20,9 @@ td {
   </table>
   <script>
   /*为单个商品添加功能？
-              1、点击加号,商品数量增加，总价改变
-              2、点击减号，商品数量减小，总价改变
-              3、改变商品输入框输入的数量值，总价改变
-              4、将商品是否被选中通知给外界
-             */
+                1、点击加号,商品数量增加，总价改变
+                2、点击减号，商品数量减小，总价改变
+               */
 
 
   var single = { checked: true, name: "张三", age: 30, sex: "男", hobby: "旅行", time: "2016/3/15", price: 35.2, total: '35.20', num: 1 }
@@ -111,7 +109,7 @@ td {
       // 改变商品数量
       this.numInput.value = this.data.num;
       // 改变总价
-      this.totalPrice.innerText = (this.data.price*this.data.num).toFixed(2);
+      this.totalPrice.innerText = (this.data.price * this.data.num).toFixed(2);
 
     }
   }

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+tr:nth-child(even) {
+  background-color: pink;
+}
+</style>
+
+<body>
+  <table id="cart" border="1">
+    <tr>
+      <td>
+        <input type="checkbox" name="" id="checkAll">
+      </td>
+      <td>姓名</td>
+      <td>年龄</td>
+      <td>性别</td>
+      <td>爱好</td>
+      <td>时间</td>
+      <td>价格</td>
+      <td class="total">总价</td>
+      <td>
+      </td>
+    </tr>
+  </table>
+  <script src="js/SingleCart.js"></script>
+  <script>
+  /*
+                 全选功能
+              */
+
+  var data = [
+    { checked: true, name: "张三", age: 30, sex: "男", hobby: "旅行", time: "2016/3/15", price: 35.2, total: '35.20', num: 1 },
+    { checked: false, name: "王三", age: 30, sex: "女", hobby: "旅行,游泳", time: "2016/4/15", price: 18.2, total: '18.2', num: 2 },
+    { checked: true, name: "李三", age: 30, sex: "男", hobby: "旅行,打球", time: "2016/5/15", price: 30.2, total: '30.2', num: 4 },
+    { checked: false, name: "赵三", age: 30, sex: "女", hobby: "读书", time: "2016/6/15", price: 24, total: '24', num: 3 },
+    { checked: true, name: "李三", age: 30, sex: "男", hobby: "旅行,打球", time: "2016/5/15", price: 30.2, total: '30.2', num: 4 },
+    { checked: true, name: "李三", age: 30, sex: "男", hobby: "旅行,打球", time: "2016/5/15", price: 30.2, total: '30.2', num: 4 },
+    { checked: true, name: "李三", age: 30, sex: "男", hobby: "旅行,打球", time: "2016/5/15", price: 30.2, total: '30.2', num: 4 },
+    { checked: true, name: "李三", age: 30, sex: "男", hobby: "旅行,打球", time: "2016/5/15", price: 30.2, total: '30.2', num: 4 },
+    { checked: true, name: "李三", age: 30, sex: "男", hobby: "旅行,打球", time: "2016/5/15", price: 30.2, total: '30.2', num: 4 }
+  ];
+  let cart = document.querySelector("#cart");
+  let checkAll = document.querySelector("#checkAll")
+
+  function Cart(cartData, box, checkAll) {
+    this.cartData = cartData;
+    this.box = box;
+    this.singleCartArr = [];
+    this.checkAll = checkAll;
+  }
+  Cart.prototype = {
+    init: function() {
+      this.show();
+      this.bindEvent();
+    },
+    bindEvent: function() {
+      this.checkAll.addEventListener("click", this.checkAllHandler.bind(this));
+    },
+    checkAllHandler: function() {
+      // 获取到所有创建好的singleCart对象
+      // this.checkeAll.checked  : true false   
+     for (let i = 0; i < this.singleCartArr.length; i++) {
+      // 单个的singleCart : this.singleCartArr[i]
+      // 操作singleCart对象就能够实现选中的功能
+      this.singleCartArr[i].check(this.checkAll.checked);
+      }
+    },
+    show: function() {
+      for (let i = 0; i < this.cartData.length; i++) {
+        let singleCart = new SingleCart(this.cartData[i], this.box);
+        singleCart.init();
+        this.singleCartArr.push(singleCart)
+      }
+    }
+  }
+  let myCart = new Cart(data, cart, checkAll);
+  // cart  --->
+  myCart.init();
+  </script>
+</body>
+
+</html>
