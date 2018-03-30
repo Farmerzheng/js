@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+#cart {
+  border-collapse: collapse;
+}
+
+td {
+  padding: 5px 10px;
+}
+</style>
+
+<body>
+  <table id="cart" border="1">
+  </table>
+  <script>
+  /*为单个商品添加功能？
+        3、改变商品输入框输入的数量值，总价改变
+        4、将商品是否被选中通知给外界
+    */
+
+
+  var single = { checked: true, name: "张三", age: 30, sex: "男", hobby: "旅行", time: "2016/3/15", price: 35.2, total: '35.20', num: 1 }
+
+  let box = document.querySelector("#cart");
+
+/*
+  param
+  data:要展示的数据
+  box:数据展示到哪个盒子
+
+*/
+  function SingleCart(data, box) {
+    // 将参数作为对象的属性
+    // 为什么将参数作为对象的属性？
+    // 因为我们要在方法当中使用参数，但是参数又不能直接使用，所以我们将参数作为对象的属性，那么在以后的对象方法当中就可以使用了
+    this.data = data;
+    this.box = box;
+  }
+  SingleCart.prototype = {
+    // 初始化对象
+    init: function() {
+      //展示数据
+      this.show();
+      // 绑定事件
+      this.bindEvent();
+    },
+    bindEvent() {
+
+      // this.subtractHandler.bind(obj)
+      // bind方法能够改变subtractHandler函数当中this指针的指向
+      // 使subtractHandler函数当中this指向obj
+      // 如果不bind(this),事件处理函数中this默认指挂接事件的对象
+      // 如果想在事件处理函数当中访问到 singleCart , 那么就要bind（this）
+      this.subtractBtn.addEventListener("click", this.subtractHandler.bind(this));
+      this.addBtn.addEventListener("click", this.addHandler.bind(this));
+      // 表单的输入框有两个事件： 获取焦点（focus）和失去焦点(blur)
+      this.numInput.addEventListener("blur", this.inputFinishHandler.bind(this));
+    },
+    // 事件处理函数当中我们仅仅改变了数据 num 
+    subtractHandler: function() {
+      if (this.num === 0) return;
+      this.num--;
+    },
+    addHandler: function() {
+      this.num++;
+    },
+    inputFinishHandler: function() {
+      // this ：singleCart
+      // this.numInput  : 输入框
+      // this.numInput.value ： 输入框当中的值
+
+      // 我们只需要关心数据的变化，页面渲染已经写好了
+      if (this.numInput.value < 0) this.numInput.value = 0;
+      this.num = this.numInput.value;
+    },
+    show: function() {
+      // 展示数据
+      /*
+          { 
+            checked: true,
+            name: "张三",
+            age: 30,
+            sex: "男",
+            hobby: "旅行",
+            time: "2016/3/15",
+            price: 35.2,
+            total: '35.20',
+            num: 1 
+          }
+      */
+     /* <tr>
+          <td>
+             <input type="checkbox">
+          </td>
+          <td>张三</td><td>30</td>
+          <td>男</td><td>旅行</td>
+          <td>2016/3/15</td>
+          <td>35.2</td>
+          <td class="total">35.20</td>
+          <td>
+            <input type="button" value="-">
+            <input type="text">
+            <input type="button" value="+">
+          </td>
+        </tr>
+    */
+      let tr = document.createElement("tr");
+      for (let key in this.data) {
+        let td = document.createElement("td");
+        // key值不同，做的事情不一样
+        if (key === "checked") {
+          let checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          if (this.data[key] === true) {
+            checkbox.checked = true;
+          }
+          td.appendChild(checkbox);
+        } else if (key === "num") {
+          let subtractBtn = document.createElement("input");
+          subtractBtn.type = "button";
+          subtractBtn.value = "-";
+          this.subtractBtn = subtractBtn;
+          let numInput = document.createElement("input");
+          numInput.type = "text";
+          numInput.value = this.data[key];
+          this.numInput = numInput;
+          let addBtn = document.createElement("input");
+          addBtn.type = "button";
+          addBtn.value = "+";
+          this.addBtn = addBtn;
+          td.appendChild(subtractBtn);
+          td.appendChild(numInput);
+          td.appendChild(addBtn);
+        } else if (key === "total") {
+          td.className = "total";
+          td.innerText = this.data[key];
+          this.totalPrice = td;
+        } else {
+
+          td.innerText = this.data[key];
+        }
+        tr.appendChild(td);
+      }
+      this.box.appendChild(tr);
+    },    
+    set num(value) {
+      this.data.num = value;
+      // 在set方法当中渲染页面
+      this.render();
+    },
+    get num() {
+      return this.data.num;
+    },
+    render: function() {
+      this.numInput.value = this.data.num;
+      this.totalPrice.innerText = (this.data.price * this.data.num).toFixed(2);
+    }
+  }
+  let singleCart = new SingleCart(single, box);
+  singleCart.init();
+  </script>
+</body>
+
+</html>

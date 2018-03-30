@@ -100,7 +100,12 @@ tr:nth-child(even) {
         let singleCart = new SingleCart(this.cartData[i], this.box);
         singleCart.init();
 
-        this.totalPriceNum += parseInt(singleCart.totalPrice.innerText)
+        console.log(singleCart.checkbox.checked)
+        
+        if(singleCart.checkbox.checked){
+            this.totalPriceNum += parseInt(singleCart.totalPrice.innerText)
+        }
+      
         // 监听singleCart的num属性变化(接受抛发过来的事件)
         singleCart.numInput.addEventListener("numChanged", this.numChangedHandler.bind(this));
 

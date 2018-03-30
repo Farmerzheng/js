@@ -100,8 +100,23 @@ SingleCart.prototype = {
     this.tr = tr;
     this.box.appendChild(tr);
   },
-  set num(value) {
+  set num(value) {  
+    let changedPrice = (value - this.data.num)*this.data.price;
     this.data.num = value;
+
+    // 将num值的变化通知给外界
+
+    // 1、创建要抛发的事件对象
+    let event = document.createEvent("HTMLEvents");
+    // 2、事件对象初始化（取名）
+    event.initEvent("numChanged",true,true);
+    // 3、事件对象携带的想要传给外界的东西
+    // 把变化的价格传给外界
+    event.changedPrice = changedPrice;
+    // 4、抛发事件（此对象this.numInput 负责抛发numChanged事件 ）
+    // 抛发事件的对象一定是DOM对象
+    this.numInput.dispatchEvent(event);
+
     this.render();
   },
   get num() {
@@ -111,21 +126,7 @@ SingleCart.prototype = {
     this.numInput.value = this.data.num;
     this.totalPrice.innerText = (this.data.price * this.data.num).toFixed(2);
     // 改变所有商品最后的总价---->获得所有的商品
-    // 外面要是能够知道render()方法什么时候执行就好了
-
-    //1、创建一个事件对象
-    var event = document.createEvent("HTMLEvents");
-    // 2、初始化事件对象
-    // selected : 自定义的事件名称 
-    // true : 事件是否冒泡
-    // true : 是否阻止默认事件
-    event.initEvent("rendered", true, true);
-
-    // 3、将value值通知给外界--->将value值作为对象的一个属性
-    event.value = (this.data.price * this.data.num).toFixed(2);
-
-    // 4、抛发事件
-    this.totalPrice.dispatchEvent(event);
+    // 外面要是能够知道render()方法什么时候执行就好了   
     
   }
 }
