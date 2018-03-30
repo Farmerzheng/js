@@ -110,22 +110,6 @@ SingleCart.prototype = {
   render: function() {
     this.numInput.value = this.data.num;
     this.totalPrice.innerText = (this.data.price * this.data.num).toFixed(2);
-    // 改变所有商品最后的总价---->获得所有的商品
-    // 外面要是能够知道render()方法什么时候执行就好了
-
-    //1、创建一个事件对象
-    var event = document.createEvent("HTMLEvents");
-    // 2、初始化事件对象
-    // selected : 自定义的事件名称 
-    // true : 事件是否冒泡
-    // true : 是否阻止默认事件
-    event.initEvent("rendered", true, true);
-
-    // 3、将value值通知给外界--->将value值作为对象的一个属性
-    event.value = (this.data.price * this.data.num).toFixed(2);
-
-    // 4、抛发事件
-    this.totalPrice.dispatchEvent(event);
-    
+     
   }
 }
