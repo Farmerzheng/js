@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 如何让 setTimeout 拥有 setInterval 的功能====>递归
+
+  let time = 1000;
+
+  function change() {
+    console.log(time + "ms后打印1");
+    time += 200;
+    /*
+      立即打印1
+      1200ms 后 立即打印1
+      1400ms 后 立即打印1
+      1600ms 后 立即打印1
+    */
+    setTimeout(change, time); //递归
+  }
+
+  change();
+
+  // setInterval实现不了以上效果
+  </script>
+</body>
+
+</html>

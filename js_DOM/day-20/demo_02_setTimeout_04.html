@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /*
+        当时间间隔是2s的时候不再打印1
+      */
+
+  let time = 1000;
+  let timer = null;
+
+  function change() {
+    console.log(time + "ms后打印1");
+    time += 200;
+    if (time <= 2000) {
+      timer = setTimeout(change, time);
+    } else {//清空定时器
+      clearTimeout(timer);
+    }
+  }
+
+  change();
+  </script>
+</body>
+
+</html>

@@ -80,7 +80,36 @@ td {
       this.num = this.numInput.value;
     },
     show: function() {
-      // 展示一行 <tr><td></td></tr>
+      // 展示数据
+      /*
+          { 
+            checked: true,
+            name: "张三",
+            age: 30,
+            sex: "男",
+            hobby: "旅行",
+            time: "2016/3/15",
+            price: 35.2,
+            total: '35.20',
+            num: 1 
+          }
+      */
+     /* <tr>
+          <td>
+             <input type="checkbox">
+          </td>
+          <td>张三</td><td>30</td>
+          <td>男</td><td>旅行</td>
+          <td>2016/3/15</td>
+          <td>35.2</td>
+          <td class="total">35.20</td>
+          <td>
+            <input type="button" value="-">
+            <input type="text">
+            <input type="button" value="+">
+          </td>
+        </tr>
+    */
       let tr = document.createElement("tr");
       for (let key in this.data) {
         let td = document.createElement("td");
@@ -119,9 +148,10 @@ td {
         tr.appendChild(td);
       }
       this.box.appendChild(tr);
-    },
+    },    
     set num(value) {
       this.data.num = value;
+      // 在set方法当中渲染页面
       this.render();
     },
     get num() {
@@ -130,10 +160,8 @@ td {
     render: function() {
       this.numInput.value = this.data.num;
       this.totalPrice.innerText = (this.data.price * this.data.num).toFixed(2);
-
     }
   }
-
   let singleCart = new SingleCart(single, box);
   singleCart.init();
   </script>

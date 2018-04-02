@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <title>show e ha</title>
+  <style>
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  hr,
+  p,
+  blockquote,
+  dl,
+  dt,
+  dd,
+  ul,
+  ol,
+  li,
+  pre,
+  form,
+  fieldset,
+  legend,
+  button,
+  input,
+  textarea,
+  th,
+  td {
+    margin: 0;
+    padding: 0
+  }
+
+  html {
+    color: #000;
+    overflow-y: scroll;
+    overflow: -moz-scrollbars-vertical
+  }
+
+  body,
+  button,
+  input,
+  select,
+  textarea {
+    font-size: 12px;
+    font-family: arial, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', '宋体', \5b8b\4f53, Tahoma, Arial, Helvetica, STHeiti
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 100%
+  }
+
+  em {
+    font-style: normal
+  }
+
+  small {
+    font-size: 12px
+  }
+
+  ul,
+  ol {
+    list-style: none
+  }
+
+  a {
+    text-decoration: none
+  }
+
+  a:hover {
+    text-decoration: underline
+  }
+
+  legend {
+    color: #000
+  }
+
+  fieldset,
+  img {
+    border: 0
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font-size: 100%
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0
+  }
+
+  img {
+    -ms-interpolation-mode: bicubic, bottom: 0;
+    vertical-align: top;
+  }
+
+  textarea {
+    resize: vertical
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  .left {
+    float: left
+  }
+
+  .right {
+    float: right
+  }
+
+  .overflow {
+    overflow: hidden
+  }
+
+  .hide {
+    display: none
+  }
+
+  .block {
+    display: block
+  }
+
+  .inline {
+    display: inline
+  }
+
+  .error {
+    color: #F00;
+    font-size: 12px
+  }
+
+  label,
+  button {
+    cursor: pointer
+  }
+
+  .clearfix:after {
+    content: '\20';
+    display: block;
+    height: 0;
+    clear: both
+  }
+
+  .clearfix {
+    zoom: 1
+  }
+
+  .clear {
+    clear: both;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    visibility: hidden;
+    overflow: hidden
+  }
+
+  .wordwrap {
+    word-break: break-all;
+    word-wrap: break-word
+  }
+
+  pre.wordwrap {
+    white-space: pre-wrap
+  }
+
+  body {
+    text-align: center
+  }
+
+  body,
+  form,
+  #s_fm {
+    position: relative
+  }
+
+  td {
+    text-align: left
+  }
+
+  img {
+    border: 0
+  }
+
+  #u_sp {
+    color: #999;
+    padding: 14px 8px 5px 0;
+    text-align: right;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    right: 0;
+    width: 800px
+  }
+
+  #u_sp .s-icons {
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    width: auto;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: top;
+    padding-left: 3px
+  }
+
+  #u_sp .s-icon {
+    cursor: pointer;
+    display: none !important
+  }
+
+  body {
+    background-color: #062741;
+  }
+
+  #box {
+    width: 1000px;
+    height: 650px;
+    margin: 0 auto;
+    overflow: hidden;
+    background: url(img/bg.png) no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+  }
+
+  .tit {
+    width: 750px;
+    margin-top: 60px;
+  }
+
+  .tit h1 {
+    font-size: 30px;
+    font-family: "微软雅黑";
+    text-align: center;
+    width: 750px;
+    height: 50px;
+    line-height: 50px;
+    color: #eee;
+    font-weight: 100;
+  }
+
+  #result {
+    position: absolute;
+    left: 150px;
+    top: 210px;
+    width: 460px;
+    height: 155px;
+    line-height: 100px;
+    float: left;
+    font-size: 46px;
+    font-family: "微软雅黑";
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    ;
+  }
+
+  .a {
+    position: absolute;
+    left: 711px;
+    top: 231px;
+    width: 110px;
+  }
+
+  .b {
+    position: absolute;
+    left: 318px;
+    top: 330px;
+    width: 128px;
+    height: 128px;
+  }
+
+  #select {
+    width: 110px;
+    height: 42px;
+    padding-left: 18px;
+    font-size: 16px;
+    color: #099;
+    border-radius: 20px;
+    border: 0 none;
+  }
+
+  .a input {
+    width: 110px;
+    height: 42px;
+    line-height: 42px;
+    background-color: #ffde00;
+    border: 0 none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #7a1616;
+    margin-top: 32px;
+  }
+
+  .a input:hover {
+    background-color: #ffc000;
+  }
+
+  #start {}
+
+  #stop {
+    margin-top: 36px;
+  }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <div class="tit">
+      <div class="a">
+        <select id="select">
+          <option value="1">1名</option>
+          <option value="2">2名</option>
+          <option value="3">3名</option>
+          <option value="4">4名</option>
+          <option value="5">5名</option>
+        </select>
+        <input type="button" value="开始" id="start">
+        <input type="button" value="停止" id="stop">
+      </div>
+    </div>
+    <div id="result"></div>
+    <div class="b">
+      <img id="image" src="./img/5.png" />
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+/*
+     1、点击开始按钮的时候
+        每隔0.1s从全班24人当中随机抽取一名同学
+        将同学展示到界面上
+     2、点击停止按钮的时候
+        抽取同学的时间间隔逐渐增大，当时间间隔增大的1s的时候
+        锁定这名同学
+     3、可以随机抽取多名同学(抽取多名同学时，展示多个同学的名字和头像)
+     
+	*/
+
+/*获取要操作的DOM 对象*/
+let startBtn = document.getElementById("start");
+// query  查询
+// selector 选择器
+// document.querySelector("#start");
+let stopBtn = document.getElementById("stop");
+let select = document.getElementById("select");
+
+
+
+
+
+function RandomCall(startBtn,stopBtn,select) {
+   this.startBtn = startBtn;
+   this.stopBtn = stopBtn;
+   this.select = select;
+}
+RandomCall.prototype = {
+  init: function() {
+      this.bindEvent();
+  },
+  bindEvent:function(){
+    this.startBtn.addEventListener("click",this.startClickHandler.bind(this));
+    this.stopBtn.addEventListener("click",this.stopClickHandler.bind(this));
+    this.select.addEventListener("click",this.selectHandler.bind(this));
+  },
+  startClickHandler:function(){
+    console.log("start");
+  },
+  stopClickHandler:function(){
+   console.log("stop")
+  },
+  selectHandler:function(){
+ /* 	select对象有两个非常重要的属性：options\selectedIndex
+  	options:返回包含下拉列表中的所有选项的一个数组。
+  	selectedIndex:设置或返回下拉列表中被选项目的索引号。*/
+  console.log(this.select.selectedIndex);
+  }
+}
+
+let randomCall = new RandomCall(startBtn,stopBtn,select);
+randomCall.init();
+</script>

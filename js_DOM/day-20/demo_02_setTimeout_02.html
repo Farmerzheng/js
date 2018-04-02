@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 如何让 setTimeout 拥有 setInterval 的功能====>递归
+
+  let time = 1000;
+
+  function change(){
+    console.log(1);
+    setTimeout(change,time);//递归
+  }
+
+  change();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <title>show e ha</title>
+  <style>
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  hr,
+  p,
+  blockquote,
+  dl,
+  dt,
+  dd,
+  ul,
+  ol,
+  li,
+  pre,
+  form,
+  fieldset,
+  legend,
+  button,
+  input,
+  textarea,
+  th,
+  td {
+    margin: 0;
+    padding: 0
+  }
+
+  html {
+    color: #000;
+    overflow-y: scroll;
+    overflow: -moz-scrollbars-vertical
+  }
+
+  body,
+  button,
+  input,
+  select,
+  textarea {
+    font-size: 12px;
+    font-family: arial, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', '宋体', \5b8b\4f53, Tahoma, Arial, Helvetica, STHeiti
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 100%
+  }
+
+  em {
+    font-style: normal
+  }
+
+  small {
+    font-size: 12px
+  }
+
+  ul,
+  ol {
+    list-style: none
+  }
+
+  a {
+    text-decoration: none
+  }
+
+  a:hover {
+    text-decoration: underline
+  }
+
+  legend {
+    color: #000
+  }
+
+  fieldset,
+  img {
+    border: 0
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font-size: 100%
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0
+  }
+
+  img {
+    -ms-interpolation-mode: bicubic, bottom: 0;
+    vertical-align: top;
+  }
+
+  textarea {
+    resize: vertical
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  .left {
+    float: left
+  }
+
+  .right {
+    float: right
+  }
+
+  .overflow {
+    overflow: hidden
+  }
+
+  .hide {
+    display: none
+  }
+
+  .block {
+    display: block
+  }
+
+  .inline {
+    display: inline
+  }
+
+  .error {
+    color: #F00;
+    font-size: 12px
+  }
+
+  label,
+  button {
+    cursor: pointer
+  }
+
+  .clearfix:after {
+    content: '\20';
+    display: block;
+    height: 0;
+    clear: both
+  }
+
+  .clearfix {
+    zoom: 1
+  }
+
+  .clear {
+    clear: both;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    visibility: hidden;
+    overflow: hidden
+  }
+
+  .wordwrap {
+    word-break: break-all;
+    word-wrap: break-word
+  }
+
+  pre.wordwrap {
+    white-space: pre-wrap
+  }
+
+  body {
+    text-align: center
+  }
+
+  body,
+  form,
+  #s_fm {
+    position: relative
+  }
+
+  td {
+    text-align: left
+  }
+
+  img {
+    border: 0
+  }
+
+  #u_sp {
+    color: #999;
+    padding: 14px 8px 5px 0;
+    text-align: right;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    right: 0;
+    width: 800px
+  }
+
+  #u_sp .s-icons {
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    width: auto;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: top;
+    padding-left: 3px
+  }
+
+  #u_sp .s-icon {
+    cursor: pointer;
+    display: none !important
+  }
+
+  body {
+    background-color: #062741;
+  }
+
+  #box {
+    width: 1000px;
+    height: 650px;
+    margin: 0 auto;
+    overflow: hidden;
+    background: url(img/bg.png) no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+  }
+
+  .tit {
+    width: 750px;
+    margin-top: 60px;
+  }
+
+  .tit h1 {
+    font-size: 30px;
+    font-family: "微软雅黑";
+    text-align: center;
+    width: 750px;
+    height: 50px;
+    line-height: 50px;
+    color: #eee;
+    font-weight: 100;
+  }
+
+  #result {
+    position: absolute;
+    left: 150px;
+    top: 210px;
+    width: 460px;
+    height: 155px;
+    line-height: 100px;
+    float: left;
+    font-size: 46px;
+    font-family: "微软雅黑";
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    ;
+  }
+
+  .a {
+    position: absolute;
+    left: 711px;
+    top: 231px;
+    width: 110px;
+  }
+
+  .b {
+    position: absolute;
+    left: 318px;
+    top: 330px;
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  #select {
+    width: 110px;
+    height: 42px;
+    padding-left: 18px;
+    font-size: 16px;
+    color: #099;
+    border-radius: 20px;
+    border: 0 none;
+  }
+
+  .a input {
+    width: 110px;
+    height: 42px;
+    line-height: 42px;
+    background-color: #ffde00;
+    border: 0 none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #7a1616;
+    margin-top: 32px;
+  }
+
+  .a input:hover {
+    background-color: #ffc000;
+  }
+
+  #start {}
+
+  #stop {
+    margin-top: 36px;
+  }
+
+  #image {
+    width: 100%;
+    height: 100%;
+  }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <div class="tit">
+      <div class="a">
+        <select id="select">
+          <option value="1">1名</option>
+          <option value="2">2名</option>
+          <option value="3">3名</option>
+          <option value="4">4名</option>
+          <option value="5">5名</option>
+        </select>
+        <input type="button" value="开始" id="start">
+        <input type="button" value="停止" id="stop">
+      </div>
+    </div>
+    <div id="result">何凯旋</div>
+    <div class="b">
+      <img id="image" src="./img/何凯旋.jpg" />
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+/*
+  点击停止按钮，减速直到停止
+
+*/
+let imgSrcArr = ["白兆龙.jpg", "车畅行.jpg", "董帆.jpg", "高峰.jpg", "郝子铭.jpg", "何凯旋.jpg", "侯艺杰.jpg", "邵雪.jpg", "张浩欣.jpg", "张慧茹.jpg", "张舒予.jpg", "张秀薇.jpg", "朱克飞.jpg"];
+
+function Id(id) {
+  return document.getElementById(id);
+}
+let startBtn = Id("start");
+let stopBtn = Id("stop");
+let select = Id("select");
+let img = Id("image");
+let result = Id("result");
+
+
+function RandomCall(startBtn, stopBtn, select, imgSrcArr, image, result) {
+  this.startBtn = startBtn;
+  this.stopBtn = stopBtn;
+  this.select = select;
+  this.imgSrcArr = imgSrcArr;
+  this.image = image;
+  this.result = result;
+  this.randomTime = 200;
+  this.timer1 = null;
+  this.timer2 = null;
+}
+RandomCall.prototype = {
+  init: function() {
+    this.bindEvent();
+  },
+  bindEvent: function() {
+    this.startBtn.addEventListener("click", this.startClickHandler.bind(this));
+    this.stopBtn.addEventListener("click", this.stopClickHandler.bind(this));
+    this.select.addEventListener("click", this.selectHandler.bind(this));
+  },
+  startClickHandler: function() {
+    // 随机播放
+    this.autoPlay();
+  },
+  stopClickHandler: function() {
+    this.randomTime += 200;
+    this.timer2 = setTimeout(this.stopClickHandler.bind(this), 1000)
+    if (this.randomTime > 1000) {
+      clearTimeout(this.timer1);
+      clearTimeout(this.timer2);
+      alert("恭喜" + this.newStr);
+    }
+
+  },
+  selectHandler: function() {
+
+  },
+  change: function() {
+
+
+
+    // this ----> window
+    // bind(this) 以后  ----> this 指 randomCall
+    let index = this.randomNum(this.imgSrcArr.length - 1, 0);
+    // index 0~13 随机数
+    // this.imgSrcArr[index]   this.imgSrcArr 随机元素
+    // 渲染图片
+    // console.log(this.imgSrcArr.length,index);
+    this.image.src = "./img/" + this.imgSrcArr[index];
+    // 截取字符串
+    this.newStr = this.imgSrcArr[index].replace(".jpg", "");
+    this.result.innerText = this.newStr;
+    this.timer1 = setTimeout(this.change.bind(this), this.randomTime);
+  },
+  autoPlay: function() {
+
+    this.change();
+
+  },
+  randomNum: function(max, min) {
+    return Math.round(Math.random() * (max - min)) + min;
+  }
+}
+let randomCall = new RandomCall(startBtn, stopBtn, select, imgSrcArr, image, result);
+randomCall.init();
+</script>

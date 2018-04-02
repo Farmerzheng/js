@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // setInterval、setTimeout  都是系统为我们提供的window对象的方法
+  // 全局的函数是window对象的方法
+  // 全局的属性是window对象的属性
+
+  // setInterval(function(){},2000)省略window 
+  // window.setInterval(function(){},2000) ===== setInterval(function(){},2000)
+
+  // setInterval(func1,1000)  定时器（每隔1s让func1执行一次）
+
+  setTimeout(function() {
+    alert(1)//2s后执行此行代码，只执行一次
+  }, 2000);
+  </script>
+</body>
+
+</html>
