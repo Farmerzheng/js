@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>show e ha</title>
+  <title>randomCall</title>
   <style>
   body,
   h1,
@@ -260,7 +260,7 @@
     height: 155px;
     line-height: 100px;
     float: left;
-    font-size: 46px;
+    font-size: 24px;
     font-family: "微软雅黑";
     color: #fff;
     font-weight: bold;
@@ -277,11 +277,11 @@
 
   .b {
     position: absolute;
-    left: 318px;
+    left: 53px;
     top: 330px;
-    width: 128px;
+    width: 640px;
     height: 128px;
-    border-radius: 50%;
+    /*border-radius: 50%;*/
     overflow: hidden;
   }
 
@@ -318,8 +318,14 @@
   }
 
   #image {
-    width: 100%;
-    height: 100%;
+    width: 640px;
+    height: 128px;
+    text-align: center;
+  }
+
+  #image img {
+    width: 20%;
+    height: 100%
   }
   </style>
 </head>
@@ -341,7 +347,7 @@
     </div>
     <div id="result">何凯旋</div>
     <div class="b">
-      <img id="image" src="./img/何凯旋.jpg" />
+      <div id="image"><img src="./img/何凯旋.jpg" /></div>
     </div>
   </div>
 </body>
@@ -349,8 +355,7 @@
 </html>
 <script>
 /*
-  点击停止按钮，图片切换的速度变慢，直到停止切换
-
+ 优化
 */
 let imgSrcArr = ["白兆龙.jpg", "车畅行.jpg", "董帆.jpg", "高峰.jpg", "郝子铭.jpg", "何凯旋.jpg", "侯艺杰.jpg", "邵雪.jpg", "张浩欣.jpg", "张慧茹.jpg", "张舒予.jpg", "张秀薇.jpg", "朱克飞.jpg"];
 
@@ -360,16 +365,15 @@ function Id(id) {
 let startBtn = Id("start");
 let stopBtn = Id("stop");
 let select = Id("select");
-let img = Id("image");
+let imgBox = Id("image");
 let result = Id("result");
 
-
-function RandomCall(startBtn, stopBtn, select, imgSrcArr, image, result) {
+function RandomCall(startBtn, stopBtn, select, imgSrcArr, imgBox, result) {
   this.startBtn = startBtn;
   this.stopBtn = stopBtn;
   this.select = select;
   this.imgSrcArr = imgSrcArr;
-  this.image = image;
+  this.imgBox = imgBox;
   this.result = result;
   this.randomTime = 100;
   this.timer1 = null;
@@ -393,6 +397,7 @@ RandomCall.prototype = {
     this.autoPlay();
   },
   stopClickHandler: function() {
+
     this.randomTime += 100; //每隔200ms执行一次
     if (this.randomTime <= 2000) {
       this.timer2 = setTimeout(this.stopClickHandler.bind(this), 300);
@@ -402,41 +407,37 @@ RandomCall.prototype = {
       clearTimeout(this.timer2);
       alert("恭喜" + this.newStr)
     }
-
-    // 1s   this.randomTime==200ms
-    // 2s   this.randomTime==300ms
-    // 3s   this.randomTime==400ms
   },
   selectHandler: function() {
-     // 当用户选中某个 option的时候会触发此方法
-
-    // console.log(this.select.selectedIndex);
-    // 生成数组，数组长度 和  this.select.selectedIndex+1 相等
     this.selectNum = this.select.selectedIndex + 1;
     this.selectArr = this.randomArr(this.selectNum);
-    // console.log(selectArr);
-    // 将数据渲染到页面上
-
   },
   autoPlay: function() {
 
-    // 当用户点击开始按钮的时候会触发
-
-    if (this.selectNum == 1) {//选中一人的情况
-      let index = this.randomNum(this.imgSrcArr.length - 1, 0);
-      this.image.src = "./img/" + this.imgSrcArr[index];
-      this.newStr = this.imgSrcArr[index].replace(".jpg", "");
-      this.result.innerText = this.newStr;
+    if (this.selectNum == 1) {
+      this.selectArr = [];
+      let ran = this.randomNum(this.imgSrcArr.length - 1, 0);
+      this.selectArr.push(ran);
+    } else {
+      this.selectArr = this.randomArr(this.selectNum);
     }
+    this.imgBox.innerText = "";
+    this.result.innerText = "";
+    this.newStr = "";
+    for (let i = 0; i < this.selectArr.length; i++) {
+      let img = new Image();
+      img.src = "./img/" + this.imgSrcArr[this.selectArr[i]];
+      this.imgBox.appendChild(img);
+      let str = this.imgSrcArr[this.selectArr[i]];
+      str = str.replace(".jpg", "");
+      if (i == this.selectArr.length - 1) {
+        this.newStr += str
+      } else {
+        this.newStr += str + "-"
+      }
 
-    // 选中多人
-      // 拿到多张图片-----》this.selectArr
-    for(let i = 0 ; i < this.selectArr.length ; i++){
-      // this.selectArr[i] 是 this.imgSrcArr当中的索引
-      // console.log(this.selectArr[i] )
-      console.log(this.imgSrcArr[this.selectArr[i]])
     }
-
+    this.result.innerText = this.newStr;
     this.timer1 = setTimeout(this.autoPlay.bind(this), this.randomTime); //递归
   },
   randomNum: function(max, min) {
@@ -466,6 +467,6 @@ RandomCall.prototype = {
     return arr;
   }
 }
-let randomCall = new RandomCall(startBtn, stopBtn, select, imgSrcArr, image, result);
+let randomCall = new RandomCall(startBtn, stopBtn, select, imgSrcArr, imgBox, result);
 randomCall.init();
 </script>

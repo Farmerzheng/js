@@ -1,0 +1,33 @@
+  // 生成0~13之间的随机数
+  function randomNum(max, min) {
+    return Math.round(Math.random() * (max - min)) + min;
+  }
+  // let num = randomNum(13, 0) //0~13的随机数
+  // console.log(num)
+
+  // 数组里面有2个元素
+
+  function randomArr(num) {
+    let arr = [];
+
+    while (arr.length < num) { //循环的次数不一定
+
+      let num = randomNum(13, 0) //0~13的随机数
+      // 让生成的随机数和数组当中每一个数进行比较，如果有就不添加到数组当中
+
+      let haveBoolean = false;
+      for (let i = 0; i < arr.length; i++) {
+        if (num == arr[i]) {
+          // 数组当中有元素和生成的随机数相等
+          haveBoolean = true;
+          break;
+        }
+      }
+      if (!haveBoolean) { //没有元素和数组当中的相等才push
+        arr.push(num)
+      }
+
+    }
+    return arr;
+  }
+  console.log(randomArr(5));
