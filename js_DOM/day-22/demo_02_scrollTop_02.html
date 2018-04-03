@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+button {
+  position: fixed;
+  right: 0;
+  top: 500px;
+}
+</style>
+
+<body>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <button id="btn">回到顶部</button>
+  <script src = "tween_basic.js"></script>
+  <script>
+  let btn = document.querySelector("#btn");
+
+  function ScrollTop(btn) {
+
+    this.t = 0;
+
+    this.d = 10;
+
+    this.btn = btn;
+
+    this.scrollTop = 0; 
+
+    this.scrollTopBoolean = false;
+  }
+  ScrollTop.prototype = {
+    init: function() {
+      this.bindEvent()
+    },
+    bindEvent: function() {
+      this.btn.addEventListener("click", this.scrollTopHandler.bind(this));
+      window.addEventListener("scroll", this.changeScrollTop.bind(this));
+    },
+    scrollTopHandler: function() {
+      this.scrollTopBoolean = true;
+    },
+    changeScrollTop: function() {
+      this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      this.b = this.scrollTop;
+      this.c = -this.scrollTop;
+    },
+    update: function() {
+      // 让 this.scrollTop 缓慢的变成 0
+      if (this.scrollTopBoolean == false) return;
+      this.t += 0.1;
+
+      if (this.t >= this.d) {
+        return;
+      }
+      // let s = Tween.Linear(t, b, c, d)
+      // let s = Tween.Bounce.easeIn(t, b, c, d);
+      // let s = Tween.Bounce.easeOut(t, b, c, d);
+      // console.log(this.t, this.d);
+      // let s = Tween.Quad.easeOut(this.t, this.b, this.c, this.d)
+      let s = Tween.Linear(this.t, this.b, this.c, this.d);
+      console.log(this.t, this.d,s)
+      // box.style.left = s + "px";
+
+      // 改变页面
+      document.documentElement.scrollTop = document.body.scrollTop = s;
+    }
+  }
+  let scrollTop = new ScrollTop(btn);
+  scrollTop.init();
+
+  // 创建一个永动机
+  animation();
+
+  function animation() {
+    requestAnimationFrame(animation);
+    scrollTop.update();
+  }
+  </script>
+</body>
+
+</html>

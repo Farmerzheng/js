@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+.box {
+  position: absolute;
+  left: 300px;
+  top: 0;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+
+.btn {
+  float: right;
+}
+</style>
+
+<body>
+  <div class="box"></div>
+  <button class="btn">开始</button>
+  <script src="requestAnimationFrame.js"></script>
+  <script src="tween_basic.js"></script>
+  <script>
+  /*
+        c : 距离的增量(有可能是负值)
+        b : 初始的位置
+        d : 终止时刻
+        t : 开始时刻
+      */
+  let t = 0,
+    b = 300,
+    c = -300,
+    d = 10;
+
+  let btn = document.querySelector(".btn");
+  let box = document.querySelector(".box");
+
+  let moveBoolean = false;
+  btn.addEventListener("click", btnClickHandler);
+
+  function btnClickHandler() {
+    moveBoolean = true;
+  }
+
+  function update() {
+    // 判断开关是否打开，关闭就返回
+    if (moveBoolean == false) return;
+
+    // 时间不短增加，增加到d的时候就不再执行下面代码 
+    t += 0.1;
+    if (t >= d)return;
+    
+    // 计算出 t 时刻对应的 s 值
+    // let s = Tween.Linear(t, b, c, d)
+    // let s = Tween.Bounce.easeIn(t, b, c, d);
+    let s = Tween.Bounce.easeOut(t, b, c, d);
+    // let s = Tween.Quad.easeOut(t, b, c, d)
+  
+    // 根据s计算盒子的位置
+    box.style.left = s + "px";
+  }
+  // 创建一个永动机
+  animation();
+
+  function animation() {
+    requestAnimationFrame(animation);
+    update();
+  }
+  </script>
+</body>
+
+</html>

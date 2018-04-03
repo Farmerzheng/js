@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+.box {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+
+.btn {
+  float: right;
+}
+</style>
+
+<body>
+  <div class="box"></div>
+  <button class="btn">开始</button>
+  <script src="requestAnimationFrame.js"></script>
+  <script src="tween_basic.js"></script>
+  <script>
+  /*
+                  面向过程开发
+                  c : 距离的增量
+                  b : 初始的位置
+                  d : 终止时刻
+                  t : 开始时刻
+                */
+
+  /*
+    全局的变量、全局的函数在哪里都能够被访问到
+  */
+  let btn = document.querySelector(".btn");
+  let box = document.querySelector(".box");
+
+  function Move(box, start, iTarget, speed) {
+    this.box = box;
+    this.t = 0;
+    this.b = start;
+    this.c = iTarget - start;
+    this.d = 100 / speed;
+  }
+  Move.prototype = {
+    update: function() {
+      // 时间增加
+      this.t += 0.1;
+      // 如果到达终止时间就停止
+      if (this.t >= this.d) {
+        return;
+      }
+      // 盒子的运动曲线
+      let s = Tween.Quad.easeOut(this.t, this.b, this.c, this.d)
+      // 渲染
+      this.box.style.left = s + "px";
+    }
+  }
+
+
+  btn.addEventListener("click", btnClickHandler);
+  let move = null;
+
+  function btnClickHandler() {
+     move = new Move(box, 200, 500, 10);
+  }
+  // 创建一个永动机
+  animation();
+
+  function animation() {
+    requestAnimationFrame(animation);
+    // 永动机里面调用更新盒子的函数
+    move.update();
+  }
+  </script>
+</body>
+
+</html>

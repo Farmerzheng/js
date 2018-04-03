@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="tween-basic.js"></script>
+
+  <script>
+/*  	Linear：线性匀速运动效果；
+Quadratic：二次方的缓动（t^2）；
+Cubic：三次方的缓动（t^3）；
+Quartic：四次方的缓动（t^4）；
+Quintic：五次方的缓动（t^5）；
+Sinusoidal：正弦曲线的缓动（sin(t)）；
+Exponential：指数曲线的缓动（2^t）；
+Circular：圆形曲线的缓动（sqrt(1-t^2)）；
+Elastic：指数衰减的正弦曲线缓动；
+Back：超过范围的三次方缓动（(s+1)*t^3 – s*t^2）；
+Bounce：指数衰减的反弹缓动。
+
+每个效果都分三个缓动方式，分别是：
+
+easeIn：从0开始加速的缓动，也就是先慢后快；
+easeOut：减速到0的缓动，也就是先快后慢；
+easeInOut：前半段从0开始加速，后半段减速到0的缓动。*/
+  /* 
+      只看上面字面意思其实不好理解，我们套用最简单的线性匀速运动来解释下：
+        
+           t:当前时间(time)
+           b:初始位置(begin)
+           c:总距离(变化量)(change)
+           d:持续时间（duration）
+          
+       Tween.Linear = function(t, b, c, d) { return c*（t/d） + b; } 
+
+       比方说我们要从位置0m的地方运动到100m，时间是10秒钟，此时，b(0m), c(100m), d(10s)三个参数就已经确认了，b初始值就是0，变化值c就是100，最终的时间就是10，此时，只要给一个小于最终时间10s的值，Tween.Linear就会返回当前时间对应的距离坐标，例如，假设此时动画进行到第5秒，也就是t为5，则 s = Tween.liner(5,0,100,10)
+      */
+
+  let t = 5 , b = 50 , c = 100 , d = 10;
+
+  /*
+    c : 距离的增量
+    b : 初始的位置
+    d : 终止时刻
+    t : 开始时刻
+  */
+
+  let s = Tween.Linear(t, b, c, d);
+/*  let s = Tween.Quad.easeIn(t, b, c, d);
+  let s = Tween.Quad.easeOut(t, b, c, d);
+  let s = Tween.Quad.easeInOut(t, b, c, d);
+  let s = Tween.Cubic.easeIn(t, b, c, d);
+  let s = Tween.Cubic.easeOut(t, b, c, d);
+  let s = Tween.Cubic.easeInOut(t, b, c, d);
+  let s = Tween.Bounce.easeIn(t, b, c, d);
+  let s = Tween.Bounce.easeOut(t, b, c, d);
+  let s = Tween.Bounce.easeInOut(t, b, c, d);*/
+  console.log(s); //50m
+  /*
+          t:当前时间(time)，一般为0
+          b:初始位置(begin)
+          c:位置的变化量（位移）(change)
+          d:持续时间（duration）（并不是终止时刻，是一个时间段）
+ 
+      以上只是列举了部分Tween.js里面封装的方法，
+      这些方法都有一个共同的特点----》都有返回值；
+      返回值是什么呢？返回当前时间对应的距离坐标
+   */
+
+
+
+  </script>
+</body>
+
+</html>

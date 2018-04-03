@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+button {
+  position: fixed;
+  right: 0;
+  top: 500px;
+}
+</style>
+
+<body>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <button id="btn">回到顶部</button>
+  <script>
+  let btn = document.querySelector("#btn");
+
+  function ScrollTop(btn) {
+    this.btn = btn;
+  }
+  ScrollTop.prototype = {
+    init: function() {
+      this.bindEvent()
+    },
+    bindEvent: function() {
+      this.btn.addEventListener("click", this.scrollTopHandler);
+    },
+    scrollTopHandler: function() {
+      document.documentElement.scrollTop = document.body.scrollTop = 0
+    }
+  }
+  let scrollTop = new ScrollTop(btn);
+  scrollTop.init();
+  </script>
+</body>
+
+</html>
