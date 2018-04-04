@@ -46,7 +46,15 @@
 // Move 是我们自己封装的动画函数
   function btnClickHandler() {
     moveBoolean  = true;
-    Move.init(box, 200, 500, 10,"Tween.Bounce.easeOut");
+    // Move.init(box, 200, 500, 10,"Tween.Bounce.easeOut");
+    // box, start, iTarget, speed,animate
+    Move.init({
+     box:box,
+     start:200,
+     iTarget:500,
+     speed:10,
+     animate:"Tween.Bounce.easeOut"
+    })
   }
   // 创建一个永动机
   animation();

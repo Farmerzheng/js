@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // $.ajax({})
+
+  let $ = {
+    ajax: function(obj) {
+      let xhr = new XMLHttpRequest();
+      // "http://app.sencha.com.cn/soya/apps/testdb/server/?action=wordList.list&perPage=5&page=1"
+
+      // obj.data === { perPage: 5,page: 1 }
+      // obj.data === > perPage = 5 & page = 1
+      let str = ""
+      for (let key in obj.data) {
+          // key : perPage page
+          // obj[key] : 5  1
+          str += "&" +key + "=" + obj.data[key];          
+      }
+
+      obj.url = obj.url+str;
+
+      console.log(str);
+      xhr.open(obj.method, obj.url);
+      xhr.send();
+      xhr.onreadystatechange = function() {
+        if (xhr.status === 200 && xhr.readyState === 4) {
+          
+          // 数据返回成功就会执行
+          obj.success(xhr.responseText);
+        }else{
+          obj.error();
+        }
+      }
+    }
+  }
+
+// 回调函数？ 函数作为参数传入（函数作为对象的方法传入）
+// 在js当中 ，网络请求操作（异步）是通过回调函数（ES5）实现的（ES6当中是通过Promise对象实现的）
+  $.ajax({
+    method: "GET",
+    url: "http://app.sencha.com.cn/soya/apps/testdb/server/?action=wordList.list",
+    data: {
+      perPage: 5,
+      page: 1
+    },
+    success:function(responseText){
+
+    },
+    error:function(error){
+
+    }
+  })
+  </script>
+</body>
+
+</html>

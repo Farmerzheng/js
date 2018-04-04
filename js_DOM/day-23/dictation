@@ -1,0 +1,33 @@
+  let content = document.querySelector(".box");
+  // 请求数据
+  $.ajax({
+    method: "GET",
+    url: "http://app.sencha.com.cn/soya/apps/testdb/server/?action=wordList.list",
+    data: {
+      perPage: 5,
+      page: 1
+    },
+    dataType: "jsonp",
+    success: function(responseText) {    
+      show(responseText);
+    },
+    error: function() {}
+  })
+
+  // 展示数据
+  function show(response) {
+    let data = response.data;
+    let str = ""
+    for (let i = 0; i < data.length; i++) {
+      str += `<tr class='title'>
+			      <td>${data[i].id}</td>
+			      <td>${data[i].word}</td>
+			      <td>${data[i].pronounce}</td>
+			      <td>${data[i].description}</td>
+			      <td>${data[i].dateLine}</td>
+			      <td>${data[i].wordtype}</td>
+			      <td><button>修改</button><button>删除</button></td>
+		        </tr>`
+    }
+   content.innerHTML = str;
+  }

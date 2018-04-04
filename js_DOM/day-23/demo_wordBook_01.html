@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src = "jQuery.js"></script>
+</head>
+<body>
+	<script>
+
+
+		/*
+             $:是一个对象（jQuery.js内部为我们提供的一个对象）
+             $.ajax() ====> ajax 是 $对象的一个方法 
+             $.ajax() 方法是对xhr对象的网络请求的一个封装
+             $.ajax() 参数是一个对象{}
+
+           {	      	
+	      	method:"GET",//客户端与服务器数据交互的方法（get/post）	      
+	      	url:"http://app.sencha.com.cn/soya/apps/testdb/server/?action=wordList.list", //请求的网址	      	
+	      	data:{
+               perPage:5,//每页返回的单词量
+               page:1 //第几页
+	      	},//请求的参数	      
+	      	dataType:"jsonp", //实现跨域请求要添加此属性	      
+	      	success:function(responseText){
+              console.log(responseText)
+
+	      	},	
+	      	error:function(){
+
+	      	}//数据没有返回到客户端的时候会执行此函数
+	       }
+		*/
+		// 1、查询接口文档
+	    // 2、根据接口文档发送网络请求，获取单词本的数据
+	      $.ajax({
+	      	//客户端与服务器数据交互的方法
+	      	method:"GET",
+	      	//请求的网址
+	      	url:"http://app.sencha.com.cn/soya/apps/testdb/server/?action=wordList.list",
+	      	//请求的参数
+	      	data:{
+               perPage:5,
+               page:1
+	      	},
+	      	//实现跨域请求要添加此属性
+	      	dataType:"jsonp",
+	      	//数据返回到客户端的时候会执行此函数
+	      	success:function(responseText){
+	      	  // 网络请求需要时间，
+	      	  // 所有的网络请求都是异步的
+	      	  // 在进行网络请求的时候，并不会等待网络请求完成再执行下面的代码
+              console.log(responseText)
+	      	},
+	      	error:function(){
+
+	      	}
+	      }) 
+      
+	      
+	</script>
+</body>
+</html>

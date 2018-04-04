@@ -158,13 +158,13 @@ var Tween = {
 
 
 var Move = {
-  init: function(box, start, iTarget, speed,animate) {
-    this.box = box;
+  init: function(obj) {
+    this.box = obj.box;
     this.t = 0;
-    this.b = start;
-    this.c = iTarget - start;
-    this.d = 100 / speed;
-    this.animate = animate;
+    this.b = obj.start;
+    this.c = obj.iTarget - obj.start;
+    this.d = 100 / obj.speed;
+    this.animate = obj.animate;
   },
   update: function() {
     // 时间增加

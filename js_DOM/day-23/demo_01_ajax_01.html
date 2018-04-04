@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /*		   xml:  是一种封装数据的格式，例如 <name>zhangsan<name>
+
+             xml 这种封装数据的格式现在已经被淘汰了，原因是数据结构臃肿，不好解析
+
+             现在流行的数据传输的格式是：json
+
+             json : javascript Object Notation     javascript对象表示法
+
+             json就是javascript对象(json的键一定要加引号) 
+
+             例如：
+
+              {"name" : zhangsan}
+
+              [
+                {"name","zhangsan"},
+                {"name","lisi"},
+                {"name","wangwu"}
+              ]   */
+
+
+  /*
+     浏览器如何才能获取到服务器上的数据？
+        1、输入网址，按下回车键
+        2、点击网页当中的链接
+        3、window.location.href = "www.baidu.com"
+    
+    以上获取数据的方式的共同点（缺点）？ 
+        1、拉取的是整个网页
+        2、同步的（阻塞的）
+
+    ajax 技术能够获取少量的数据，将少量数据渲染到页面的局部（局部刷新），提高用户体验
+  */
+
+  /*
+		   ajax: asynchronous(异步的) javascript and xml
+             
+           通过 javascript 异步获取 xml 格式的数据          
+
+           what\why\when\who how
+
+           what ？ 一种客服端与服务器之间数据传输的技术
+
+           why ? ajax 技术是浏览器提供给我们的唯一的与服务器数据传输方式
+
+           when ? 1998出现 、 2005 开始火
+
+           who?
+
+           how ?
+          
+		*/
+        
+        // 第一步创建 xhr对象
+        // xhr 对象内封装了所有ajax技术的方法和属性
+        // xhr 对象帮我们完成了客户端与服务器之间的数据传输
+		let xhr = new XMLHttpRequest();//XMLHttpRequest 是浏览器提供给我们的内置构造函数
+       
+        // 第二步
+        /*
+          type : 客户端与服务器之间的交互方法（ get \ post）
+          get方法：参数拼接在网址的后面，一般用于传输少量数据，不安全的（数据直接暴露在了网址后面）
+          post方法：参数放在了请求体当中，一般用于用户名密码等需要加密的数据，也用于传输图片、视频等较大的数据
+          url: 请求数据的网址
+        */
+        // xhr.open(type,url)
+        xhr.open("get","网址")
+        
+       
+        // 发送请求
+        xhr.send();
+        
+        // 监听请求的改变
+        // xhr.onreadystatechange方法时刻在运行
+        xhr.onreadystatechange = function(){
+           
+           //xhr.status // http状态码
+           // http状态码？ 表示http请求的三位数字代码，常见的有 200（请求成功） 、 404（服务器没有响应）
+           //xhr.readyState //表示 ajax 请求的过程的状态码 1、2、3、4四种状态
+
+           if(xhr.status === 200&&xhr.readyState === 4){
+            //请求成功
+            // xhr.responseText 服务器返回给我们的数据
+            console.log(xhr.responseText);
+           }
+        }
+
+  </script>
+</body>
+
+</html>

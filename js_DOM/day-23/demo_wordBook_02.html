@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="jQuery.js"></script>
+</head>
+<style>
+table {
+  border-collapse: collapse;
+}
+</style>
+
+<body>
+  <table border=1 class="box">
+<!--     <tr class="title">
+      <td>序号</td>
+      <td>单词</td>
+      <td>音标</td>
+      <td>解释</td>
+      <td>时间</td>
+      <td>分类</td>
+      <td>操作</td>
+    </tr> -->
+   
+
+  </table>
+  <script>
+  /*
+               展示数据
+        	*/
+
+  let content = document.querySelector(".box");
+  $.ajax({
+    method: "GET",
+    url: "http://app.sencha.com.cn/soya/apps/testdb/server/?action=wordList.list",
+    data: {
+      perPage: 5,
+      page: 1
+    },
+    dataType: "jsonp",
+    success: function(responseText) {
+      console.log(responseText)
+      show(responseText);
+    },
+    error: function() {}
+  })
+
+  // 展示数据
+  function show(response) {
+    let data = response.data;
+    let str = ""
+    for (let i = 0; i < data.length; i++) {
+      str += `<tr class='title'>
+			      <td>${data[i].id}</td>
+			      <td>${data[i].word}</td>
+			      <td>${data[i].pronounce}</td>
+			      <td>${data[i].description}</td>
+			      <td>${data[i].dateLine}</td>
+			      <td>${data[i].wordtype}</td>
+			      <td><button>修改</button><button>删除</button></td>
+		        </tr>`
+    }
+   content.innerHTML = str;
+  }
+  </script>
+</body>
+
+</html>
