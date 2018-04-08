@@ -32,6 +32,7 @@ table {
         	*/
 
   let content = document.querySelector(".box");
+  // 请求数据
   $.ajax({
     method: "GET",
     url: "http://app.sencha.com.cn/soya/apps/testdb/server/?action=wordList.list",
@@ -40,8 +41,7 @@ table {
       page: 1
     },
     dataType: "jsonp",
-    success: function(responseText) {
-      console.log(responseText)
+    success: function(responseText) {    
       show(responseText);
     },
     error: function() {}
