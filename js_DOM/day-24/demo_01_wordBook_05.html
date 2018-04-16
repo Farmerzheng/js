@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/jQuery.js"></script>
+</head>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+#input_box_wrap {
+  background: blue;
+  width: 300px;
+  height: 340px;
+  text-align: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -150px;
+  margin-top: -170px;
+  display: none;
+}
+</style>
+
+<body>
+  <button id="add">增加</button>
+  <table border=1 class="box">
+    <!--     <tr class="title">
+      <td>序号</td>
+      <td>单词</td>
+      <td>音标</td>
+      <td>解释</td>
+      <td>时间</td>
+      <td>分类</td>
+      <td>操作</td>
+    </tr> -->
+  </table>
+  <div id="input_box_wrap">
+    <div id="input_box">
+      <div class="input_box_top">
+        <h1>添加单词</h1>
+        <span id="close"></span>
+      </div>
+      <form action="">
+        <span>单词:</span>
+        <div class="single_line">
+          <input type="text" id="word">
+        </div>
+        <span>音标:</span>
+        <div class="single_line">
+          <input type="text" id="pronounce">
+        </div>
+        <span>解释:</span>
+        <div class="many_line">
+          <textarea id="description"></textarea>
+        </div>
+        <span>分类:</span>
+        <div class="single_line">
+          <input type="text" id="wordtype">
+        </div>
+        <input type="button" value="提交" id="submit">
+      </form>
+    </div>
+  </div>
+  <script src="js/api.config.js"></script>
+  <script>
+  /*
+     查询、增加、修改、删除 -----> 单词
+
+     1、进入页面，默认显示10条单词（查询接口）
+        发送网络请求---->拿到数据 ---> 将拿到的数据展示到页面上
+
+     2、增加单词功能
+        点击添加按钮，
+        弹出单词输入框，
+        输入单词、发音等，
+        点击提交按钮-----> 数据库当中插入单词 --->将数据库的变化反映到页面上
+
+     3、修改单词功能(修改接口)
+         点击修改按钮
+         弹出单词输入框
+         修改单词、发音等
+         点击提交按钮 ---->数据库当中修改单词---->将数据库的变化反映到页面上
+
+     4、删除单词功能
+        点击删除按钮
+        弹出是否删除对话框
+        如用户点击“是”----->删除数据库当中的单词---->将数据库的变化反映到页面上 
+        如果用户点击“否”--->什么都不做 
+
+
+  */
+
+
+  let table = document.querySelector(".box"); //表格
+  let addBtn = document.querySelector("#add"); //添加按钮
+  let inputBoxWrap = document.querySelector("#input_box_wrap"); //弹出的输入盒子
+  let submitBtn = document.querySelector("#submit"); //提交按钮
+
+  //弹出的输入盒子里面的输入框 
+  let word = document.querySelector("#word");
+  let wordtype = document.querySelector("#wordtype");
+  let pronounce = document.querySelector("#pronounce");
+  let description = document.querySelector("#description");
+
+  /*  str是表格当中显示的内容---->
+    str为什么作为全局变量使用？----->
+    因为整个程序就是在不断修改str---->
+    str在哪里都应该被访问到----->
+    所以要把str设定为全局变量 */
+  let str = "";
+
+  /*
+    点击添加单词按钮---->弹出输入框---->用户输入----->提交数据
+
+    数据库添加单词成功----> 
+    将数据库的辩护反映到页面上---> 
+    两种方法：
+    刷新页面（用户体验感不好，因为刷新页面还会发送网络请求）、
+    不用发送网络请求，直接从输入框拿数据（id、time需要自己计算），展示到页面上
+
+
+
+    添加的单词一定是最大的那个id值----->
+    当前最大的id值？---->查询时返回的10个单词中有id值最大的那个单词
+    从查询的数据当中找到id值最大的那个---->
+    添加
+
+
+  */
+  let id = 0;
+
+
+  //挂接事件
+  addBtn.addEventListener("click", addHandler);
+  submitBtn.addEventListener("click", submitHandler);
+
+
+  //查询（进入页面显示一部分单词）
+  wordsBookAjax(
+    url, //网址
+    showParam, // 参数
+    function(responseText) {
+      show(responseText);
+    },
+    function() {
+      //失败后的回调
+    },
+    "GET");
+
+  // 展示数据
+  function show(response) {
+    let data = response.data;
+    for (let i = 0; i < data.length; i++) {
+      str += `<tr class='title'>
+            <td>${data[i].id}</td>
+            <td>${data[i].word}</td>
+            <td>${data[i].pronounce}</td>
+            <td>${data[i].description}</td>
+            <td>${data[i].dateLine}</td>
+            <td>${data[i].wordtype}</td>
+            <td><button>修改</button><button>删除</button></td>
+            </tr>`
+    }
+    // data --- 》 请求到的数据
+    // data[0].id 
+    id = data[0].id;
+    table.innerHTML = str;
+  }
+
+  function addHandler() {
+    inputBoxWrap.style.display = "block";
+  }
+
+  function submitHandler() {
+    inputBoxWrap.style.display = "none";
+    // 向服务器发送增加单词的请求
+
+    // 获取用户输入的值
+    insertParam.word = word.value;
+    insertParam.wordtype = wordtype.value;
+    insertParam.pronounce = pronounce.value;
+    insertParam.description = description.value
+    id = parseInt(id) + 1;
+    // 插入单词
+    wordsBookAjax(
+      url, //网址
+      insertParam, // 参数
+      function(responseText) {
+        // 数据库当中插入数据以后你才能往页面当中插
+        insertWord();
+      },
+      function() {
+        //失败后的回调
+      },
+      "GET");
+  }
+
+
+
+
+
+
+
+  // 插入数据
+  function insertWord() {
+
+    //成功后的回调（能执行这个函数，说明向数据库插入单词成功了）
+    // 添加完单词后，直接刷新页面影响用户体验
+    // 获取当前时间
+    let now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth();
+    let day = now.getDate();
+    let hour = now.getHours();
+    let minite = now.getMinutes();
+    let second = now.getSeconds();
+    let time = `${year}-${month}-${day} ${hour}:${minite}:${second}`
+    // 拼接字符串
+    str = `<tr class='title'>
+            <td>${id}</td>
+            <td>${word.value}</td>
+            <td>${pronounce.value}</td>
+            <td>${description.value}</td>
+            <td>${time}</td>
+            <td>${wordtype.value}</td>
+            <td><button>修改</button><button>删除</button></td>
+            </tr>` + str; //拼接到最前面
+    table.innerHTML = str;
+
+  }
+  </script>
+</body>
+
+</html>

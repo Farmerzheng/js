@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+  .wrong {
+    border: 2px solid red;
+  }
+
+  .right {
+    border: 2px solid #91B81D;
+  }
+  </style>
+</head>
+
+<body>
+  <form action="">
+    <div>
+      <label for="account">账号：</label>
+      <input type="text" name="account" id="account" />
+    </div>
+    <div>
+      <label for="password">密码：</label>
+      <input type="password" name="password" id="password" />
+    </div>
+    <div>
+      <input type="submit" value="登录" id="submit">
+    </div>
+  </form>
+  <script>
+  let accountInput = document.getElementById("account");
+  let passwordInput = document.getElementById("password");
+  let submitBtn = document.getElementById("submit");
+
+  submitBtn.addEventListener("click", submitHandler);
+
+   /*
+  <form action="">   
+      <input type="submit" value="登录" id="submit">
+  </form>
+
+  form标签当中的submit按钮点击的时候会自动提交表单，刷新页面（默认事件）
+
+   */
+
+  function submitHandler(e) {
+    // 阻止默认事件
+    e.preventDefault();
+
+    // 判断 accountInput 和 passwordInput 里面的内容是否为空
+
+    // 1、获取到输入框的内容
+    if (accountInput.value === "") {
+
+      // 创建一个标签
+      let label = document.createElement("label");
+
+      // 为标签里面添加文本内容
+      label.innerText = "账号不能为空";
+
+      label.style.color = "red"
+
+      // 将创建好的标签添加到文档当中
+      /*  father.appendChild(child) --->
+       father 父元素  child 子元素
+       appendChild 将子元素添加到父元素的最后面
+       */
+      accountInput.parentNode.appendChild(label);
+    }
+    if (passwordInput.value === "") {
+      let label = document.createElement("label");
+      label.innerText = "密码不能为空";
+      label.style.color = "red"
+      passwordInput.parentNode.appendChild(label);
+    }
+
+  }
+  </script>
+</body>
+
+</html>

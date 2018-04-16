@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/jQuery.js"></script>
+</head>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+#input_box_wrap {
+  background: blue;
+  width: 300px;
+  height: 340px;
+  text-align: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -150px;
+  margin-top: -170px;
+  display: none;
+}
+</style>
+
+<body>
+  <button id="add">增加</button>
+  <table border=1 class="box">
+    <!--     <tr class="title">
+      <td>序号</td>
+      <td>单词</td>
+      <td>音标</td>
+      <td>解释</td>
+      <td>时间</td>
+      <td>分类</td>
+      <td>操作</td>
+    </tr> -->
+  </table>
+  <div id="input_box_wrap">
+    <div id="input_box">
+      <div class="input_box_top">
+        <h1>添加单词</h1>
+        <span id="close"></span>
+      </div>
+      <form action="">
+        <span>单词:</span>
+        <div class="single_line">
+          <input type="text" id="word">
+        </div>
+        <span>音标:</span>
+        <div class="single_line">
+          <input type="text" id="pronounce">
+        </div>
+        <span>解释:</span>
+        <div class="many_line">
+          <textarea id="description"></textarea>
+        </div>
+        <span>分类:</span>
+        <div class="single_line">
+          <input type="text" id="wordtype">
+        </div>
+        <input type="button" value="提交" id="submit">
+      </form>
+    </div>
+  </div>
+  <script src="js/api.config.js"></script>
+  <script>
+  let content = document.querySelector(".box");
+  let addBtn = document.querySelector("#add");
+  let inputBoxWrap = document.querySelector("#input_box_wrap");
+  let submitBtn = document.querySelector("#submit");
+
+  let word = document.querySelector("#word");
+  let wordtype = document.querySelector("#wordtype");
+  let pronounce = document.querySelector("#pronounce");
+  let description = document.querySelector("#description");
+
+  // 全局变量
+  // 表格当中显示的内容
+  let str = "";
+  // 当前最大的id值
+  let id = 0;
+
+
+  //挂接事件
+  addBtn.addEventListener("click", addHandler);
+  submitBtn.addEventListener("click", submitHandler);
+
+
+  //查询（进入页面显示一部分单词）
+  wordsBookAjax(
+    url, //网址
+    showParam, // 参数
+    function(responseText) {
+      show(responseText);
+    },
+    function() {
+      //失败后的回调
+    },
+    "GET");
+
+  // 展示数据
+  function show(response) {
+    let data = response.data;
+    for (let i = 0; i < data.length; i++) {
+      str += `<tr class='title'>
+            <td>${data[i].id}</td>
+            <td>${data[i].word}</td>
+            <td>${data[i].pronounce}</td>
+            <td>${data[i].description}</td>
+            <td>${data[i].dateLine}</td>
+            <td>${data[i].wordtype}</td>
+            <td><button>修改</button><button>删除</button></td>
+            </tr>`
+    }
+    // data --- 》 请求到的数据
+    // data[0].id 
+    id = data[0].id;
+    content.innerHTML = str;
+  }
+
+  function addHandler() {
+    inputBoxWrap.style.display = "block";
+  }
+
+  function submitHandler() {
+    inputBoxWrap.style.display = "none";
+    // 向服务器发送增加单词的请求
+
+    // 获取用户输入的值
+    insertParam.word = word.value;
+    insertParam.wordtype = wordtype.value;
+    insertParam.pronounce = pronounce.value;
+    insertParam.description = description.value
+    id = parseInt(id) + 1;
+    // 插入单词
+    wordsBookAjax(
+      url, //网址
+      insertParam, // 参数
+      function(responseText) {
+        // 数据库当中插入数据以后你才能往页面当中插
+        insertWord();
+      },
+      function() {
+        //失败后的回调
+      },
+      "GET");
+  }
+
+
+
+
+
+
+
+  // 插入数据
+  function insertWord() {
+
+    //成功后的回调（能执行这个函数，说明向数据库插入单词成功了）
+    // 添加完单词后，直接刷新页面影响用户体验
+    // 获取当前时间
+    let now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth();
+    let day = now.getDate();
+    let hour = now.getHours();
+    let minite = now.getMinutes();
+    let second = now.getSeconds();
+    let time = `${year}-${month}-${day} ${hour}:${minite}:${second}`
+    // 拼接字符串
+    str = `<tr class='title'>
+            <td>${id}</td>
+            <td>${word.value}</td>
+            <td>${pronounce.value}</td>
+            <td>${description.value}</td>
+            <td>${time}</td>
+            <td>${wordtype.value}</td>
+            <td><button>修改</button><button>删除</button></td>
+            </tr>` + str; //拼接到最前面
+    content.innerHTML = str;
+
+  }
+  </script>
+</body>
+
+</html>

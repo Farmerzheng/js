@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  //window.setInterval() === setInterval()
+  // window.setTimeout() === setTimeout()
+
+  /*  setInterval(function() {
+      console.log(1);
+    }, 1000)*/
+
+  // 以上代码的功能是？---> 每隔1s钟在控制台打印1
+  // 1000ms === 1s
+
+  /* setTimeout(function() {
+     console.log(1);
+   }, 1000);*/
+
+  // 以上代码的功能是？----> 1s后在控制台打印1
+
+
+  /*需求？
+          利用setTimeout实现每隔1s在控制台打印1(利用了递归)
+		
+
+ function log1() {
+    setTimeout(function() {
+      console.log(1);
+      log1();
+    },1000);
+  }
+  log1();
+
+  */
+
+  /*
+    需求：
+      1s后在控制台打印1
+      2s后在控制台打印1
+      3s后在控制台打印1
+      ……  
+
+  */
+
+  let count = 0;
+  let timer = null;
+
+  function log1() {
+    /* 
+  	开启一个定时器（定时器需要手动关闭，自己不会关闭）
+  	timer = setTimeout ----> 
+    将新开启的定时器赋值给全局变量timer
+    那么我就可以在下一次开启定时器的时候将上一次开启的定时器关闭掉
+
+    难点？ 
+    1、需要清空上一次开启的定时器
+    2、全局变量的使用
+    3、递归的使用
+  	*/
+
+    // 时间增加
+    count += 1000;
+    timer = setTimeout(function() {
+      // 关闭上一次开启的定时器
+      if (timer != null) {
+        //第一次不需要清空定时器
+        // 从第二次开始，我们都需要清空上一次开启的定时器
+        clearTimeout(timer);
+      }
+      console.log(1);
+      log1();
+    }, count);
+  }
+  log1();
+
+
+  /*
+   timer1 = setInterval()、
+   timer2 = setTimeout()
+   两个定时器只要开启就要考虑何时关闭
+   
+   clearInterval(timer1)、
+   clearTimeout(timer2)
+   方法可以关闭定时器
+
+  */
+  </script>
+</body>
+
+</html>

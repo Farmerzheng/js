@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //   $.ajax({
+        //       dataType:"jsonp";
+        //   })
+        // ajax---->xhr = new XMLHttpRequest();
+        // xhr 对象具有同源策略
+        //  如果demo.html 文件在 http://app.sencha.com.cn/ 路径下，那么xhr对象能够实现数据抓取
+        //  否则xhr对象是访问不到 “http://app.sencha.com.cn” 下面的数据的
+        //  说白了 demo.html 和 server.js 必须在相同的协议、相同的域名下， demo.html文件发送的请求才能
+        //  被server.js接受
+
+        //  file:///D:/H5/javascript/teaching-class/js_DOM/day-27/demo.html   客户端文件路径   
+        //  http://app.sencha.com.cn/soya/apps/mooc/server/server.js    服务器文件路径
+
+        //ajax具有同源策略，如何让demo.html请求到server.js呢？
+        // 方法一： 把demo.html和server.js放在同一个协议和域名下
+        // 方法二： 利用jsonp原理
+        //jsonp原理---html文件里面有<script src= "www.baidu.com/public/jquery.js">
+        // 通过script标签的src属性我们能够拿到别的域名下的文件
+        // jsonp原理就是通过动态创建 script 标签的方式， 加载跨域下的文件的
+
+        // 原理实现原理
+        // jsonp与ajax区别于联系
+        // 两者都能从服务器获取数据
+        // jsonp能够发起跨域请求，ajax具有同源策略，访问不到跨域下的数据
+        // 一般如果数据保密性不高，我们可以采取jsonp策略
+
+        // 后台提供接口，前台调用后台提供的接口
+        // 后台提供接口的方式：ajax、jsonp
+        // 后台的接口实现若是jsonp方式，那么前台就采用jsonp方式请求数据
+        // 后台的接口实现若是ajax方式，那么前台就采用ajax方式（我们属性的html文件需要放在服务器下面测试）
+
+        var script = document.createElement("script");
+        // callback 接口文档中的参数解释为回调函数
+        // callback = show 自定义的回调函数名称是show
+        // show 函数必须是全局函数
+        // 数据返回成功后会执行show函数
+        // 数据放在了show函数的形参当中 
+
+
+        //https: //sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=1&json=1&
+        //p=3&sid=1439_21115_20927&req=2&csor=1&cb=jQuery110203634165188332532
+        //_1523587815716&_=1523587815719
+
+        script.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=123&json=1&p=3&sid=1439_21115_20927&req=2&bs=%E7%97%9B%E7%97%9B%E7%97%9B%E8%B4%B4%E8%B4%B4%E8%B4%B4&pbs=%E7%97%9B%E7%97%9B%E7%97%9B%E8%B4%B4%E8%B4%B4%E8%B4%B4&csor=3&pwd=ke&cb=show&_=1523588173822';
+
+        document.body.appendChild(script);
+
+        function show(res) {
+            console.log(res);
+        }
+    </script>
+</body>
+
+</html>

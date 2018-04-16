@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+  .box{
+    background-color: red;
+    position: absolute;
+    top:40px;
+    left:0;
+    width:100px;
+    height:100px;
+  }
+</style>
+<body>
+   <div class="box"></div>
+  <button onclick="start()">开始</button>
+  <button onclick="stop()">停止</button>
+  <script>
+  /*
+     需求: 点击开始按钮的时候盒子匀速运动
+           点击停止按钮的时候停止运动
+           行内事件挂接
+*/
+
+  let timer = null;
+  let box = document.querySelector(".box");
+  function start() {
+    timer = setInterval(function() {
+      // console.log(1);
+      box.style.left = box.offsetLeft + 10 + "px";
+    }, 16);
+  }
+
+  function stop() {
+    clearInterval(timer);
+  }
+  </script>
+</body>
+
+</html>

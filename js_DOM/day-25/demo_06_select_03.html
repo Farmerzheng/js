@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    <select name="" id="city">
+      <!-- <option value="">北京</option>
+      <option value="">大同</option> -->
+    </select>
+  </div>
+  <script src="jQuery.js"></script>
+  <script>
+  /*
+      进入页面：发送网络请求，拿到城市的数据，将数据展示在下拉列表
+
+           获取城市的接口
+         url:http://app.sencha.com.cn/soya/apps/mooc/server/?action=city.list
+  */
+
+  let selectCity = document.getElementById("city");
+$.ajax({
+   url:"http://app.sencha.com.cn/soya/apps/mooc/server/",
+   data:{
+     action:"city.list"
+   },
+   dataType:"jsonp",//跨域请求需要加入此属性
+   method:"GET",
+   success:function(res){
+    // console.log(res); 
+    showCity(res);
+   },
+   error:function(){
+   
+   }
+
+
+})
+// 展示城市
+function showCity(res){
+  let cityArr = res.data;
+  for(let i = 0 ; i < cityArr.length ; i++){
+    let option = document.createElement("option");
+    option.innerText = cityArr[i].city;
+    selectCity.appendChild(option);
+  }  
+}
+</script>
+</body>
+</html>

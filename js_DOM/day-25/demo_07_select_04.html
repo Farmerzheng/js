@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <select name="" id="city">
+    <!-- <option value="">北京</option>
+      <option value="">大同</option> -->
+  </select>
+  <select name="" id="university">
+  	
+  </select>
+  <script src="jQuery.js"></script>
+  <script>
+  /*
+                  选中某个城市，再次发送网络请求，拿到对应城市的大学
+        		*/
+  let selectCity = document.getElementById("city");
+  let selectUniversity = document.getElementById("university");
+
+  let firstClick = true;
+  selectCity.addEventListener("click", selectCityHandler)
+  $.ajax({
+    url: "http://app.sencha.com.cn/soya/apps/mooc/server/",
+    data: {
+      action: "city.list"
+    },
+    dataType: "jsonp", //跨域请求需要加入此属性
+    method: "GET",
+    success: function(res) {
+      // console.log(res);
+      showCity(res);
+    },
+    error: function() {
+
+    }
+
+
+  })
+  // 展示城市
+  function showCity(res) {
+    let cityArr = res.data;
+    for (let i = 0; i < cityArr.length; i++) {
+      let option = document.createElement("option");
+      option.innerText = cityArr[i].city;
+      selectCity.appendChild(option);
+    }
+  }
+
+
+
+  function selectCityHandler() {
+    // this ---> select
+    // console.log(this.options[this.selectedIndex])//<option>大同</option>
+
+    // 第一次点击select的时候没必要发送数据,当用户选中某个城市的时候再发送数据
+
+    // 每次点击改变firstClick的值
+  
+    firstClick = !firstClick; 
+     /*
+       firstClick 的默认值 true
+       第一次点击  firstClick 变成了 false ----> return回去了
+       第二次点击  firstClick 变成了 true ----> 会发送网络请求    
+    */
+    if(!firstClick)return;
+
+    
+    let cityName = this.options[this.selectedIndex].innerText;
+    // console.log(cityName)
+    // 发送网络请求，告诉后台你选中的城市
+    $.ajax({
+      url: "http://app.sencha.com.cn/soya/apps/mooc/server",
+      data: {
+        action: "depart.searchByCity",
+        city: cityName
+      },
+      dataType: "jsonp", //跨域请求需要加入此属性
+      method: "GET",
+      success: function(res) {
+        console.log(res.data);//城市对应的大学
+        
+        // 清空上一次的大学数据
+        selectUniversity.innerText = "";
+
+        // 将大学数据展示在第二个下拉菜单中
+        for(let i = 0 ; i < res.data.length ; i++){
+         let option = document.createElement("option");
+         option.innerText = res.data[i].university;
+         selectUniversity.appendChild(option);
+        }
+       
+      },
+      error: function() {
+
+      }
+    })
+  }
+  </script>
+</body>
+
+</html>

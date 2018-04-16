@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <button onclick="start()">开始</button>
+  <button onclick="stop()">停止</button>
+  <script>
+  /*
+     需求: 点击开始按钮的时候每隔1s在控制台打印1
+          点击停止按钮的时候停止在控制台打印
+          行内事件挂接
+
+     <button onclick = "start()">开始</button>  
+     onclick是标签的一个属性名字
+     onclick对应的属性值是一个字符串类型的值
+     此字符串类型的的值是一个js表达式（合法的js代码）
+*/
+
+  let timer = null;
+  function start() {
+    timer = setInterval(function() {
+      console.log(1);
+    }, 1000);
+  }
+
+  function stop() {
+    clearInterval(timer);
+  }
+  </script>
+</body>
+
+</html>

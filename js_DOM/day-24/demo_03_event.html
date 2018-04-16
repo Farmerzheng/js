@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">跳转到百度</button>
+  <script>
+  /*
+    		挂接事件的三种方式：
+    		1、行内挂接---> on+事件名称 = “事件处理函数()”
+
+    		<button onclick = "baidu()">跳转到百度</button>
+
+    		function baidu(){
+    		  location.href = "http://www.baidu.com"
+    		}	
+
+
+    		2、DOM.on+事件名称 = 事件处理函数
+
+			  let btn = document.querySelector("#btn");
+			   btn.onclick = function() {
+			      location.href = "http://www.baidu.com"
+			    }
+
+			   btn.onclick = changeToBaidu
+
+			   function changeToBaidu() {
+			     location.href = "http://www.baidu.com"
+			   }
+
+    		3、DOM.addEventListener("事件名称"，事件处理函数)
+
+        网页当中有很多个DOM对象挂接了事件，
+        这些挂接了事件的DOM对象会放入事件队列当中，
+        浏览器会不断监听事件队列当中的事件是否被触发，
+        挂接在某个DOM对象上的事件一旦被触发，就会立刻执行
+        挂接在此DOM对象上的事件处理函数
+
+    		*/
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		/*
+
+		ECMAScript5与ECMAScript6的区别？
+
+        1、声明变量
+
+		ES5：var 
+		ES6 : let const (const声明的是常量、存在块作用域)		
+
+        全局作用域(直接声明在script标签底下，哪里都能访问到)  
+
+        函数作用域
+
+        function sum(){
+	       let a = 1;
+	       var b = 2;
+	       const c = 3;
+        }
+        console.log(a,b,c)//undefined、undefined、undefined
+
+
+        块作用域：
+
+        if(1){
+	      let a = 1;
+	      var b = 2;
+		}
+		console.log(a,b)//undefined、2
+
+        for(let i = 0 ; i < 5 ; i++){
+	
+        }
+        console.log(i)//undefined
+
+        for(var j = 0 ; j < 5 ; j++){
+	
+        }
+        console.log(j)//5
+
+
+        只有let和const声明的变量存在块作用域
+        let 、const 、var  声明的变量都存在函数作用域
+
+        2、模板字符串
+
+        字符串拼接
+        ES5 : let str = "我是"+name+"我的年龄是"+age;
+        ES6 : let str = `我是${name}我的年龄是${age}`
+
+        node（ES、fs、http）-----> 运行在node软件上（node是服务器软件）
+        javascript（ES、BOM、DOM）----->运行在浏览器上
+
+        javascript运行在node上面？错误
+		*/
+	</script>
+</body>
+</html>

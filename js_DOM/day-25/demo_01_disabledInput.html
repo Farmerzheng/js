@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  账号:
+  <input type="text" value="传智你好..." />
+  <button onclick="disable()">禁用</button>
+  <button onclick="able()">解禁</button>
+  <script>
+  let input = document.getElementsByTagName("input")[0];
+
+  function disable() {
+    // setAttribute("属性名"，“属性值”) 为DOM对象设置属性
+    input.setAttribute("disabled", "disabled")
+  }
+
+  function able() {
+    // removeAttribute（“属性名”） 移除DOM对象的属性
+    input.removeAttribute("disabled")
+  }
+  </script>
+</body>
+
+</html>

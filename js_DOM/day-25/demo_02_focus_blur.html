@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+	.red{
+		background-color: red;
+		color:yellow;
+		border:1px solid green;
+		cursor:pointer;
+		outline: none;
+	}
+</style>
+<body>
+  <input type="text" name="username" placeholder="请输入用户名">
+  <script>
+  let username = document.getElementsByName("username")[0];
+  // 为输入框添加事件监听器
+  //输入框获取焦点
+  username.addEventListener("focus", focusHandler);
+  // 输入框失去焦点
+  username.addEventListener("blur", blurHandler);
+  function focusHandler() {
+  	// this ----> username
+    // this.style.backgroundColor = "red";
+    // 控制样式的做法：添加或者删除样式类（类写在css当中）
+    this.className = "red"
+  }
+
+  function blurHandler() {
+    // this.style.backgroundColor = "transparent";
+    this.className = "";
+  }
+  </script>
+</body>
+
+</html>

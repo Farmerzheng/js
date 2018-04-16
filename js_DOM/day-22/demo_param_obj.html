@@ -5,9 +5,22 @@
   <meta charset="UTF-8">
   <title>Document</title>
 </head>
+<style>
+.box {
+  position: absolute;
+  left: 300px;
+  top: 0;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+</style>
 
 <body>
+  <div class="box"></div>
+  <script src="tween_basic.js"></script>
   <script>
+  let box = document.querySelector(".box");
   var Move = {
     init: function(obj) {
       this.box = obj.box;
@@ -32,12 +45,19 @@
   }
 
   Move.init({
-    box: box,//运动的盒子
-    start: 200,//盒子的起始位置
-    iTarget: 500,//盒子的终止位置
-    speed: 10,//盒子运动的速度
-    animate: "Tween.Bounce.easeOut"//盒子的运动曲线
+    box: box, //运动的盒子
+    start: 200, //盒子的起始位置
+    iTarget: 500, //盒子的终止位置
+    speed: 10, //盒子运动的速度
+    animate: "Tween.Bounce.easeOut" //盒子的运动曲线
   })
+  // 创建一个永动机
+  animation();
+
+  function animation() {
+    requestAnimationFrame(animation);
+    Move.update();
+  }
   </script>
 </body>
 

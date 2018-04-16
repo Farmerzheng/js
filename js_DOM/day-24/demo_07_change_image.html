@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script>
+  /*
+  页面加载顺序：自上而下
+  如果js代码放在了标签前面
+  加载js代码的时候并没有加载图片
+  因而获取不到图片
+
+  window 对象为我们提供了 load 事件
+  load事件？ : 当页面加载完成的时候会触发该事件 
+
+  如果js代码放在了标签的后面，就没必要用load事件了
+      	*/
+  window.addEventListener("load", loadedHandler)
+
+// 此函数当页面加载完成的时候会触发
+  function loadedHandler() {
+    let img = document.getElementById("dog");
+    img.addEventListener("mouseover", dogImgOverHandler);
+    img.addEventListener("mouseout", dogImgOutHandler);
+
+    function dogImgOverHandler() {
+      this.src = "img/jd2.png"
+    }
+
+    function dogImgOutHandler() {
+      this.src = "img/jd1.png"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <img id="dog" src="img/jd1.png" style="cursor: pointer;border: 1px solid #ccc;" />
+</body>
+
+</html>

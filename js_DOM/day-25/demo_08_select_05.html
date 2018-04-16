@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <select name="" id="city">
+    <!-- <option value="">北京</option>
+      <option value="">大同</option> -->
+  </select>
+  <select name="" id="university">
+  </select>
+  <script src="jQuery.js"></script>
+  <script>
+  /*
+                    优化代码
+              */
+  let selectCity = document.getElementById("city");
+  let selectUniversity = document.getElementById("university");
+  const url = "http://app.sencha.com.cn/soya/apps/mooc/server/";
+
+  let firstClickBoolean = true;
+
+  selectCity.addEventListener("click", selectCityHandler)
+
+  // 进入页面，发送网络请求，获取城市数据
+  $.ajax({
+    url: url,
+    data: {
+      action: "city.list"
+    },
+    dataType: "jsonp", //跨域请求需要加入此属性
+    method: "GET",
+    success: function(res) {
+      // console.log(res);
+      showCity(res);
+    },
+    error: function() {}
+  })
+
+  
+
+  //选中城市的事件处理函数
+  function selectCityHandler() {
+    firstClickBoolean = !firstClickBoolean;
+    if (!firstClickBoolean) return;
+    let cityName = this.options[this.selectedIndex].innerText;
+    // 发送网络请求
+    $.ajax({
+      url: url,
+      data: {
+        action: "depart.searchByCity",
+        city: cityName
+      },
+      dataType: "jsonp", //跨域请求需要加入此属性
+      method: "GET",
+      success: function(res) {
+        // console.log(res.data);//城市对应的大学
+        showUniversity(res);
+      },
+      error: function() {
+
+      }
+    })
+  }
+
+  // 展示城市
+  function showCity(res) {
+    let cityArr = res.data;
+    for (let i = 0; i < cityArr.length; i++) {
+      let option = document.createElement("option");
+      option.innerText = cityArr[i].city;
+      selectCity.appendChild(option);
+    }
+  }
+
+  
+  // 展示城市对应的大学
+  function showUniversity(res) {
+    // 清空上一次的大学数据
+    selectUniversity.innerText = "";
+
+    // 将大学数据展示在第二个下拉菜单中
+    for (let i = 0; i < res.data.length; i++) {
+      let option = document.createElement("option");
+      option.innerText = res.data[i].university;
+      selectUniversity.appendChild(option);
+    }
+  }
+  </script>
+</body>
+
+</html>

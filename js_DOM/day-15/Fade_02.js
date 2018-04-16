@@ -1,9 +1,6 @@
 function Fade(imgArr) {
   // 将传入的参数作为对象的属性
   this.imgArr = imgArr;
-
-
-
 }
 
 Fade.prototype = {

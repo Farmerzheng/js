@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/jQuery.js"></script>
+</head>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+#input_box_wrap {
+  background: blue;
+  width: 300px;
+  height: 340px;
+  text-align: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -150px;
+  margin-top: -170px;
+  display: none;
+}
+</style>
+
+<body>
+  <button id="add">增加</button>
+  <table border=1 class="box">
+    <!--     <tr class="title">
+      <td>序号</td>
+      <td>单词</td>
+      <td>音标</td>
+      <td>解释</td>
+      <td>时间</td>
+      <td>分类</td>
+      <td>操作</td>
+    </tr> -->
+  </table>
+  <div id="input_box_wrap">
+    <div id="input_box">
+      <div class="input_box_top">
+        <h1>添加单词</h1>
+        <span id="close"></span>
+      </div>
+      <form action="">
+        <span>单词:</span>
+        <div class="single_line">
+          <input type="text" id="word">
+        </div>
+        <span>音标:</span>
+        <div class="single_line">
+          <input type="text" id="pronounce">
+        </div>
+        <span>解释:</span>
+        <div class="many_line">
+          <textarea id="description"></textarea>
+        </div>
+        <span>分类:</span>
+        <div class="single_line">
+          <input type="text" id="wordtype">
+        </div>
+        <input type="button" value="提交" id="submit">
+      </form>
+    </div>
+  </div>
+  <script>
+  /*
+                展示数据
+              */
+
+  const url = "http://app.sencha.com.cn/soya/apps/testdb/server/";
+
+
+  let content = document.querySelector(".box");
+  let addBtn = document.querySelector("#add");
+  let inputBoxWrap = document.querySelector("#input_box_wrap");
+  let submitBtn = document.querySelector("#submit");
+  addBtn.addEventListener("click", addHandler);
+  submitBtn.addEventListener("click", submitHandler);
+  let word = document.querySelector("#word");
+  let wordtype = document.querySelector("#wordtype");
+  let pronounce = document.querySelector("#pronounce");
+  let description = document.querySelector("#description");
+
+  function addHandler() {
+    inputBoxWrap.style.display = "block";
+  }
+
+  function submitHandler() {
+    inputBoxWrap.style.display = "none";
+    // 向服务器发送增加单词的请求
+
+    // 获取用户输入的值
+    let userInput = {
+      action:"wordList.insert",
+      word:word.value,
+      wordtype:wordtype.value,
+      pronounce:pronounce.value,
+      description:description.value
+    }
+
+
+    $.ajax({
+      method: "GET",
+      url: url,
+      data: userInput,
+      dataType: "jsonp",
+      success: function(responseText) {
+       console.log("插入单词成功");
+       window.location.reload();
+      },
+      error: function() {
+
+      }
+    })
+  }
+  // 请求数据
+  $.ajax({
+    method: "GET",
+    url: url,
+    data: {
+      action: "wordList.list",
+      perPage: 15,
+      page: 1
+    },
+    dataType: "jsonp",
+    success: function(responseText) {
+      // console.log(responseText)
+      if (responseText.ret === 0) {
+        show(responseText);
+      }
+
+    },
+    error: function() {}
+  })
+
+  // 展示数据
+  function show(response) {
+    let data = response.data;
+    let str = "";
+    for (let i = 0; i < data.length; i++) {
+      str += `<tr class='title'>
+            <td>${data[i].id}</td>
+            <td>${data[i].word}</td>
+            <td>${data[i].pronounce}</td>
+            <td>${data[i].description}</td>
+            <td>${data[i].dateLine}</td>
+            <td>${data[i].wordtype}</td>
+            <td><button>修改</button><button>删除</button></td>
+            </tr>`
+    }
+    content.innerHTML = str;
+  }
+  </script>
+</body>
+
+</html>

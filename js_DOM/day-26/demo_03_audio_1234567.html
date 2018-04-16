@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+.clearfix::after {
+  clear: both;
+  display: block;
+  content: "";
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+.list {}
+
+.list .item {
+  float: left;
+  width: 100px;
+  height: 30px;
+  border: 1px solid red;
+  background-color: yellow;
+  text-align: center;
+  line-height: 30px;
+}
+
+.item audio {
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<body>
+  <ul class="list clearfix">
+    <li class="item">
+      1
+    </li>
+    <li class="item">
+      2
+    </li>
+    <li class="item">
+      3
+    </li>
+    <li class="item">
+      4
+    </li>
+    <li class="item">
+      5
+    </li>
+    <li class="item">
+      6
+    </li>
+    <li class="item">
+      7
+    </li>
+  </ul>
+</body>
+<script>
+let list = document.getElementsByClassName("item");
+
+for (let i = 0; i < list.length; i++) {
+  list[i].addEventListener("mouseover", function() {
+     // console.log(i);
+     // 打印音频链接
+     let audioLink = "";
+     switch(i){
+      case 0:
+      audioLink = "audio/A 5.mp3";
+      break;
+      case 1:
+      audioLink = "audio/B 5.mp3";
+      break;
+      case 2:
+      audioLink = "audio/C 5.mp3";
+      break;
+      case 3:
+      audioLink = "audio/D 5.mp3";
+      break;
+      case 4:
+      audioLink = "audio/E 5.mp3";
+      break;
+      case 5:
+      audioLink = "audio/F 5.mp3";
+      break;
+      case 6:
+      audioLink = "audio/G 5.mp3";     
+     }
+     
+     let audio = document.createElement("AUDIO");
+     audio.src = audioLink;
+     audio.play();
+  });
+
+}
+
+
+</script>
+
+</html>

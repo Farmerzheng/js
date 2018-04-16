@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border: 1px solid #ccc;
+            width: 500px;
+            margin: 100px auto;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: #09c;
+            color: #fff;
+        }
+        
+        th,
+        td {
+            height: 40px;
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        
+        .current {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        let data = {
+            title: ["书名", "作者", "出版社", "阅读量"],
+            data: [{
+                    bookname: "盗墓笔记",
+                    author: "南派三叔",
+                    publish: "中国邮电出版社",
+                    sales: 88939999
+                }, {
+                    bookname: "鬼吹灯",
+                    author: "天下霸唱",
+                    publish: "中信出版社",
+                    sales: 8899999
+                }, {
+                    bookname: "红楼梦",
+                    author: "曹雪芹",
+                    publish: "中国教育出版社",
+                    sales: 88669999
+                }, {
+                    bookname: "水浒传",
+                    author: "施耐庵",
+                    publish: "机械工业出版社",
+                    sales: 88939999
+                }, {
+                    bookname: "三国演义",
+                    author: "罗贯中",
+                    publish: "机械工业出版社",
+                    sales: 88009999
+                },
+
+            ]
+        }
+
+        let obj = {
+            data: data,
+            init: function() {
+                this.thead = document.getElementsByTagName("thead")[0];
+                this.tbody = document.getElementsByTagName("tbody")[0];
+                this.show();
+            },
+            show: function() {
+                for (let key in this.data) {
+                    if (key === "title") {
+                        this.creatTitle(this.data[key]);
+                    }
+                    if (key === "data") {
+                        this.createContent(this.data[key])
+                    }
+                }
+            },
+            createContent: function(data) {
+                for (let i = 0; i < data.length; i++) {
+                    let tr = document.createElement("tr");
+                    for (let key in data[i]) {
+                        let td = document.createElement("td");
+                        td.innerText = data[i][key];
+                        tr.appendChild(td);
+                    }
+                    tr.addEventListener("mouseover", this.mouseOverHandler);
+                    tr.addEventListener("mouseout", this.mouseOutHandler);
+                    this.tbody.appendChild(tr);
+
+                }
+            },
+            creatTitle: function(data) {
+                let tr = document.createElement("tr");
+                for (let i = 0; i < data.length; i++) {
+                    let td = document.createElement("td");
+                    td.innerText = data[i];
+                    tr.appendChild(td)
+                }
+                this.thead.appendChild(tr);
+            },
+            mouseOverHandler: function() {
+                this.className = "current";
+            },
+            mouseOutHandler: function() {
+                this.className = "";
+            }
+        }
+        obj.init();
+    </script>
+</body>
+
+</html>
+
+</html>

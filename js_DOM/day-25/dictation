@@ -1,0 +1,13 @@
+需求？
+ 利用setTimeout实现每隔1s在控制台打印1(利用了递归)
+		
+
+ function log1() {
+    setTimeout(function() {
+      console.log(1);
+      log1();
+    },1000);
+  }
+ log1();
+
+ 

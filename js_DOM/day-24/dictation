@@ -1,0 +1,55 @@
+听写
+
+获取DOM对象的方法
+
+document.getElementById('');//单个DOM对象
+document.getElementsByTagName(‘’);//DOM对象的数组
+document.getElementsByName(‘’);//DOM对象的数组
+document.getElementsByClassName(‘’);（新）//DOM对象的数组
+document.querySelector( )(新)//单个DOM对象
+document.querySelectorAll( )（新）//DOM对象的数组
+
+注意：带有“新”标识符的只在IE8（含）+可以使用
+
+
+
+课上敲  需求: 点击开始按钮的时候每隔1s在控制台打印1
+             点击停止按钮的时候停止在控制台打印
+             行内事件挂接
+
+/*   需求：
+    1、点击小图片，改变下面的大图片
+    2、点击小图片，改变下面的大图片的文本描述（描述信息放在了对应的a标签的title属性当中）        
+*/
+
+  // let imgList = document.querySelectorAll(".small_img");
+   let imgList = document.getElementsByClassName("small_img");
+   let bigImg = document.getElementById("image");
+   let des = document.getElementById("des");
+
+  // 分别为四张图片添加点击事件
+
+  for (let i = 0; i < imgList.length; i++) {
+    imgList[i].addEventListener("click", changeImageHandler);
+  }
+
+  function changeImageHandler(e) {
+
+    /*  
+    默认事件：
+          点击a标签自动跳转页面
+          点击提交按钮自动提交表单
+    阻止默认事件 ： e.preventDefault();
+
+    e： 事件对象
+
+    */
+    // 阻止点击a标签进行页面跳转
+    e.preventDefault();
+    // console.log(this);
+    bigImg.src = this.src;
+    // parentNode 父节点
+    // 获取标签的属性 ： getAttribute("属性名")
+    // 设置标签的属性 ： setAttribute("属性名"，“属性值”)
+    des.innerText = this.parentNode.getAttribute("title");
+  }

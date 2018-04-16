@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+.tabs{
+	margin-bottom:-20px;
+	position: relative;
+	z-index: 1;
+}
+.tabs .tab_item {
+  float: left;
+  width: 100px;
+  height: 50px;
+  background-color: #666;
+  border: 1px solid #999;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+  transition: 1s;
+  transform: translate(0px, 0px);
+}
+
+ .tab_item:hover {
+  transform: translate(0px, -10px);
+}
+
+.content {
+  width: 306px;
+  height: 100px;
+  border: 1px solid #999;
+  position: relative;
+  z-index: 2;
+  background-color: #fff;
+}
+</style>
+
+<body>
+  <ul class="tabs clearfix">
+    <li class="tab_item">light</li>
+    <li class="tab_item">sexy</li>
+    <li class="tab_item">tabs</li>
+  </ul>
+  <ul class="content"></ul>
+  <script>
+  
+  let data = {
+    light: "Some text about Light sit amet, consectetur adipisicing elit. Pariatur modi quod quo iure recusandae eligendi q.t, consectetur adipisicing elit. Pariatur",
+    sexy: "Sexy sexy consectetur adipisicing elit. Pariatur modi quod quo iure recusandae eligendi q.t, consectetur adipisicing elit. Pariatur modi quod quo iureq",
+    tabs: "Tabs , consectetur adipisicing elit. Pariatur modi quod quo iure recusandae eligendi q.t, consectetur adipisicing elit. Pariatur modi quod quo iureq"
+  }
+  let tab_list = document.getElementsByClassName("tab_item");
+  let content = document.getElementsByClassName("content")[0];
+  for (let i = 0; i < tab_list.length; i++) {
+    tab_list[i].addEventListener("click", tabClickHandler);
+  }
+
+  function tabClickHandler() {
+    // console.log(data[this.innerText]);
+    content.innerText = data[this.innerText]
+  }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ul {
+    width: 500px;
+    margin: 100px auto;
+  }
+
+  li {
+    width: 14px;
+    height: 14px;
+    float: left;
+    margin: 0 7px;
+    background-color: orange;
+    border-radius: 50%;
+  }
+
+  .current {
+    background: blue;
+  }
+
+  .orange {
+    background-color: orange;
+  }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li class="current"></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <script>
+
+  let dotList = document.getElementsByTagName("li");
+  
+  // 循环为li挂接事件
+  for (let i = 0; i < dotList.length; i++) {
+    // li --- > dotList[i]
+    dotList[i].addEventListener("click", dotClickHandler);
+  }
+
+  function dotClickHandler() {   
+    // 将所有li变成橙色
+    for (let i = 0; i < dotList.length; i++) {
+      dotList[i].className = "orange";
+    } 
+    // 将选中的li变成蓝色
+    this.className = "current";
+  }
+  </script>
+</body>
+
+</html>

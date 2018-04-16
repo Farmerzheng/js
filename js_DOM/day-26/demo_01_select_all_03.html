@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+  table {
+    width: 400px;
+    margin: 100px auto;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+  }
+
+  td,
+  th {
+    height: 35px;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    text-align: center;
+  }
+
+  thead tr {
+    background: lightseagreen;
+    color: #fff;
+  }
+  </style>
+</head>
+
+<body>
+  <table border="0" cellpadding="0" cellspacing="0">
+    <thead>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <script>
+  /*  菜名  饭店
+
+                        烤羊腿 望京小腰
+                        烤鱼  簋街
+                        鱼香肉丝    田老师
+                        烤鸭  全聚德*/
+
+  // 根据页面显示的内容---->分析数据结构（数据库管理员）
+
+  let data = {
+    title: {
+      checkAll: false,
+      dishName: "菜名",
+      restaurant: "饭店"
+    },
+    content: [
+      { checked: false, dishName: "烤羊腿", restaurant: "望京小腰" },
+      { checked: true, dishName: "小龙虾", restaurant: "簋街" },
+      { checked: false, dishName: "红烧", restaurant: "田老师" },
+      { checked: true, dishName: "烤鸭", restaurant: "全聚德" }
+    ]
+  }
+
+  // 展示数据
+  let thead = document.getElementsByTagName("thead")[0];
+  let tbody = document.getElementsByTagName("tbody")[0];
+  // let checkAll = null;
+
+  let myFrame = {
+    init:function(){
+      this.show(this.data);
+    },
+    data:data,
+    show: function(data) {
+      // 先清空
+      thead.innerText = "";
+      tbody.innerText = "";
+      let self = this;
+      // 解析data
+
+      for (let key in data) {
+        if (key === "title") {
+          createTitle(data[key]);
+        }
+        if (key === "content") {
+          createContent(data[key]);
+        }
+      }
+      function createTitle(data) {
+        console.log(data)
+        let tr = document.createElement("tr");
+        for (let key in data) {
+
+          let td = document.createElement("td");
+          // 往td内添加内容
+          if (key == "checkAll") {
+            let checkbox = document.createElement("input");
+            checkbox.className = "checkAll"
+            checkAll = checkbox;
+            // 创建完成后就挂接事件
+            // console.log(this);
+            checkAll.addEventListener("click",self.checkAllHanler.bind(self))
+            checkbox.type = "checkbox";
+            checkbox.checked = data[key];
+            td.appendChild(checkbox);
+          } else {
+            td.innerText = data[key]
+          }
+          tr.appendChild(td);
+        }
+        thead.appendChild(tr);
+      }
+      function createContent(data) {
+        for (let i = 0; i < data.length; i++) {
+          let tr = document.createElement("tr");
+          for (let key in data[i]) {
+
+            let td = document.createElement("td");
+
+            if (key === "checked") {
+              let checkbox = document.createElement("input");
+              checkbox.type = "checkbox";
+              checkbox.checked = data[i][key];
+              td.appendChild(checkbox);
+            } else {
+              td.innerText = data[i][key]
+            }
+
+            tr.appendChild(td);
+          }
+          tbody.appendChild(tr);
+        }
+      }
+    },
+    checkAllHanler:function(){
+      // this ---> myFrame
+       // 改变数据
+      this.data.title.checkAll = true;
+      for(let i = 0 ; i < this.data.content.length ; i++){
+        this.data.content[i].checked = true;
+      }
+
+      // 更新页面
+      this.show(this.data);
+    }
+  }
+  myFrame.init();
+  </script>
+</body>
+
+</html>
