@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .input_box {
+        width: 400px;
+        height: 40px;
+        overflow: hidden;
+        border: 1px solid lightseagreen;
+    }
+    
+    #userInput {
+        width: 100%;
+        height: 95%;
+        border: none;
+        outline: none;
+        font-size: 20px;
+        text-indent: 5px;
+    }
+    
+    #content {
+        width: 400px;
+        margin-left: -1px;
+        border: 1px solid #aaa;
+        border-top: none;
+        margin-top: 1px;
+    }
+    
+    #content li {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        text-align: left;
+        padding-left: 5px;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+</style>
+
+<body>
+    <div class="input_box">
+        <input type="text" id="userInput">
+        <ul id="content">
+
+        </ul>
+    </div>
+    <script src="jsonp.js"></script>
+    <script>
+        let input_box = document.getElementsByClassName("input_box")[0];
+        let input = document.getElementById("userInput");
+        let content = document.getElementById("content");
+
+        let index = -1;
+        let dataArr = null;
+        let currentText = null;
+
+        //监听用户输入，键盘抬起，通过jsonp方式请求数据
+        document.addEventListener("keyup", queryLinkData);
+
+        // 监听用户的是否按了上下键，如果按了，改变下啦菜单的对应选项的背景颜色
+        // document.addEventListener("keyup", keyUpDownHandler);
+
+
+        //   请求数据（通过jsonp方式）
+        function queryLinkData(e) {
+
+
+            // 按住上下左右键的时候我们上下移动列表
+            if (e.keyCode >= 37 && e.keyCode <= 40) {
+                if (e.keyCode == 38) {
+                    upHandler();
+                }
+                if (e.keyCode == 40) {
+                    downHandler();
+                }
+            } else {
+
+                // 上下左右键不发送请求
+
+                //    获取输入框的值
+                let value = input.value;
+
+                //键盘抬起，发送网络请求
+                // var script = document.createElement("script");
+
+                let url = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su'
+
+
+                let data = {
+                    wd: value,
+                    json: 1,
+                    p: 3,
+                    req: 2,
+                    bs: '%E7%97%9B%E7%97%9B%E7%97%9B%E8%B4%B4%E8%B4%B4%E8%B4%B4',
+                    pbs: '%E7%97%9B%E7%97%9B%E7%97%9B%E8%B4%B4%E8%B4%B4%E8%B4%B4',
+                    csor: 3,
+                    pwd: 'ke',
+                    _: 1523588173822
+                }
+
+                jsonp.request(
+                    url,
+                    data, {
+                        serverCallBackName: "cb",
+                        clientCallBackName: "show"
+                    },
+                    function(res) {
+                        // console.log(res);
+                        showdata(res);
+                    }
+                )
+            }
+
+        }
+
+        // 数据返回会执行show方法
+        function showdata(res) {
+            input_box.style.overflow = "visible";
+            content.innerText = "";
+            // 获取列表数组，因为别的地方要用到
+            // dataArr  是一个全局变量（全局变量可以传值）
+            dataArr = res.s;
+            // 往列表当中添加请求到的数据
+            for (let i = 0; i < dataArr.length; i++) {
+                let li = document.createElement("li");
+                li.innerText = dataArr[i];
+                content.appendChild(li);
+            }
+        }
+
+        function upHandler() {
+
+            // 假设长度是 8
+            //     当前行   下面一行
+
+            //       0        1
+            //       7        0
+            //       6        7
+            //       5        6
+            //       4        5
+            //       3        4
+            //       2        3
+            //       1        2
+            //       0        1
+            //       7        0
+
+            // 按一次，索引加1
+            index--;
+
+            input.value = dataArr[index];
+
+
+            // 如果用户按到最上面，让index变成dataArr.length-1
+            if (index == -1) {
+                index = dataArr.length - 1;
+            }
+
+            // 对应的行变成红色
+            content.children[index].style.backgroundColor = "red";
+
+            // if (index >= 1) {
+
+
+            if (index == dataArr.length - 1) {
+                //如果第一行是红色，那么最后一行肯定是白色 
+                content.children[0].style.backgroundColor = "white";
+            } else {
+                // 下面的行变成白色
+                content.children[index + 1].style.backgroundColor = "white";
+            }
+
+
+        }
+
+        // 用户按下键的时候会触发此函数
+        function downHandler() {
+
+            // 假设长度是 8
+            //     当前行   上面一行
+            //       0        7
+            //       1        0
+            //       2        1
+            //      ……………………
+            //       7        6
+            //       0        7
+
+
+
+            // 按一次，索引加1
+            index++;
+
+
+            input.value = dataArr[index];
+
+            // index 是请求到的列表数组的索引
+            // index 也必须是一个全局变量，因为很多地方要用到它
+
+            // 如果用户按到最下面，让index变成0
+            if (index == dataArr.length) {
+                index = 0;
+            }
+
+            // 对应的行变成红色
+            content.children[index].style.backgroundColor = "red";
+
+            // if (index >= 1) {
+
+            // 上面的行变成白色
+            if (index == 0) {
+                //如果第一行是红色，那么最后一行肯定是白色 
+                content.children[dataArr.length - 1].style.backgroundColor = "white";
+            } else {
+                content.children[index - 1].style.backgroundColor = "white";
+            }
+
+        }
+    </script>
+</body>
+
+</html>

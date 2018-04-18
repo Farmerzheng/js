@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        body {
+            background: url("images/bg.gif") repeat;
+        }
+        
+        .container {
+            width: 1000px;
+            height: 600px;
+            background: rgba(255, 255, 255, .8);
+            border-left: 10px solid rgba(255, 255, 255, .4);
+            border-right: 10px solid rgba(255, 255, 255, .4);
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .wall {
+            width: 227px;
+            height: 181px;
+            left: 320px;
+            top: 230px;
+            position: absolute;
+            cursor: move;
+            /*background: pink;*/
+        }
+        
+        .wall-hd {
+            height: 68px;
+            background: url("images/tip1_h.gif") no-repeat;
+        }
+        
+        .wall-bd {
+            height: 40px;
+            background: url("images/tip1_c.gif") repeat-y;
+            position: relative;
+            font-size: 12px;
+            line-height: 22px;
+            padding-left: 14px;
+        }
+        
+        .wall i {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-style: normal;
+            cursor: pointer;
+        }
+        
+        .wall-ft {
+            height: 60px;
+            padding-top: 13px;
+            background: url("images/tip1_f.gif") no-repeat;
+            font-size: 12px;
+            text-align: center;
+        }
+        
+        .wall-ft img {
+            vertical-align: middle;
+            margin-top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wall">
+            <div class="wall-hd"></div>
+            <div class="wall-bd">
+                第[49568]条 2016-07-7 22:51:52 <br> 普天同庆，天下大同！
+            </div>
+            <div class="wall-ft">
+                <img src="images/bpic_1.gif" alt=""> 不愿意透露姓名的王先生
+            </div>
+            <i class="close">×</i>
+        </div>
+    </div>
+    <script src="js/Drag.js"></script>
+    <script>
+        let closeBtn = document.querySelector(".close");
+        let wall = document.querySelector(".wall");
+        let container = document.querySelector(".container");
+        let zIndex = 0;
+
+        let wallObj = new Drag(wall);
+        wallObj.init();
+
+        // 动态生成多个wall
+        for (let i = 0; i < 10; i++) {
+            // 克隆新节点
+            let newWall = wall.cloneNode(true);
+            newWall.style.left = randomNum(0, 773) + "px";
+            newWall.style.top = randomNum(0, 419) + "px";
+            // 给新节点添加拖拽的功能
+            let cloneWallObj = new Drag(newWall);
+            cloneWallObj.init();
+            // 将新节点扔进container当中
+            // push 数组的方法
+            // appendChild 添加子节点（DOM对象的方法）
+            container.appendChild(newWall);
+        }
+
+        function randomNum(min, max) {
+            return Math.round(Math.random() * (max - min)) + min;
+        }
+    </script>
+</body>
+
+</html>

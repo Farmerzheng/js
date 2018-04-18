@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .shade {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #000;
+        opacity: 0.6;
+        display: none;
+    }
+    
+    #user {
+        width: 200px;
+        height: 250px;
+        background-color: yellow;
+        position: absolute;
+        left: 50%;
+        top: 50px;
+        margin-left: -100px;
+        /* margin-top: -125px; */
+    }
+</style>
+
+<body>
+    <button id="submit_btn">登录</button>
+    <div class="shade">
+        <form action="" id="user">
+            <div>
+                <label for="username">用户名</label><br>
+                <input type="text" name="username" id="username">
+            </div>
+            <div>
+                <label for="email">邮箱</label><br>
+                <input type="text" name="email" id="email">
+            </div>
+            <div>
+                <label for=" password">密码</label><br>
+                <input type="password" name="password" id="password ">
+            </div>
+            <div>
+                <input type="submit" value="登录">
+            </div>
+        </form>
+    </div>
+    <script>
+        let submit_btn = document.querySelector("#submit_btn");
+        let shade = document.querySelector(".shade");
+        let user_box = document.querySelector("#user");
+        let moveBoolean = false;
+        let speed = 5;
+        let boxtop = 0;
+
+        submit_btn.addEventListener("click", modalHandler);
+
+        function modalHandler() {
+            shade.style.display = "block";
+            moveBoolean = true;
+            boxtop = user_box.offsetTop;
+        }
+
+        animation();
+
+        function animation() {
+            requestAnimationFrame(animation);
+            if (moveBoolean) {
+                boxtop += speed;
+                user_box.style.top = boxtop + "px";
+                if (boxtop == 100) {
+                    moveBoolean = false;
+                }
+
+            }
+        }
+    </script>
+</body>
+
+</html>

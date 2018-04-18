@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        body {
+            background: #333;
+        }
+        
+        #navbar {
+            width: 1000px;
+            height: 42px;
+            margin: 100px auto;
+            font: 16px/42px "微软雅黑";
+            border-radius: 10px;
+            background: #fff url("images/wifi.png") no-repeat right center;
+            position: relative;
+        }
+        
+        ul {
+            position: relative;
+        }
+        
+        .nav_item {
+            float: left;
+            width: 83px;
+            height: 42px;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        #nav_item_bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 83px;
+            height: 42px;
+            background: url("images/cloud.gif") no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar">
+        <span id="nav_item_bg"></span>
+        <ul>
+            <li class="nav_item">网站首页</li>
+            <li class="nav_item">关于我们</li>
+            <li class="nav_item">WEB前端</li>
+            <li class="nav_item">UI设计</li>
+            <li class="nav_item">人工智能</li>
+            <li class="nav_item">软件开发</li>
+            <li class="nav_item">软件测试</li>
+            <li class="nav_item">后台开发</li>
+        </ul>
+    </div>
+
+    <script src="js/tween_basic.js"></script>
+    <script src="js/Move.js"></script>
+    <script src="js/requestAnimationFrame.js"></script>
+    <script>
+        // 获取所有导航项
+        let nav_list = document.querySelectorAll(".nav_item");
+        // 单个导航项的宽度
+        let nav_item_width = nav_list[0].offsetWidth;
+
+        // 获取到移动的背景
+        let nav_item_bg = document.querySelector("#nav_item_bg");
+
+        // 声明布尔变量，控制   Move.update() 执行时刻
+        let nav_item_bg_boolean = false;
+
+        // 上一次盒子的位置
+        let nav_item_bg_prePos = 0;
+
+        // 为每个导航项添加鼠标移入事件
+        for (let i = 0; i < nav_list.length; i++) {
+
+            nav_list[i].addEventListener("mouseover", function() {
+                // 移入的哪个导航？
+                console.log(i);
+
+
+
+                // 移动 nav_item_bg
+                Move.init({
+                    box: nav_item_bg,
+                    start: nav_item_bg_prePos,
+                    iTarget: nav_item_width * i,
+                    speed: 20,
+                    animate: "Tween.Quart.easeOut"
+                })
+
+                // 鼠标移入nav_item的时候将nav_item_bg_boolean 变成true
+                nav_item_bg_boolean = true;
+
+                // 每次移入的时候将盒子的上一次位置保存起来
+                nav_item_bg_prePos = nav_item_width * i;
+
+            })
+        }
+
+        // 页面放入浏览器当中就会立即执行永动机，就会立即调用 Move.update();
+        // 鼠标移入nav_item的时候才调用Move.init()
+
+        animation();
+
+        function animation() {
+            requestAnimationFrame(animation);
+            // nav_item_bg_boolean ===  true的时候才update
+            if (nav_item_bg_boolean) {
+                Move.update();
+            }
+
+        }
+    </script>
+</body>
+
+</html>

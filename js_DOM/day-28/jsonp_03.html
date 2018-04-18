@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="jsonp.js"></script>
+    <script>
+        // DNS（Domain Name System，域名系统），万维网(world wide web  www)上作为域名和IP地址相互映射的一个数据库，
+
+        //   www.baidu.com  ----- 61.135.169.125
+        //   www.sohu.com   ------ 32.123.5.6.7
+
+        // 能够使用户更方便的访问互联网， 而不用去记住能够被机器直接读取的IP数串
+
+        // DNS 查找
+        // 用户在网址中输入域名，按回车，会在数据库当中查找域名对应的ip(消耗时间)
+
+        // jsonp：能够实现跨域请求
+        // jsonp原理： 动态创建script标签，远程加载js文件
+
+
+        // var script = document.createElement("script");
+        // script.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=' + value + '&json=1&p=3&sid=1439_21115_20927&req=2&bs=%E7%97%9B%E7%97%9B%E7%97%9B%E8%B4%B4%E8%B4%B4%E8%B4%B4&pbs=%E7%97%9B%E7%97%9B%E7%97%9B%E8%B4%B4%E8%B4%B4%E8%B4%B4&csor=3&pwd=ke&cb=show&_=1523588173822';
+        // document.body.appendChild(script);
+        // function show(){
+        // }
+
+        // jsonp封装
+        // jsonp.request(url,data,callback);
+        // 命令行窗口（cmd/powershell）的常用操作
+        // cd 文件夹路径  ：切换到某个文件夹底下
+        // 执行某个js文件 ： node js文件名（电脑当中必须已经安装了node）
+        // node.js和浏览器一样，都是安装在操作系统上的软件，都可以解析js代码
+        //浏览器当中有window对象， node软件当中没有window对象
+        jsonp.request("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su", {
+            wd: "张三",
+            json: 1,
+            p: 3
+        }, "cb", function() {});
+    </script>
+</body>
+
+</html>

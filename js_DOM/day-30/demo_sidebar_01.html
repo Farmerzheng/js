@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    ul,
+    li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .sidebar {
+        position: fixed;
+        right: 0;
+        top: 200px;
+        width: 54px;
+        height: 275px;
+        background-color: white;
+    }
+    
+    .side_item {
+        margin-top: 1px;
+        position: relative;
+        height: 54px;
+        background-color: #000;
+    }
+    
+    .side_move {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 130px;
+        height: 54px;
+        background-color: #000;
+        /* background-color: rgb(174, 28, 28); */
+        transition: 0.5s;
+        transform: translate(0, 0);
+    }
+    
+    .side_move:hover {
+        transform: translate(-76px, 0);
+    }
+    
+    .side_move img {
+        vertical-align: middle;
+    }
+    
+    .side_move span {
+        vertical-align: middle;
+        color: #fff;
+    }
+</style>
+
+<body>
+    <ul class="sidebar">
+
+        <li class="side_item">
+            <div class="side_move">
+                <img src="images/side_icon01.png" alt="">
+                <span>客服中心</span>
+            </div>
+        </li>
+        <li class="side_item">
+            <div class="side_move">
+                <img src="images/side_icon02.png" alt="">
+                <span>用户案例</span>
+            </div>
+        </li>
+        <li class="side_item">
+            <div class="side_move">
+                <img src="images/side_icon03.png" alt="">
+                <span>QQ客服</span>
+            </div>
+        </li>
+        <li class="side_item">
+            <div class="side_move">
+                <img src="images/side_icon04.png" alt="">
+                <span>新浪微博</span>
+            </div>
+        </li>
+        <li class="side_item">
+            <div class="side_move">
+                <img src="images/side_icon05.png" alt="">
+                <span></span>
+            </div>
+        </li>
+
+    </ul>
+    <script>
+    </script>
+</body>
+
+</html>

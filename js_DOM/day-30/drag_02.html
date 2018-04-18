@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    /*body的默认定位方式是position:relative*/
+    
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+    }
+</style>
+
+<body>
+    <div class="box"></div>
+    <script>
+        let box = document.querySelector(".box");
+        box.addEventListener("mousedown", mousedownHandler);
+        document.addEventListener("mouseup", mouseupHandler)
+        let divX, divY;
+
+        // 鼠标按下就会触发这个函数
+        function mousedownHandler(e) {
+            // 挂接鼠标移动事件
+            document.addEventListener("mousemove", mousemoveHandler);
+            // 计算出鼠标在盒子当中的位置
+            divX = e.pageX - box.offsetLeft;
+            divY = e.pageY - box.offsetTop;
+        }
+
+        //    鼠标移动，此函数就会执行
+        function mousemoveHandler(e) {
+            // 动态改变盒子的位置
+            box.style.left = e.pageX - divX + "px";
+            box.style.top = e.pageY - divY + "px";
+        }
+
+        function mouseupHandler() {
+            document.removeEventListener("mousemove", mousemoveHandler);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .box {
+            width: 800px;
+            margin: 50px auto;
+            background: pink;
+        }
+        
+        .box h3 {
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            color: #fff;
+            background: darkred;
+            padding-left: 15px;
+        }
+        
+        .box ul {
+            overflow: hidden;
+            padding: 10px 0;
+        }
+        
+        .box ul li {
+            width: 60px;
+            float: left;
+            font-size: 12px;
+            margin: 0 12px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .box ul li p {
+            margin-top: 5px;
+        }
+        
+        .box ul li a {
+            color: #000;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h3>当前在线用户</h3>
+        <ul class="content">
+        </ul>
+    </div>
+    <script>
+        //后台会有一个接口
+        // 假如后台提供的接口是一个json数据
+        var users = [{
+            "name": "xiaoee",
+            "icon": "images/noavatar_small.gif"
+        }, {
+            "name": "tdxy01",
+            "icon": "images/noavatar_small.gif"
+        }, {
+            "name": "沉眠楚人",
+            "icon": "images/noavatar_small.gif"
+        }, {
+            "name": "爱上karina",
+            "icon": "images/75_avatar_small.jpg"
+        }, {
+            "name": "tdxy01",
+            "icon": "images/89_avatar_small.jpg"
+        }, {
+            "name": "today",
+            "icon": "images/noavatar_small.gif"
+        }, {
+            "name": "hlg",
+            "icon": "images/noavatar_small.gif"
+        }, {
+            "name": "heima",
+            "icon": "images/noavatar_small.gif"
+        }, {
+            "name": "nima",
+            "icon": "images/noavatar_small.gif"
+        }, {
+            "name": "gege",
+            "icon": "images/noavatar_small.gif"
+        }, {
+            "name": "nimei",
+            "icon": "images/noavatar_small.gif"
+        }];
+        let content = document.getElementsByClassName("content")[0];
+        for (let i = 0; i < users.length; i++) {
+            // users[i] 
+            //     {
+            //     "name": "nimei",
+            //     "icon": "images/noavatar_small.gif"
+            //      }
+            let li = document.createElement("li");
+            let a = document.createElement("a");
+            li.appendChild(a);
+            let img = document.createElement("img");
+            // 展示图片的核心代码
+            img.src = users[i].icon;
+            a.appendChild(img);
+            let p = document.createElement("p");
+            p.innerText = users[i].name;
+            a.appendChild(p);
+            content.appendChild(li);
+        }
+    </script>
+</body>
+
+</html>

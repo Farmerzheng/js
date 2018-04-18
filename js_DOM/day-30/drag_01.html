@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    /*body的默认定位方式是position:relative*/
+    
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+    }
+</style>
+
+<body>
+    <div class="box"></div>
+    <script>
+        document.addEventListener("mousemove", mousemoveHandler);
+
+        function mousemoveHandler(e) {
+            // 事件处理函数当中默认有一个参数，这个参数是事件对象
+            console.log(e, e.pageX, e.pageY);
+
+        }
+    </script>
+</body>
+
+</html>

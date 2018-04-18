@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .box1 {
+        position: absolute;
+        left: 200px;
+        top: 200px;
+        height: 100px;
+        width: 100px;
+        background-color: red;
+        border-radius: 50%;
+    }
+    
+    .box2 {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        height: 100px;
+        width: 100px;
+        background-color: green;
+        border-radius: 50%;
+    }
+</style>
+
+<body>
+    <div class="box1"></div>
+    <!-- <div class="box2"></div> -->
+    <script src="js/Drag_02.js"></script>
+    <script src="js/Hit.js"></script>
+    <script>
+        let box1 = document.querySelector(".box1");
+        // let box2 = document.querySelector(".box2");
+
+        // let box1Obj = new Drag(box2);
+        // box1Obj.init();
+
+        function Move(box, speedX, speedY) {
+            this.box = box;
+            this.speedX = speedX;
+            this.speedY = speedY;
+            this.boxRect = this.box.getBoundingClientRect();
+            this.boxX = this.boxRect.left;
+            this.boxY = this.boxRect.top;
+        }
+        Move.prototype = {
+            update: function() {
+                this.boxX += this.speedX;
+                this.boxY += this.speedY;
+                this.box.style.left = this.boxX + "px";
+                this.box.style.top = this.boxY + "px";
+            }
+
+        }
+
+        let obj = new Move(box1, 4, 6);
+
+        animation();
+
+        function animation() {
+            requestAnimationFrame(animation);
+            obj.update();
+        }
+    </script>
+</body>
+
+</html>

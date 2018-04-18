@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    /*body的默认定位方式是position:relative*/
+    
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+    }
+</style>
+
+<body>
+    <div class="box"></div>
+    <script>
+        // 告诉对象你需要使哪个盒子具有拖拽的功能，对象就帮你完成盒子的拖拽效果
+
+        let box = document.querySelector(".box");
+
+        function Drag(moveBox) {
+            this.moveBox = moveBox;
+            this.moveBoolean = false;
+        }
+        Drag.prototype = {
+            init: function() {
+                this.bindEvent();
+            },
+            bindEvent: function() {
+
+                document.addEventListener("mousemove", this.mousemoveHandler.bind(this));
+
+                this.moveBox.addEventListener("mousedown", this.mousedownHandler.bind(this));
+
+                document.addEventListener("mouseup", this.mouseupHandler.bind(this));
+            },
+            // 鼠标按下就会触发这个函数
+            mousedownHandler: function(e) {
+                this.moveBoolean = true;
+
+                // 计算出鼠标在盒子当中的位置
+                this.divX = e.pageX - this.moveBox.offsetLeft;
+                this.divY = e.pageY - this.moveBox.offsetTop;
+            },
+            mousemoveHandler: function(e) {
+
+                if (this.moveBoolean) {
+                    // 动态改变盒子的位置
+                    this.moveBox.style.left = e.pageX - this.divX + "px";
+                    this.moveBox.style.top = e.pageY - this.divY + "px";
+                }
+
+            },
+
+            mouseupHandler: function() {
+                this.moveBoolean = false;
+            }
+
+        }
+        let dragObj = new Drag(box);
+        dragObj.init();
+
+
+        // box.addEventListener("mousedown", mousedownHandler);
+        // document.addEventListener("mouseup", mouseupHandler)
+        // let divX, divY;
+    </script>
+</body>
+
+</html>

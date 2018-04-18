@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .box1 {
+        position: absolute;
+        left: 200px;
+        top: 200px;
+        height: 100px;
+        width: 100px;
+        background-color: red;
+    }
+    
+    .box2 {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        height: 100px;
+        width: 100px;
+        background-color: green;
+    }
+</style>
+
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <script src="js/Drag_02.js"></script>
+    <script>
+        let box1 = document.querySelector(".box1");
+        let box2 = document.querySelector(".box2");
+
+        let box1Obj = new Drag(box2);
+        box1Obj.init();
+
+
+        let Hit = {
+            test: function(testA, testB) {
+                let rectA = testA.getBoundingClientRect();
+                let rectB = testB.getBoundingClientRect();
+
+                //   左上角
+                if (rectA.left < rectB.left && rectA.right > rectB.left && rectA.top < rectB.top && rectA.bottom > rectB.top) {
+                    return true;
+                }
+                //右上角
+                if (rectA.left < rectB.right && rectA.right > rectB.right && rectA.top < rectB.top && rectA.bottom > rectB.top) {
+                    return true;
+                }
+
+                // 左下角
+
+                if (rectA.left < rectB.left && rectA.right > rectB.left && rectA.top < rectB.bottom && rectA.bottom > rectB.bottom) {
+                    return true;
+                }
+
+                // 右下角
+
+                if (rectA.left < rectB.right && rectA.right > rectB.right && rectA.top < rectB.bottom && rectA.bottom > rectB.bottom) {
+                    return true;
+                }
+
+                return false;
+
+            }
+        }
+
+        animation();
+
+        function animation() {
+            requestAnimationFrame(animation);
+            //时刻检测
+            console.log(Hit.test(box2, box1))
+            if (Hit.test(box2, box1)) {
+                box1.style.backgroundColor = "yellow"
+            } else {
+                box1.style.backgroundColor = "red"
+            }
+        }
+    </script>
+</body>
+
+</html>
