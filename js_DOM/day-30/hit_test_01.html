@@ -39,36 +39,7 @@
         box1Obj.init();
 
 
-        let Hit = {
-            test: function(testA, testB) {
-                let rectA = testA.getBoundingClientRect();
-                let rectB = testB.getBoundingClientRect();
 
-                //   左上角
-                if (rectA.left < rectB.left && rectA.right > rectB.left && rectA.top < rectB.top && rectA.bottom > rectB.top) {
-                    return true;
-                }
-                //右上角
-                if (rectA.left < rectB.right && rectA.right > rectB.right && rectA.top < rectB.top && rectA.bottom > rectB.top) {
-                    return true;
-                }
-
-                // 左下角
-
-                if (rectA.left < rectB.left && rectA.right > rectB.left && rectA.top < rectB.bottom && rectA.bottom > rectB.bottom) {
-                    return true;
-                }
-
-                // 右下角
-
-                if (rectA.left < rectB.right && rectA.right > rectB.right && rectA.top < rectB.bottom && rectA.bottom > rectB.bottom) {
-                    return true;
-                }
-
-                return false;
-
-            }
-        }
 
         animation();
 
