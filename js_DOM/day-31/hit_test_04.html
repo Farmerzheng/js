@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        position: relative;
+        width: 1000px;
+        height: 500px;
+        border: 1px solid green;
+        margin: 0 auto;
+    }
+    
+    .box1 {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 50px;
+        width: 50px;
+        background-color: red;
+        border-radius: 50%;
+    }
+    
+    .box2 {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        height: 100px;
+        width: 100px;
+        background-color: green;
+        border-radius: 50%;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="box1"></div>
+    </div>
+
+    <script>
+        let box1 = document.querySelector(".box1");
+        let container = document.querySelector(".container");
+
+        function Move(box, speedX, speedY, container) {
+            this.ball = box;
+            this.speedX = speedX;
+            this.speedY = speedY;
+            this.container = container;
+        }
+        Move.prototype = {
+            update: function() {
+                this.ball.style.left = this.ball.offsetLeft + this.speedX + "px";
+                this.ball.style.top = this.ball.offsetTop + this.speedY + "px";
+
+                // 判断球体运动的边界：
+
+                // 下边框 ： ball.offsetTop == container.offsetHeight-ball.offsetHeight
+                // 右边框 ： ball.offsetLeft == container.offsetWidth - ball.offsetWidth
+                // 上边框 ： ball.offsetTop == 0
+                // 左边框 ： ball.offsetLeft == 0
+
+                // 下边框
+                if (this.ball.offsetTop >= this.container.offsetHeight - this.ball.offsetHeight) {
+                    this.speedY = -this.speedY;
+                }
+
+                // 上边框
+                if (this.ball.offsetTop < 0) {
+                    this.speedY = -this.speedY;
+                }
+                // 右边框
+                if (this.ball.offsetLeft >= this.container.offsetWidth - this.ball.offsetWidth) {
+                    this.speedX = -this.speedX;
+                }
+                // 左边框
+                if (this.ball.offsetLeft < 0) {
+                    this.speedX = -this.speedX
+                }
+
+            }
+
+        }
+
+        let obj = new Move(box1, 4, 6, container);
+
+        animation();
+
+        function animation() {
+            requestAnimationFrame(animation);
+            obj.update();
+        }
+    </script>
+</body>
+
+</html>

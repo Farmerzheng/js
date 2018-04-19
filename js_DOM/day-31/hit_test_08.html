@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        position: relative;
+        width: 1000px;
+        height: 500px;
+        border: 1px solid green;
+        margin: 0 auto;
+        background-color: #000;
+    }
+</style>
+
+<body>
+    <div class="container">
+    </div>
+    <script src="js/Hit.js"></script>
+    <script>
+        let container = document.querySelector(".container");
+
+        /*
+        
+        speedObj :{
+            speedX : 10,
+            speedY:6
+        }
+
+        container:DOM
+
+        ballStyleObj : {
+            X: "10px", // 小球的位置
+            Y: "20px", //小球的位置
+            radius: "30px"; // 小球的半径
+            bgColor:"RGB(233,45,8)" //小球的背景颜色
+        }
+        
+        */
+
+        function Ball(speedObj, container, ballStyleObj) {
+            this.ball = null;
+            this.speed = speedObj;
+            this.container = container;
+            this.ballStyleObj = ballStyleObj;
+        }
+        Ball.prototype = {
+            init: function() {
+                //    生成一个小球
+                this.ball = document.createElement("div");
+
+                //     position: absolute;
+                // left: 0;
+                // top: 0;
+                // height: 50px;
+                // width: 50px;
+                // background-color: red;
+                // border-radius: 50%;
+
+                // console.log(this.ballStyleObj);
+
+                this.ball.style.position = "absolute";
+                this.ball.style.left = this.ballStyleObj.X;
+                this.ball.style.top = this.ballStyleObj.Y;
+                this.ball.style.width = this.ballStyleObj.radius;
+                this.ball.style.height = this.ballStyleObj.radius;
+                this.ball.style.backgroundColor = this.ballStyleObj.bgColor;
+                this.ball.style.borderRadius = "50%";
+
+                this.container.appendChild(this.ball);
+
+            },
+            update: function() {
+                this.ball.style.left = this.ball.offsetLeft + this.speed.speedX + "px";
+                this.ball.style.top = this.ball.offsetTop + this.speed.speedY + "px";
+
+                // 判断球体运动的边界：
+
+                // 下边框 ： ball.offsetTop == container.offsetHeight-ball.offsetHeight
+                // 右边框 ： ball.offsetLeft == container.offsetWidth - ball.offsetWidth
+                // 上边框 ： ball.offsetTop == 0
+                // 左边框 ： ball.offsetLeft == 0
+
+                // 下边框
+                if (this.ball.offsetTop >= this.container.offsetHeight - this.ball.offsetHeight) {
+                    this.speed.speedY = -this.speed.speedY;
+                }
+
+                // 上边框
+                if (this.ball.offsetTop < 0) {
+                    this.speed.speedY = -this.speed.speedY;
+                }
+                // 右边框
+                if (this.ball.offsetLeft >= this.container.offsetWidth - this.ball.offsetWidth) {
+                    this.speed.speedX = -this.speed.speedX;
+                }
+                // 左边框
+                if (this.ball.offsetLeft < 0) {
+                    this.speed.speedX = -this.speed.speedX
+                }
+
+            }
+
+        }
+
+        // 随机颜色、随机大小
+        function randomColor() {
+            let color = "RGB(" + randomNum(0, 255) + "," + randomNum(0, 255) + "," + randomNum(0, 255) + ")";
+            return color;
+        }
+
+        function randomNum(min, max) {
+            return Math.round(Math.random() * (max - min)) + min;
+        }
+
+        let ballArr = [];
+
+        for (let i = 0; i < 1000; i++) {
+
+            // x : randomNum(0,container.offsetWidth-)
+            // y
+            // radius : randomNum(5,50)+"px";
+            // bgColor: randomColor()
+
+            // 球的随机半径
+            let ballRaidus = randomNum(15, 50) + "px";
+
+            // 球的最大left和最小left
+            let ballMaxLeft = container.offsetWidth - parseInt(ballRaidus);
+            let ballMaxTop = container.offsetHeight - parseInt(ballRaidus);
+
+            // 球的随机位置
+            let ballPositionX = randomNum(0, ballMaxLeft) + "px";
+            let ballPositionY = randomNum(0, ballMaxTop) + "px";
+            console.log(ballPositionY)
+                // 球的随机颜色
+            let bgColor = randomColor();
+
+            // 球的随机速度
+
+            let speedX = randomNum(1, 15);
+            let speedY = randomNum(1, 15);
+
+
+            let ball = new Ball({
+                speedX: speedX,
+                speedY: speedY
+            }, container, {
+                X: ballPositionX,
+                Y: ballPositionY,
+                radius: ballRaidus,
+                bgColor: bgColor
+            })
+
+            ball.init();
+            ballArr.push(ball);
+        }
+
+
+        animation();
+
+        function animation() {
+            requestAnimationFrame(animation);
+
+            for (let i = 0; i < ballArr.length; i++) {
+                ballArr[i].update();
+            }
+        }
+    </script>
+</body>
+
+</html>

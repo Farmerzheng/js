@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        position: relative;
+        width: 1000px;
+        height: 500px;
+        border: 1px solid green;
+        margin: 0 auto;
+    }
+</style>
+
+<body>
+    <div class="container">
+    </div>
+    <script src="js/Hit.js"></script>
+    <script>
+        let container = document.querySelector(".container");
+
+        function Ball(speedX, speedY, container) {
+            this.ball = null;
+            this.speedX = speedX;
+            this.speedY = speedY;
+            this.container = container;
+        }
+        Ball.prototype = {
+            init: function() {
+                //    生成一个小球
+                this.ball = document.createElement("div");
+
+                //     position: absolute;
+                // left: 0;
+                // top: 0;
+                // height: 50px;
+                // width: 50px;
+                // background-color: red;
+                // border-radius: 50%;
+
+                this.ball.style.position = "absolute";
+                this.ball.style.left = 0;
+                this.ball.style.top = 0;
+                this.ball.style.width = "50px";
+                this.ball.style.height = "50px";
+                this.ball.style.backgroundColor = "red";
+                this.ball.style.borderRadius = "50%";
+
+                this.container.appendChild(this.ball);
+
+            },
+            update: function() {
+                this.ball.style.left = this.ball.offsetLeft + this.speedX + "px";
+                this.ball.style.top = this.ball.offsetTop + this.speedY + "px";
+
+                // 判断球体运动的边界：
+
+                // 下边框 ： ball.offsetTop == container.offsetHeight-ball.offsetHeight
+                // 右边框 ： ball.offsetLeft == container.offsetWidth - ball.offsetWidth
+                // 上边框 ： ball.offsetTop == 0
+                // 左边框 ： ball.offsetLeft == 0
+
+                // 下边框
+                if (this.ball.offsetTop >= this.container.offsetHeight - this.ball.offsetHeight) {
+                    this.speedY = -this.speedY;
+                }
+
+                // 上边框
+                if (this.ball.offsetTop < 0) {
+                    this.speedY = -this.speedY;
+                }
+                // 右边框
+                if (this.ball.offsetLeft >= this.container.offsetWidth - this.ball.offsetWidth) {
+                    this.speedX = -this.speedX;
+                }
+                // 左边框
+                if (this.ball.offsetLeft < 0) {
+                    this.speedX = -this.speedX
+                }
+
+            }
+
+        }
+
+        let ball = new Ball(4, 2, container);
+        ball.init();
+
+        animation();
+
+        function animation() {
+            requestAnimationFrame(animation);
+            ball.update()
+        }
+    </script>
+</body>
+
+</html>
