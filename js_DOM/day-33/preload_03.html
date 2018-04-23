@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <img dataSrc="http://image.fanhuan.com/goods/2018-01-24/530542339390.jpg!300.300?v=1516942512">
+    <img dataSrc="http://image.fanhuan.com/goods/2018-01-08/553712882794.jpg!300.300?v=1516942512">
+    <img dataSrc="http://image.fanhuan.com/goods/2018-01-19/539828715663.jpg!300.300?v=1516942512">
+    <script src="preload.js"></script>
+    <script>
+        let imgSrcArr = [
+            "http://image.fanhuan.com/goods/2018-01-24/530542339390.jpg!300.300?v=1516942512",
+            "http://image.fanhuan.com/goods/2018-01-08/553712882794.jpg!300.300?v=1516942512",
+            "http://image.fanhuan.com/goods/2018-01-19/539828715663.jpg!300.300?v=1516942512"
+        ]
+        let load = new PreLoad(imgSrcArr, loadHandler);
+        load.init();
+
+        // 所有图片下载完成后会执行
+        function loadHandler() {
+            console.log("所有图片下载完成，可以开始游戏了")
+                // 展示所有图片
+            let imgArr = document.getElementsByTagName("img");
+            for (let i = 0; i < imgArr.length; i++) {
+                imgArr[i].src = imgSrcArr[i];
+            }
+        }
+    </script>
+</body>
+
+</html>

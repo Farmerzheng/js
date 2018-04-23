@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .div1 {
+        width: 300px;
+        height: 300px;
+        background-color: red;
+    }
+    
+    .div2 {
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+    }
+    
+    .div3 {
+        width: 100px;
+        height: 100px;
+        background-color: greenyellow;
+    }
+</style>
+
+<body>
+    <div class="div1">
+        <div class="div2">
+            <div class="div3"></div>
+        </div>
+    </div>
+    <script>
+        //事件猫盘与事件捕获
+        let div1 = document.querySelector(".div1");
+        let div2 = document.querySelector(".div2");
+        let div3 = document.querySelector(".div3");
+        div1.onclick = function() {
+            alert(1);
+        }
+        div2.onclick = function(event) {
+            // 阻止事件冒泡
+            event.stopPropagation();
+            alert(2);
+        }
+        div3.onclick = function(event) {
+            // 阻止事件冒泡
+            event.stopPropagation();
+            alert(3);
+        }
+    </script>
+</body>
+
+</html>

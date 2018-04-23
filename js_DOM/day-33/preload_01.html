@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="http://image.fanhuan.com/goods/2018-01-24/530542339390.jpg!300.300?v=1516942512">
+    <img src="http://image.fanhuan.com/goods/2018-01-08/553712882794.jpg!300.300?v=1516942512">
+    <img src="http://image.fanhuan.com/goods/2018-01-19/539828715663.jpg!300.300?v=1516942512">
+
+    <script>
+        // 一张图片下载完成我们能不能知道？
+
+        let img = document.getElementsByTagName("img")[0];
+
+        // 监听第一张图片是否下载完成
+        img.addEventListener("load", loadHandler);
+
+        // 第一张图片下载完成后会调用此事件处理函数
+        function loadHandler() {
+            console.log("第一张图片下载完成")
+        }
+    </script>
+</body>
+
+</html>

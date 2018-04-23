@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <img dataSrc="http://image.fanhuan.com/goods/2018-01-24/530542339390.jpg!300.300?v=1516942512">
+    <img dataSrc="http://image.fanhuan.com/goods/2018-01-08/553712882794.jpg!300.300?v=1516942512">
+    <img dataSrc="http://image.fanhuan.com/goods/2018-01-19/539828715663.jpg!300.300?v=1516942512">
+
+    <script>
+        //三张图片都是网络上的图片，我们现在想知道图片什么时候全部下载完成
+
+
+        // let imgArr = document.getElementsByTagName("img");
+
+        // imgArr[0].addEventListener("load", loadHandler);
+
+        // function loadHandler() {
+        //     console.log("第一张图片下载完成")
+        // }
+
+
+
+
+        // img标签的src属性？ 
+        // 浏览器的加载顺序是自上而下
+        // 自上而下加载了三张图片
+        // 当读取到img标签的src属性的时候，就会发送一个网络请求
+        // 瞬间会发送三个网络请求（请求三张图片）
+        // 图片下载是没有顺序的（异步的，不会产生阻塞，第二张图片不会等待第一张下载完成后再下载）
+
+
+        // 第一张图片下载完成后下载第二张，第二张图片下载完成后下载第三张………………
+        // 最后一张图片下载完成表明所有图片下载完成
+
+
+        // 1、只要浏览器读取了img的src属性值，就会下载src属性值对应的图片
+
+        // 2、要想控制图片的加载顺序，不能为src属性赋值
+
+        // 3、为每一张图片添加自定义属性 dataSrc ,dataSrc的值是图片的远程连接地址
+
+        // 4、下载第一张图片
+
+        let imgArr = document.getElementsByTagName("img");
+
+        imgArr[0].src = "http://image.fanhuan.com/goods/2018-01-24/530542339390.jpg!300.300?v=1516942512";
+
+        // 5、第一张图片下载完成后，下载第二张图片
+
+        imgArr[0].addEventListener("load", loadHandler)
+
+        function loadHandler() {
+            // console.log("开始下载第二张图片")
+
+            imgArr[1].src = "http://image.fanhuan.com/goods/2018-01-08/553712882794.jpg!300.300?v=1516942512";
+        }
+    </script>
+</body>
+
+</html>

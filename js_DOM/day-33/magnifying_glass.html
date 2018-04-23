@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .small {
+        width: 200px;
+        height: 200px;
+        border: 1px solid red;
+        position: relative;
+    }
+    
+    .small img {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .float {
+        width: 40px;
+        height: 40px;
+        background-color: #999;
+        opacity: 0.5;
+        position: absolute;
+        display: none;
+    }
+    
+    .big {
+        position: absolute;
+        left: 220px;
+        top: 20px;
+        width: 400px;
+        height: 400px;
+        border: 1px solid red;
+        overflow: hidden;
+        display: none;
+    }
+    
+    .big img {
+        position: absolute;
+    }
+</style>
+
+<body>
+    <div class="small">
+        <img src="img/min.jpg" alt="">
+        <div class="float"></div>
+    </div>
+    <div class="big">
+        <img class="bigImg" src="img/max.jpg" alt="">
+    </div>
+    <script>
+        let smallDiv = document.getElementsByClassName("small")[0];
+
+        let bigDiv = document.getElementsByClassName("big")[0];
+
+        let floatDiv = document.getElementsByClassName("float")[0];
+
+        let bigImg = document.getElementsByClassName("bigImg")[0];
+
+        smallDiv.addEventListener("mouseover", mouseoverHandler);
+        smallDiv.addEventListener("mouseout", mouseoutHandler);
+
+        function mouseoverHandler() {
+            bigDiv.style.display = "block";
+            floatDiv.style.display = "block";
+
+            smallDiv.addEventListener("mousemove", mousemoveHandler);
+
+        }
+
+        function mouseoutHandler() {
+            bigDiv.style.display = "none";
+            floatDiv.style.display = "none";
+        }
+
+        // 鼠标移动就会调用此函数（鼠标移动就会改变floatDiv的位置）
+        function mousemoveHandler(event) {
+            // 让floatDiv跟随鼠标移动
+            event = event || window.event;
+
+            // 限定floatDiv在smallDiv 里面移动
+
+            let X = event.pageX - floatDiv.offsetWidth / 2;
+            let Y = event.pageY - floatDiv.offsetHeight / 2;
+
+            if (X <= 0) {
+                X = 0
+            };
+
+            if (X >= smallDiv.offsetWidth - floatDiv.offsetWidth) {
+                X = smallDiv.offsetWidth - floatDiv.offsetWidth
+            }
+
+            if (Y <= 0) {
+                Y = 0;
+            }
+
+            if (Y >= smallDiv.offsetHeight - floatDiv.offsetHeight) {
+                Y = smallDiv.offsetHeight - floatDiv.offsetHeight
+            }
+
+
+            //  根据鼠标的坐标计算floatDiv的位置
+            floatDiv.style.left = X + "px";
+            floatDiv.style.top = Y + "px";
+
+
+            // 根据 floatDiv 在 smallDiv中的位置
+            // 计算出 bigImg 在 bigDiv中的位置
+            //             floatDiv.offsetLeft/(smallDiv.offsetWidth-floatDiv.offsetWidth)===
+            // ?/(bigImg.offsetWidth-bigDiv.offsetWidth)
+            bigImg.style.left = -floatDiv.offsetLeft * (bigImg.offsetWidth - bigDiv.offsetWidth) / (smallDiv.offsetWidth - floatDiv.offsetWidth) + "px"
+            bigImg.style.top = -floatDiv.offsetTop * (bigImg.offsetHeight - bigDiv.offsetHeight) / (smallDiv.offsetHeight - floatDiv.offsetHeight) + "px"
+        }
+    </script>
+</body>
+
+</html>

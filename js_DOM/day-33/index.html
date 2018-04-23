@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+    *{
+    	margin:0;
+    	padding:0;
+    }
+	#small{
+		width:200px;
+		height:200px;
+        border:1px solid red;
+        position:relative;
+	}
+	#small img{
+		width:200px;
+		height:200px;
+
+	}
+	#small #float{
+		width:40px;
+		height:40px;
+		background-color: yellow;
+		position: absolute;
+		left: 0;
+		top:0;
+		opacity:0.5;
+	}
+	#big{
+		width:400px;
+		height:400px;
+		border:1px solid red;
+		position:absolute;
+		left:250px;
+		top:0;
+		overflow: hidden;
+		display: none;
+	}
+</style>
+<body>
+	<div id="small">
+		<div id="float" style = "display: none"></div>
+		<img src="img/min.jpg">
+	</div>
+	<div id="big">
+		<img src="img/max.jpg" style = "position: absolute;width:800px;height:800px" id = "bigImg">
+	</div>
+	<script type="text/javascript">
+	
+		var smallDiv = document.getElementById("small");
+		var float = document.getElementById("float");
+		var big = document.getElementById("big");
+		var bigImg = document.getElementById("bigImg");
+
+		smallDiv.onmouseover = function(e){	
+		      //让放大镜图片显示出来
+		      big.style.display = "block";	              
+              //让黄盒子显示出来
+			  float.style.display = "block";
+			  //让盒子跟着鼠标移动	
+              //鼠标移动黄盒子跟着一起移动
+			  this.onmousemove = function(e){
+			  	var event = e || window.event;
+                //让黄盒子跟着鼠标动起来
+			  	float.style.left = event.clientX - float.offsetWidth/2 + "px";
+			  	float.style.top = event.clientY - float.offsetHeight/2 + "px";	
+                //让黄盒子不会移出边界
+	                //左边界
+				  	if(float.offsetLeft <= 0){
+				  		float.style.left = "0px"
+				  	}
+	                //右边界
+	                if(float.offsetLeft >= 160){
+	                	float.style.left = "160px"
+	                }
+	                //上边界
+	                if(float.offsetTop <= 0){
+	                	float.style.top = "0px"
+	                }
+	                if(float.offsetTop >= 160){
+	                	float.style.top = "160px"
+	                }
+                //让右边的大图也跟着移动
+                bigImg.style.left = - (float.offsetLeft*bigImg.offsetWidth/smallDiv.offsetWidth) + "px";
+                bigImg.style.top = - (float.offsetTop*bigImg.offsetHeight/smallDiv.offsetHeight) + "px";
+			  }			  		
+		}
+		smallDiv.onmouseout = function(){
+			  float.style.display = "none";
+			      //让放大镜图片隐藏
+		      big.style.display = "none";
+		}
+
+	</script>
+</body>
+</html>

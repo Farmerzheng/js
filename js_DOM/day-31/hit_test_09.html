@@ -48,25 +48,22 @@
         */
 
         function Ball(speedObj, container, ballStyleObj) {
-            this.ball = null;
+            this.ball = document.createElement("div");
+
             this.speed = speedObj;
             this.container = container;
             this.ballStyleObj = ballStyleObj;
         }
         Ball.prototype = {
             init: function() {
-                //    生成一个小球
-                this.ball = document.createElement("div");
-
-                //     position: absolute;
+                this.container.appendChild(this.ball);
+                // position: absolute;
                 // left: 0;
                 // top: 0;
                 // height: 50px;
                 // width: 50px;
                 // background-color: red;
                 // border-radius: 50%;
-
-                // console.log(this.ballStyleObj);
 
                 this.ball.style.position = "absolute";
                 this.ball.style.left = this.ballStyleObj.X;
@@ -76,9 +73,6 @@
                 this.ball.style.backgroundColor = this.ballStyleObj.bgColor;
                 this.ball.style.borderRadius = "50%";
                 this.ball.style.opacity = this.ballStyleObj.opacity;
-
-                this.container.appendChild(this.ball);
-
             },
             update: function() {
                 this.ball.style.left = this.ball.offsetLeft + this.speed.speedX + "px";
@@ -172,7 +166,6 @@
 
         function animation() {
             requestAnimationFrame(animation);
-
             for (let i = 0; i < ballArr.length; i++) {
                 ballArr[i].update();
             }

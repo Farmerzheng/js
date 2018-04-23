@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    ul,
+    li {
+        list-style: none;
+        margin: 0;
+        padding: 0
+    }
+    
+    .side_bar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: 300px;
+        background-color: #363a45;
+        color: #fff;
+    }
+    
+    .city {
+        width: 300px;
+        line-height: 50px;
+        text-align: center;
+        margin: 1px 0;
+        overflow: hidden;
+    }
+    
+    .city_item {
+        background-color: #3889D4;
+        cursor: pointer;
+    }
+    
+    .university_wrap {
+        /* display: none; */
+        overflow: hidden;
+        transition: 1s;
+        height: 0;
+    }
+    
+    .university {
+        line-height: 40px;
+        height: 40px;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+    }
+    
+    .university:hover {
+        background-color: #1acbfc;
+    }
+</style>
+
+<body>
+    <ul class="side_bar">
+        <li class="city">
+            <ul class="city_item">
+                <li>北京</li>
+            </ul>
+            <ul class="university_wrap">
+                <li class="university">北京美国英语语言学院</li>
+                <li class="university">清华大学</li>
+                <li class="university">北京大学</li>
+                <li class="university">北京外国语大学</li>
+                <li class="university">中国人民大学</li>
+                <li class="university">中国农业大学</li>
+                <li class="university">北京理工大学</li>
+                <li class="university">对外经贸大学</li>
+                <li class="university">北京师范大学</li>
+            </ul>
+        </li>
+        <li class="city">
+            <ul class="city_item">
+                <li>上海</li>
+            </ul>
+            <ul class="university_wrap">
+                <li class="university">复旦大学</li>
+                <li class="university">上海交通大学</li>
+                <li class="university">同济大学</li>
+            </ul>
+        </li>
+        <li class="city">
+            <ul class="city_item">
+                <li>康庄</li>
+            </ul>
+            <ul class="university_wrap">
+                <li class="university">北京美国英语语言学院</li>
+                <li class="university">北京印刷学院</li>
+                <li class="university">国家开放大学</li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        // 获取到所有的城市
+        let cityList = document.querySelectorAll(".city_item");
+
+        // 循环为城市添加点击事件
+        for (let i = 0; i < cityList.length; i++) {
+            cityList[i].addEventListener("click", cityClickHandler);
+        }
+
+        // 循环为大学挂接点击事件大学挂接点击事件
+        let universityList = document.querySelectorAll(".university");
+
+        for (let i = 0; i < universityList.length; i++) {
+            universityList[i].addEventListener("click", universityClickHandler)
+        }
+
+        function universityClickHandler(event) {
+            //  IE 当中Event对象是window的属性
+            // event = event || window.event;
+            //  阻止挂接在city上面的事件处理函数被触发
+            // event.stopPropagation();
+            alert(this.innerText);
+
+        }
+
+        function cityClickHandler() {
+
+            let university_wrap = this.parentNode.querySelector(".university_wrap");
+
+
+
+            let universityHeight = 40;
+
+            let universityWrapHeight = universityHeight * university_wrap.children.length;
+
+            if (university_wrap.style.overflow == "visible") {
+                university_wrap.style.overflow = "hidden";
+
+                // 改变高度
+                university_wrap.style.height = 0;
+
+            } else {
+                university_wrap.style.overflow = "visible";
+
+                // 改变高度
+                university_wrap.style.height = universityWrapHeight + "px";
+            }
+
+
+
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/jQuery.js"></script>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+    
+    #input_box_wrap {
+        background: blue;
+        width: 300px;
+        height: 340px;
+        text-align: center;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        margin-left: -150px;
+        margin-top: -170px;
+        display: none;
+    }
+</style>
+
+<body>
+    <button id="add">增加</button>
+    <table border=1 class="box">
+        <thead>
+            <tr class="title">
+                <th>序号</th>
+                <th>单词</th>
+                <th>音标</th>
+                <th>解释</th>
+                <th>时间</th>
+                <th>分类</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody class="word_body">
+
+        </tbody>
+
+    </table>
+    <div id="input_box_wrap">
+        <div id="input_box">
+            <div class="input_box_top">
+                <h1>添加单词</h1>
+                <span id="close"></span>
+            </div>
+            <form action="">
+                <span>单词:</span>
+                <div class="single_line">
+                    <input type="text" id="word">
+                </div>
+                <span>音标:</span>
+                <div class="single_line">
+                    <input type="text" id="pronounce">
+                </div>
+                <span>解释:</span>
+                <div class="many_line">
+                    <textarea id="description"></textarea>
+                </div>
+                <span>分类:</span>
+                <div class="single_line">
+                    <input type="text" id="wordtype">
+                </div>
+                <input type="button" value="提交" id="submit">
+            </form>
+        </div>
+    </div>
+    <script src="js/jQuery.js"></script>
+    <script>
+        let word_body = document.querySelector(".word_body");
+        let add_btn = document.querySelector("#add");
+        let submit_btn = document.querySelector("#submit");
+        let input_box_wrap = document.querySelector("#input_box_wrap");
+        let word_input = document.querySelector("#word");
+        let pronounce_input = document.querySelector("#pronounce");
+        let description_input = document.querySelector("#description");
+        let wordtype_input = document.querySelector("#wordtype");
+
+        let addBoolean = true;
+
+        // 用户点击的修改按钮，默认是空的
+        let theClickModifyBtn = null;
+
+
+        add_btn.addEventListener("click", addHandler);
+        submit_btn.addEventListener("click", submitHanler);
+
+        function addHandler() {
+            input_box_wrap.style.display = "block";
+            addBoolean = true;
+
+        }
+
+        function submitHanler(event) {
+            //   this ----> submitbtn
+
+            event = event || window.event;
+            // 阻止点击提交按钮的时候刷新页面（阻止默认事件）
+            event.preventDefault();
+
+
+
+            input_box_wrap.style.display = "none";
+
+            // 向数据库当中插入数据
+            // DB :database 数据库
+
+
+            if (addBoolean == true) {
+                // 点击的是添加按钮
+                inertWordToDB();
+            } else {
+                modifyWordInDB();
+            }
+
+        }
+
+        // 查询单词（进入页面的时候默认显示10条单词）
+
+        // 发送请求---》拿到10条单词的数据----》将数据展示在页面上
+        // $对象是jQuery库当中为我们提供的对象
+        $.ajax({
+            method: "GET",
+            url: "http://app.sencha.com.cn/soya/apps/testdb/server/",
+            dataType: "jsonp",
+            data: {
+                action: "wordList.list",
+                page: 1,
+                perPage: 10
+            },
+            success: function(responseText) {
+                show_word(responseText);
+            },
+            error: function() {
+
+            }
+
+        })
+
+        let str = "";
+        let id = 0;
+
+        function show_word(data) {
+            let dataArr = data.data;
+
+            for (let i = 0; i < dataArr.length; i++) {
+                str += `<tr class='title'>
+            <td>${dataArr[i].id}</td>
+            <td>${dataArr[i].word}</td>
+            <td>${dataArr[i].pronounce}</td>
+            <td>${dataArr[i].description}</td>
+            <td>${dataArr[i].dateLine}</td>
+            <td>${dataArr[i].wordtype}</td>
+            <td><button class='modifyBtn'>修改</button><button class='deleteBtn'>删除</button></td>
+            </tr>`
+            }
+
+            id = dataArr[0].id;
+
+            word_body.innerHTML = str;
+
+            // 为所有删除按钮添加点击事件
+            let deleteBtnArr = word_body.querySelectorAll(".deleteBtn");
+
+            let modifyBtnArr = word_body.querySelectorAll(".modifyBtn");
+
+            for (let i = 0; i < deleteBtnArr.length; i++) {
+                deleteBtnArr[i].addEventListener("click", deleteWordHandler);
+                modifyBtnArr[i].addEventListener("click", modifyWordHandler);
+            }
+
+        }
+        let userInput = null;
+
+        function inertWordToDB() {
+
+            // 获取用户输入的值
+            userInput = {
+                word: word_input.value,
+                pronounce: pronounce_input.value,
+                description: description_input.value,
+                wordtype: wordtype_input.value
+            }
+
+            $.ajax({
+                method: "GET",
+                url: "http://app.sencha.com.cn/soya/apps/testdb/server/",
+                dataType: "jsonp",
+                data: {
+                    action: "wordList.insert",
+                    word: userInput.word,
+                    pronounce: userInput.pronounce,
+                    description: userInput.description,
+                    wordtype: userInput.wordtype
+                },
+                success: function(responseText) {
+                    // 将插入的单词展示到页面上（渲染页面）
+                    // 1、 刷新页面  location.load()
+                    // 2、获取用户输入的数据，直接将数据添加到页面（好处是不需要刷新页面）----》代码一定写在插入数据成功的回调函数当中（因为只有数据库当中插入了数据你才能够渲染页面）
+
+                    insertWordToPage();
+                },
+                error: function() {
+
+                }
+
+            })
+        }
+
+        function insertWordToPage() {
+
+            //    userInput
+            // 为userInput对象添加自定义属性
+            userInput.id = parseInt(id) + 1;
+            userInput.dateLine = new Date();
+            // str = `<tr class='title'>
+            // <td>${userInput.id}</td>
+            // <td>${userInput.word}</td>
+            // <td>${userInput.pronounce}</td>
+            // <td>${userInput.description}</td>
+            // <td>${userInput.dateLine}</td>
+            // <td>${userInput.wordtype}</td>
+            // <td><button class='modifyBtn'>修改</button><button class='deleteBtn'>删除</button></td>
+            // </tr>` + str;
+            let tr = document.createElement("tr");
+            let id_td = document.createElement("td");
+            id_td.innerText = userInput.id;
+            tr.appendChild(id_td);
+            let word_td = document.createElement("td");
+            word_td.innerText = userInput.word;
+            tr.appendChild(word_td);
+            let pronounce_td = document.createElement("td");
+            pronounce_td.innerText = userInput.pronounce;
+            tr.appendChild(pronounce_td);
+            let description_td = document.createElement("td");
+            description_td.innerText = userInput.description;
+            tr.appendChild(description_td);
+            let dateLine_td = document.createElement("td");
+            dateLine_td.innerText = userInput.dateLine;
+            tr.appendChild(dateLine_td);
+            let wordtype_td = document.createElement("td");
+            wordtype_td.innerText = userInput.wordtype;
+            tr.appendChild(wordtype_td);
+            let btn_td = document.createElement("td");
+            let str = "<button class='modifyBtn'>修改</button><button class='deleteBtn'>删除</button>";
+            btn_td.innerHTML = str;
+            tr.appendChild(btn_td);
+
+            // word_body.appendChild(tr);
+            word_body.insertBefore(tr, word_body.children[0]);
+
+            word_body.querySelectorAll(".deleteBtn")[0].addEventListener("click", deleteWordHandler)
+
+        }
+
+        function deleteWordHandler(event) {
+
+            event = event || window.event;
+            let id = event.target.parentNode.parentNode.children[0].innerText;
+
+
+            // 删除数据库当中对应的单词
+            $.ajax({
+                    method: "GET",
+                    url: "http://app.sencha.com.cn/soya/apps/testdb/server/",
+                    dataType: "jsonp",
+                    data: {
+                        action: "wordList.delete",
+                        id: id
+                    },
+                    success: function(responseText) {
+                        // console.log(id + "删除成功")
+                        // 修改页面
+                        event.target.parentNode.parentNode.remove();
+                    },
+                    error: function() {
+
+                    }
+
+                })
+                // 数据库中的单词如果删除成功，我们再删除页面的单词
+        }
+
+        // 点击修改按钮的事件处理函数
+        function modifyWordHandler() {
+            // this  ----> modifyBtn
+            theClickModifyBtn = this;
+
+
+            addBoolean = false;
+            input_box_wrap.style.display = "block";
+        }
+
+        function modifyWordInDB() {
+            //  获取用户输入的值
+            userInput = {
+                word: word_input.value,
+                pronounce: pronounce_input.value,
+                description: description_input.value,
+                wordtype: wordtype_input.value,
+                id: theClickModifyBtn.parentNode.parentNode.children[0].innerText
+            }
+
+            //  利用更新单词的接口
+            $.ajax({
+                method: "GET",
+                url: "http://app.sencha.com.cn/soya/apps/testdb/server/",
+                dataType: "jsonp",
+                data: {
+                    action: "wordList.update",
+                    word: userInput.word,
+                    pronounce: userInput.pronounce,
+                    description: userInput.description,
+                    wordtype: userInput.wordtype,
+                    id: userInput.id
+                },
+                success: function(responseText) {
+
+                    // 更新页面当中的单词
+
+                    // 用户要修改的行
+                    let modifyTr = theClickModifyBtn.parentNode.parentNode;
+                    // 修改行中的每一个td里面的文本内容
+                    modifyTr.children[1].innerText = userInput.word;
+                    modifyTr.children[2].innerText = userInput.pronounce;
+                    modifyTr.children[3].innerText = userInput.description;
+                    modifyTr.children[4].innerText = new Date();
+                    modifyTr.children[5].innerText = userInput.wordtype;
+
+                },
+                error: function() {
+
+                }
+
+            })
+        }
+    </script>
+</body>
+
+</html>
