@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    ul,
+    li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .prize {
+        width: 100px;
+        height: 100px;
+        background: red;
+        line-height: 100px;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        float: left;
+        border: 1px solid yellow;
+    }
+    
+    .clearfix:after {
+        content: "";
+        display: block;
+        clear: both
+    }
+    
+    .clearfix {
+        zoom: 1
+    }
+    
+    #btn {
+        width: 100px;
+        height: 100px;
+        background: red;
+        line-height: 100px;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        border: 1px solid yellow;
+    }
+</style>
+
+<body>
+    <div>
+        <ul class="clearfix">
+            <li class="prize">A6</li>
+            <li class="prize">iphoneX</li>
+            <li class="prize">iwatch</li>
+            <li class="prize">董帆</li>
+            <li class="prize">陈庚</li>
+        </ul>
+    </div>
+    <button id="btn">点击抽奖</button>
+    <script>
+        let btn = document.querySelector("#btn");
+        let liArr = document.querySelectorAll(".prize");
+
+        let timer = null;
+        btn.addEventListener("mouseover", overHandler);
+        btn.addEventListener("mouseout", outHandler);
+
+        function overHandler() {
+            timer = setInterval(function() {
+
+                //生成随机索引
+                let index = randomNum(0, 4);
+                // 重置所有盒子的颜色
+                for (let i = 0; i < liArr.length; i++) {
+                    liArr[i].style.backgroundColor = "red";
+                }
+                // 随机选中的盒子变成蓝色
+                liArr[index].style.backgroundColor = "blue";
+            }, 50)
+        }
+
+        function outHandler() {
+            clearInterval(timer);
+        }
+
+        function randomNum(min, max) {
+            return Math.round(Math.random() * (max - min)) + min
+        }
+    </script>
+</body>
+
+</html>

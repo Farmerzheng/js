@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #img {
+        width: 400px;
+        height: 250px;
+    }
+</style>
+
+<body>
+    <div id="box">
+        <img id="img" src="img/5.jpg" alt="">
+    </div>
+    <script>
+        let imgArr = ["img/5.jpg", "img/6.jpg", "img/7.jpg", "img/8.jpg"];
+
+        let index = 0;
+
+        let timer = null;
+
+        let img = document.querySelector("#img");
+
+        img.addEventListener("mouseover", mouseoverHandler);
+        img.addEventListener("mouseout", mouseoutHandler);
+
+        function autoPlay() {
+            timer = setInterval(function() {
+                index++;
+                if (index === 4) {
+                    index = 0;
+                }
+                img.src = imgArr[index];
+            }, 1000)
+        }
+
+        // 进入页面自动播放
+        autoPlay();
+
+
+        function mouseoverHandler() {
+            clearInterval(timer);
+        }
+
+        function mouseoutHandler() {
+            autoPlay();
+        }
+    </script>
+</body>
+
+</html>

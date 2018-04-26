@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <span>香蕉</span>
+            <span>单价</span>
+            <span class="price">23</span>
+            <button class="minus">-</button>
+            <span class="num">0</span>
+            <button class="plus">+</button>
+        </li>
+        <li>
+            <span>丝瓜</span>
+            <span>单价</span>
+            <span class="price">33</span>
+            <button class="minus">-</button>
+            <span class="num">0</span>
+            <button class="plus">+</button>
+        </li>
+        <li>
+            <span>陈庚</span>
+            <span>单价</span>
+            <span class="price">3</span>
+            <button class="minus">-</button>
+            <span class="num">0</span>
+            <button class="plus">+</button>
+        </li>
+        <li>
+            <span>辣椒</span>
+            <span>单价</span>
+            <span class="price">13</span>
+            <button class="minus">-</button>
+            <span class="num">0</span>
+            <button class="plus">+</button></li>
+        <li>
+            <span>曹杰</span>
+            <span>单价</span>
+            <span class="price">133</span>
+            <button class="minus">-</button>
+            <span class="num">0</span>
+            <button class="plus">+</button>
+        </li>
+    </ul>
+    <div class="total_price">
+        <span>总价</span>
+        <span class="total"></span>
+    </div>
+    <script>
+        let minusBtnArr = document.querySelectorAll('.minus');
+        let plusBtnArr = document.querySelectorAll(".plus");
+        let priceArr = document.querySelectorAll(".price");
+        let totalDiv = document.querySelector('.total');
+
+        for (let i = 0; i < minusBtnArr.length; i++) {
+            minusBtnArr[i].addEventListener("click", minusHandler);
+        }
+
+        for (let i = 0; i < plusBtnArr.length; i++) {
+            plusBtnArr[i].addEventListener("click", plusHandler);
+        }
+
+        function minusHandler() {
+
+            let num = parseInt(this.parentNode.querySelector(".num").innerText);
+
+            num--;
+            if (num == -1) {
+                num = 0
+            }
+            this.parentNode.querySelector(".num").innerText = num;
+            changeTotalPrice()
+
+        }
+
+        function plusHandler() {
+
+            let num = parseInt(this.parentNode.querySelector(".num").innerText);
+
+            num++;
+            this.parentNode.querySelector(".num").innerText = num;
+            changeTotalPrice()
+        }
+
+        //  点击加号或者减号的时候就会调用此函数
+        function changeTotalPrice() {
+
+            let totalPrice = 0;
+            //   改变总价
+            for (let i = 0; i < priceArr.length; i++) {
+                let price = parseInt(priceArr[i].innerText);
+                let num = parseInt(priceArr[i].parentNode.querySelector(".num").innerText);
+                totalPrice += price * num;
+            }
+            totalDiv.innerText = totalPrice;
+        }
+    </script>
+</body>
+
+</html>

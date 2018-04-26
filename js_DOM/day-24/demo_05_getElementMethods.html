@@ -2,54 +2,54 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <title>Document</title>
 </head>
 
 <body>
-  <div class="div1"></div>
-  <div class="div1"></div>
-  <div class="div1"></div>
-  <div id="div2"></div>
-  <form action="">
-    <input type="text" name="username" id="">
-    <input type="submit" name="submit_btn" value="提交">
-  </form>
-  <script>
-  /* 
-    获取DOM对象的方法
+    <div class="div1"></div>
+    <div class="div1"></div>
+    <div class="div1"></div>
+    <div id="div2"></div>
+    <form action="">
+        <input type="text" name="username" id="">
+        <input type="submit" name="submit_btn" value="提交">
+    </form>
+    <script>
+        /* 
+            获取DOM对象的方法
 
-    1、需求：获取#div2 
-    let div2 = document.getElementById("div2"); //不需要加 “#”
-    let div2 = document.querySelector("#div2"); //需要加 “#”
+            1、需求：获取#div2 
+            let div2 = document.getElementById("div2"); //不需要加 “#”
+            let div2 = document.querySelector("#div2"); //需要加 “#”
 
-    2、需求：获取所有的 div1
-    let div1Arr = document.getElementsByClassName("div1");
-    let div1Arr = document.querySelectorAll(".div1");
+            2、需求：获取所有的 div1
+            let div1Arr = document.getElementsByClassName("div1");
+            let div1Arr = document.querySelectorAll(".div1");
 
-     3、需求: 获取第一个div1
-     let div1 = document.getElementsByClassName("div1")[0];
-     let div1 = document.querySelector(".div1");
+             3、需求: 获取第一个div1
+             let div1 = document.getElementsByClassName("div1")[0];
+             let div1 = document.querySelector(".div1");
 
-     4、需求：获取输入框和提交按钮
-     let userInput = document.getElementsByName("username")[0];
-     let submitBtn = document.getElementsByName("submit_btn")[0];
+             4、需求：获取输入框和提交按钮
+             let userInput = document.getElementsByName("username")[0];
+             let submitBtn = document.getElementsByName("submit_btn")[0];
 
-     5、需求：获取所有div
-     let divArr = document.getElementsByTagName("div");
+             5、需求：获取所有div
+             let divArr = document.getElementsByTagName("div");
 
 
-    document.getElementById('');//单个DOM对象
-	document.getElementsByTagName(‘’);//DOM对象的数组
-	document.getElementsByName(‘’);//DOM对象的数组
-	document.getElementsByClassName(‘’);（新）//DOM对象的数组
-	document.querySelector( )(新)//单个DOM对象
-	document.querySelectorAll( )（新）//DOM对象的数组
-	
-	注意：带有“新”标识符的只在IE8（含）+可以使用
+            document.getElementById('');//单个DOM对象
+            document.getElementsByTagName('');//DOM对象的数组
+            document.getElementsByName('');//DOM对象的数组
+            document.getElementsByClassName('');（新）//DOM对象的数组
+            document.querySelector( )(新)//单个DOM对象
+            document.querySelectorAll( )（新）//DOM对象的数组
+        	
+        	注意：带有“新”标识符的只在IE8（含）+可以使用
 
-    */
-  </script>
+            */
+    </script>
 </body>
 
 </html>
