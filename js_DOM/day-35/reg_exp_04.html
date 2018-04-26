@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1、将字符串中的空格全部删除掉？
+        // let str = '123 abc 456 def'
+        // let newStr = str.replace(/\s/g, '');
+        // \s  空格
+        // \d  数字
+        // [a-zA-Z]
+        // g 放在//后面，是正则表达式的修饰符，作用是匹配全部
+        // console.log(newStr);
+
+        // 3、'文艺青年都是假的文艺青年' 将 '文艺青年' 换成 '码农'
+        // let str = '文艺青年都是假的文艺青年';
+        // let regExp = /文艺青年/g;
+        // let newStr = str.replace(regExp, "码农");
+        // console.log(newStr)
+
+        // 4、去掉行首行尾空格
+        // let str = '    badlkadsfl     ';
+        // let regExp = /^\s*|\s*$/g
+        //     // | 或
+        // let newStr = str.replace(regExp, '');
+        // console.log(str + '\n' + newStr)
+    </script>
+
+</body>
+
+</html>

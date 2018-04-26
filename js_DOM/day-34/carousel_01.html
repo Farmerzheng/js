@@ -100,22 +100,67 @@
         </ol>
         <!-- <span></span> -->
     </section>
-    <script src="js/Carousel_02.js"></script>
     <script src="js/requestAnimationFrame.js"></script>
+    <script src="js/tween_basic.js"></script>
+    <script src="js/Move.js">
+    </script>
     <script type="text/javascript">
         let gallery = document.querySelector(".gallery");
         let imgSrcArr = ["img/1.jpg", "img/2.jpg", "img/3.jpg", "img/4.jpg"];
+        let imgArr = document.querySelectorAll(".img");
         let leftBtn = document.querySelector(".left_btn");
         let rightBtn = document.querySelector(".right_btn");
 
-        let carousel = new Carousel(gallery, 20, leftBtn, rightBtn, imgSrcArr);
-        carousel.init();
+        let firstImgIndex = 0;
+        let secondImgIndex = 1;
+
+        Move.init({
+            box: gallery,
+            start: 0,
+            iTarget: -300,
+            speed: 10,
+            animate: "Tween.Bounce.easeOut",
+            callback: function() {
+                // console.log("到达重点了")
+
+                // 1、将盒子拉回去
+                gallery.style.left = "0px";
+                /* 改变图片的索引
+                第一张   第二张
+
+                  1        2
+                  2        3
+                  3        4
+                  4        1
+                  1        2
+                  2        3*/
+                firstImgIndex++;
+                secondImgIndex++;
+                imgArr[0].src = imgSrcArr[firstImgIndex];
+                imgArr[1].src = imgSrcArr[secondImgIndex];
+
+
+            }
+        })
+
         animation();
 
         function animation() {
             requestAnimationFrame(animation);
-            carousel.update();
+            Move.update();
         }
+
+        //   Move.init({
+        //     box:box,  运动的盒子
+        //     start:200, 初始位置
+        //     iTarget:500, 终止位置
+        //     speed:10, 运动的速度
+        //     animate:"Tween.Bounce.easeOut" 运动的曲线
+        //    })
+
+        // Move 对象的使用？
+        //   第一步 ：Move.init();
+        //   第二步 ：Move.update();
     </script>
 </body>
 

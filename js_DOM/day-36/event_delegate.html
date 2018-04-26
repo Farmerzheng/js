@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+    <script>
+        // let liArr = document.getElementsByTagName("li");
+        // // 循环为10个li添加事件监听器
+        // for (let i = 0; i < liArr.length; i++) {
+        //     liArr[i].addEventListener("click", clickHandler);
+        // }
+
+        // function clickHandler() {
+        //     console.log(this.innerText);
+        // }
+
+        let ul = document.getElementsByTagName("ul")[0];
+        // 为父元素挂接点击事件，让父元素去处理子元素的事情
+        ul.addEventListener("click", clickHandler);
+
+        function clickHandler(event) {
+            event = event || window.event;
+            console.log(event.target.innerText);
+        }
+
+        //    事件委托
+        // 事件委托就是利用事件冒泡的原理，让父元素去处理子元素的事件
+        // 好处是减少了事件监听器的个数，浏览器负载小
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    tr:nth-child(even) {
+        background-color: pink;
+    }
+    
+    tr:nth-child(odd) {
+        background-color: lightblue;
+    }
+</style>
+
+<body>
+    <table id="cart" border="1"></table>
+    <script>
+        // 选中就是粉色的，不选中就是无色的
+        let cart = document.querySelector("#cart");
+        var data = [{
+            checked: false,
+            name: "姓名",
+            age: "年龄",
+            sex: "性别",
+            hobby: "爱好",
+            time: "时间",
+            price: "价格",
+            total: "总价",
+            num: 0
+        }, {
+            checked: true,
+            name: "张三",
+            age: 30,
+            sex: "男",
+            hobby: "旅行",
+            time: "2016/3/15",
+            price: 35.2,
+            total: '35.20',
+            num: 1
+        }, {
+            checked: false,
+            name: "王三",
+            age: 30,
+            sex: "女",
+            hobby: "旅行,游泳",
+            time: "2016/4/15",
+            price: 18.2,
+            total: '18.2',
+            num: 2
+        }, {
+            checked: true,
+            name: "李三",
+            age: 30,
+            sex: "男",
+            hobby: "旅行,打球",
+            time: "2016/5/15",
+            price: 30.2,
+            total: '30.2',
+            num: 4
+        }, {
+            checked: false,
+            name: "赵三",
+            age: 30,
+            sex: "女",
+            hobby: "读书",
+            time: "2016/6/15",
+            price: 24,
+            total: '24',
+            num: 3
+        }, {
+            checked: true,
+            name: "李三",
+            age: 30,
+            sex: "男",
+            hobby: "旅行,打球",
+            time: "2016/5/15",
+            price: 30.2,
+            total: '30.2',
+            num: 4
+        }, {
+            checked: true,
+            name: "李三",
+            age: 30,
+            sex: "男",
+            hobby: "旅行,打球",
+            time: "2016/5/15",
+            price: 30.2,
+            total: '30.2',
+            num: 4
+        }, {
+            checked: true,
+            name: "李三",
+            age: 30,
+            sex: "男",
+            hobby: "旅行,打球",
+            time: "2016/5/15",
+            price: 30.2,
+            total: '30.2',
+            num: 4
+        }, {
+            checked: true,
+            name: "李三",
+            age: 30,
+            sex: "男",
+            hobby: "旅行,打球",
+            time: "2016/5/15",
+            price: 30.2,
+            total: '30.2',
+            num: 4
+        }, {
+            checked: true,
+            name: "李三",
+            age: 30,
+            sex: "男",
+            hobby: "旅行,打球",
+            time: "2016/5/15",
+            price: 30.2,
+            total: '30.2',
+            num: 4
+        }];
+
+        function Cart(data) {
+            this.data = data;
+        }
+        Cart.prototype = {
+            init: function() {
+                this.show();
+            },
+            bindEvent: function() {
+
+            },
+            show: function() {
+                //  this.data
+                for (let i = 0; i < this.data.length; i++) {
+                    let tr = document.createElement("tr");
+                    for (let key in this.data[i]) {
+                        let td = document.createElement("td");
+                        if (key === "checked") {
+                            let input = document.createElement("input");
+                            input.type = "checkbox";
+                            input.checked = this.data[i][key];
+                            td.appendChild(input);
+                        } else if (key === "num") {
+                            let input = document.createElement("input");
+                            input.type = "text";
+                            input.value = this.data[i][key];
+
+                            let minusBtn = document.createElement("button");
+                            minusBtn.innerText = "-";
+
+                            let plusBtn = document.createElement("button");
+                            plusBtn.innerText = "+";
+
+                            minusBtn.addEventListener("click", this.minusHandler.bind(this));
+                            plusBtn.addEventListener("click", this.plusHandler.bind(this));
+
+                            td.appendChild(minusBtn);
+                            td.appendChild(input);
+                            td.appendChild(plusBtn);
+
+                        } else {
+                            td.innerText = this.data[i][key];
+                        }
+
+
+                        tr.appendChild(td);
+                    }
+                    cart.appendChild(tr);
+
+                }
+            },
+            minusHandler: function() {
+
+            },
+            plusHandler: function() {
+
+            }
+        }
+
+        let cart_shopping = new Cart(data);
+        cart_shopping.init();
+    </script>
+</body>
+
+</html>

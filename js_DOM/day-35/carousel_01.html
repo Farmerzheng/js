@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0
+    }
+    
+    ul,
+    li {
+        list-style: none;
+    }
+    
+    .ads {
+        width: 400px;
+        height: 360px;
+        margin: 0 auto;
+        border: 1px solid red;
+    }
+    
+    .ads_banner {
+        width: 400px;
+        height: 300px;
+    }
+    
+    .ads_banner a {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .ads_banner a img {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .ads_scroll {
+        width: 400px;
+        height: 60px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .ads_scroll .gallery {
+        width: 1210px;
+        height: 60px;
+        position: absolute;
+        left: 0;
+        top: 0
+    }
+    
+    .gallery li {
+        float: left;
+        width: 100px;
+        height: 60px;
+    }
+    
+    .gallery a {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .gallery a img {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+<body>
+    <div class="ads">
+        <div class="ads_banner">
+            <a href="">
+                <img id="banner_img" src="img/1.jpg" alt="">
+            </a>
+
+        </div>
+        <div class="ads_scroll">
+            <ul class="gallery">
+                <li>
+                    <a href=""><img src="img/1.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href=""><img src="img/2.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href=""><img src="img/3.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href=""><img src="img/4.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href=""><img src="img/5.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href=""><img src="img/6.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href=""><img src="img/7.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href=""><img src="img/8.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href=""><img src="img/1.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href=""><img src="img/2.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href=""><img src="img/3.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href=""><img src="img/4.jpg" alt=""></a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <script src="js/requestAnimationFrame.js"></script>
+    <script src="js/tween_basic.js"></script>
+    <script src="js/Move.js"></script>
+    <script>
+        let gallery = document.querySelector('.gallery');
+        let liArr = gallery.getElementsByTagName("li");
+        let banner_img = document.querySelector("#banner_img")
+
+        let speed = -2;
+        let start = 0;
+        let index = 4
+
+
+
+        function move() {
+            Move.init({
+                box: gallery,
+                start: start,
+                iTarget: start - 100,
+                speed: 10,
+                animate: "Tween.Sine.easeOut",
+                callback: finish
+            })
+        }
+
+        move();
+
+
+        function finish() {
+            console.log("运动完毕");
+            start -= 100;
+            if (start == -800) {
+                start = 0;
+            }
+
+
+
+            // 当前的图片(li)
+            for (let i = 0; i < liArr.length; i++) {
+                liArr[i].style.border = "none";
+            }
+
+            liArr[index].style.border = "2px solid yellow";
+            console.log(liArr[index].getElementsByTagName('img')[0].src)
+            banner_img.src = liArr[index].getElementsByTagName('img')[0].src;
+
+
+            index++;
+            if (index == 11) {
+                index = 3
+            }
+
+
+
+            move();
+        }
+
+
+        //   Move.init({
+        //     box:box,  运动的盒子
+        //     start:200, 初始位置
+        //     iTarget:500, 终止位置
+        //     speed:10, 运动的速度
+        //     animate:"Tween.Bounce.easeOut" 运动的曲线
+        //    })
+
+        // Move 对象的使用？
+        //   第一步 ：Move.init();
+        //   第二步 ：Move.update();
+
+
+        animation();
+
+        function animation() {
+            requestAnimationFrame(animation);
+            Move.update();
+        }
+    </script>
+</body>
+
+</html>

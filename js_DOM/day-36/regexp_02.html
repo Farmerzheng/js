@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 7、'sdf e443 fedef  55 66gg 333322312 dff 99' 找出所有数字
+        // let str = 'sdf e443 fedef  55 66gg 333322312 dff 99';
+        // str.match（regExp） 方法的作用是将匹配的结果放入一个数组并返回
+        // regExp.test()  正则对象的方法
+        // str.replace() 字符串对象的方法
+        // let regExp = str.match(/\d+/g);
+        // console.log(regExp)
+
+        // 8、检测字符串中是否含有中文
+        // let str = "123er五一放假了，大家想不想王老师留作业f"
+        // let regExp = /[\u4e00-\u9fa5]/g;
+        // let flag = regExp.test(str);
+        // console.log(flag);
+
+        // 提取字符串中是否含有中文
+        // let str = "123er五一放假了，大家想不想王老师留作业f"
+        // let regExp = /[\u4e00-\u9fa5]+/g;
+        // let arr = str.match(regExp);
+        // console.log(arr);
+
+
+        // /\d{5}/.test('55555')
+        // 用/\d{5}/正则表达式检测'55555' 是否含有匹配的内容
+
+        // 'paipai' 转化成  'papa'
+
+        let regExp = /i/g;
+        let str = 'paipai';
+        let newStr = str.replace(regExp, '');
+        console.log(newStr);
+    </script>
+</body>
+
+</html>

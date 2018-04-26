@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .tip {
+        display: none;
+        color: red;
+    }
+</style>
+
+<body>
+    <div>
+        <label for="QQ">QQ</label>
+        <input type="text" id="QQ">
+        <label class="tip">您输入的QQ号格式不正确</label>
+    </div>
+    <div>
+        <label for="Phone">手机号</label>
+        <input type="text" id="Phone">
+        <label class="tip">您输入的手机号格式不正确</label>
+    </div>
+    <div>
+        <label for="email">邮箱</label>
+        <input type="text" id="email">
+        <label class="tip">输入的邮箱号码不正确</label>
+    </div>
+    <script>
+        // 2、匹配QQ号,要求5到11位数字，第一位不能是0?
+        // 5、手机号验证 （11位数字，第一位是1，第二位是34578中任意一位，其余后9位为任意数字）
+        let QQInput = document.querySelector('#QQ');
+        let phoneInput = document.querySelector('#Phone');
+        let emailInput = document.querySelector("#email")
+            // 为输入框挂接blur事件
+        QQInput.addEventListener("blur", qqBlurHandler);
+        phoneInput.addEventListener("blur", phoneBlurHandler);
+        emailInput.addEventListener("blur", emailHandler);
+
+        function testInput(inputBox, regExp) {
+            // 获取用户输入的内容
+            let input = inputBox.value
+
+            // 用正则表达式验证输入内容是否是QQ号格式          
+
+            let flag = regExp.test(input);
+
+            if (!flag) {
+                // 提示用户输入不正确
+                inputBox.parentNode.querySelector('.tip').style.display = 'inline-block';
+            } else {
+                inputBox.parentNode.querySelector('.tip').style.display = 'none';
+            }
+        }
+
+        // 输入框失去焦点的时候就会调用此函数
+        function qqBlurHandler() {
+            testInput(this, /^[1-9]\d{4,10}$/)
+        }
+
+        function phoneBlurHandler() {
+            testInput(this, /^1[34578]\d{9}$/)
+        }
+
+        function emailHandler() {
+            testInput(this, /^[a-zA-Z0-9_]+@[a-zA-Z0-9]{2,4}\.[a-zA-Z]{2,4}$/)
+        }
+    </script>
+</body>
+
+</html>

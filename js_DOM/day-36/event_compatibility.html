@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .father {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+    }
+    
+    .child {
+        width: 50px;
+        height: 50px;
+        background-color: blue;
+    }
+</style>
+
+<body>
+    <div class="father">
+        <!-- <div class="child"></div> -->
+    </div>
+    <script>
+        // var father = document.querySelector(".father");
+        var father = document.getElementsByTagName("div")[0];
+        // father.addEventListener("click", clickHandler);
+
+        // IE 7
+        // father.attachEvent("onclick", clickHandler)
+
+
+
+        //    事件兼容性封装
+        var Event = {
+            addEvent: function(DOM, eventName, callback) {
+                // 判断浏览器是否支持addEventListener方法
+                if (DOM.addEventListener) {
+                    DOM.addEventListener(eventName, callback)
+                } else {
+                    // IE8及以下版本
+                    DOM.attachEvent("on" + eventName, callback)
+                }
+            }
+        }
+
+        Event.addEvent(father, "click", clickHandler)
+
+        function clickHandler() {
+            console.log(1);
+        }
+    </script>
+</body>
+
+</html>

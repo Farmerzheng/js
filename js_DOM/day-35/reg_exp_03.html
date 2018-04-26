@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //检测一个字符串开头是否是字母？
+        //   'abc'  '1abc'
+        // 字符：数字和符号 ----- 字母 （a~z）
+
+        // let str = '1abc';
+        // let regExp = /^[a-zA-Z]/;
+        // ^ 匹配字符串的开头
+        // [] 匹配[]当中任意一个字符（不是所有字符）
+        // let flag = regExp.test(str);
+        // console.log(flag);
+
+        //检测一个字符串结尾是否是字母？
+        // let str = '1ab2';
+        // let regExp = /[a-zA-Z]$/
+        // let flag = regExp.test(str);
+        // console.log(flag);
+
+        // 检测一个字符串首尾是否是数字
+        // let str = '1斯蒂芬告诉他和  2'
+        // let regExp = /^\d.+\d$/
+        // . 匹配任意字符和字母
+        // + 匹配一个或多个
+        // let flag = regExp.test(str);
+        // console.log(flag);
+
+
+        // 检测一个字符串首尾是否是数字
+        // let str = '1让让让对方2'
+        // let regExp = /^\d.*\d$/
+        // . 匹配任意字符和字母
+        // * 匹配0个或多个
+        // let flag = regExp.test(str);
+        // console.log(flag);
+
+
+        // 检测一个字符串首尾是否是数字
+        // let str = '12'
+        // let regExp = /^\d.?\d$/
+        // . 匹配任意字符和字母
+        // ? 匹配0个或1个
+        // let flag = regExp.test(str);
+        // console.log(flag);
+
+        // 检测一个字符串首尾是否是数字,中间是2~5字母
+        // let str = '1a2c2'
+        // let regExp = /^\d[a-zA-Z]{2,5}\d$/
+        // let flag = regExp.test(str);
+        // console.log(flag);
+    </script>
+</body>
+
+</html>

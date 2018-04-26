@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //   检测一个字符串是否含有数字？
+
+        // 'abc'  'abcd1' split
+
+        let str = "abc1"
+            // let regExp = /\d/
+        let regExp = /[0-9]/
+            // '//'里面放正则匹配的内容
+            // '\d' 匹配所有数字（0-9）
+            // [0-9]  0~9之间任意一个数
+            // test(str)  是正则对象的方法,str是你要检测的字符串
+            // test方法有返回值，返回值是一个boolean类型，如果str中含有要
+            // 匹配的内容，返回 true ,否则返回false
+            // 利用正则表达式 '/\d/' 检测 'abc'
+            // 检测什么？ 检测是否含有数字
+
+        let flag = regExp.test(str);
+        console.log(flag);
+    </script>
+</body>
+
+</html>

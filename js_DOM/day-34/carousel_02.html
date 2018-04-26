@@ -100,21 +100,66 @@
         </ol>
         <!-- <span></span> -->
     </section>
-    <script src="js/Carousel_02.js"></script>
     <script src="js/requestAnimationFrame.js"></script>
+    <script src="js/tween_basic.js"></script>
+    <script src="js/Move.js">
+    </script>
     <script type="text/javascript">
         let gallery = document.querySelector(".gallery");
         let imgSrcArr = ["img/1.jpg", "img/2.jpg", "img/3.jpg", "img/4.jpg"];
+        let imgArr = document.querySelectorAll(".img");
         let leftBtn = document.querySelector(".left_btn");
         let rightBtn = document.querySelector(".right_btn");
 
-        let carousel = new Carousel(gallery, 20, leftBtn, rightBtn, imgSrcArr);
-        carousel.init();
+        let firstImgIndex = 0;
+        let secondImgIndex = 1;
+
+        function init() {
+            Move.init({
+                box: gallery,
+                start: 0,
+                iTarget: -300,
+                speed: 20,
+                animate: "Tween.Quart.easeIn",
+                callback: function() {
+                    // console.log("到达重点了")
+
+                    // 1、将盒子拉回去
+                    gallery.style.left = "0px";
+                    /* 改变图片的索引
+                    第一张   第二张
+                      0        1
+                      1        2
+                      2        3
+                      3        0
+                      1        2
+                      2        3*/
+                    firstImgIndex++;
+                    secondImgIndex++;
+                    if (firstImgIndex == 4) {
+                        firstImgIndex = 0;
+                    }
+                    if (secondImgIndex === 4) {
+                        secondImgIndex = 0;
+                    }
+                    // 渲染图片
+                    imgArr[0].src = imgSrcArr[firstImgIndex];
+                    imgArr[1].src = imgSrcArr[secondImgIndex];
+
+                    init();
+
+                }
+            })
+
+        }
+
+        init();
+
         animation();
 
         function animation() {
             requestAnimationFrame(animation);
-            carousel.update();
+            Move.update();
         }
     </script>
 </body>

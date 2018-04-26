@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        margin-left: -100px;
+        margin-top: -100px;
+    }
+</style>
+
+<body>
+    <div class="box"></div>
+    <script>
+        let box = document.querySelector(".box");
+
+        function Scale(box, speed) {
+            this.box = box;
+            this.speed = speed;
+            this.scaleBoolean = false;
+        }
+        Scale.prototype = {
+            init: function() {
+                this.bindEvent();
+            },
+            bindEvent: function() {
+                this.box.addEventListener("click", this.clickHandler.bind(this));
+            },
+            clickHandler: function() {
+                this.scaleBoolean = !this.scaleBoolean;
+            },
+            update: function() {
+                if (!this.scaleBoolean) return;
+                this.box.style.width = this.box.offsetWidth + this.speed + "px";
+                this.box.style.height = this.box.offsetHeight + this.speed + "px";
+                this.box.style.marginLeft = -this.box.offsetWidth / 2 + "px";
+                this.box.style.marginTop = -this.box.offsetHeight / 2 + "px";
+            }
+        }
+
+        let scale = new Scale(box, 2);
+        scale.init();
+
+        animation();
+
+        function animation() {
+            requestAnimationFrame(animation);
+            scale.update();
+        }
+    </script>
+</body>
+
+</html>
