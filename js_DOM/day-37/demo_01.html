@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function randomNum(min, max) {
+            return Math.round(Math.random() * (max - min)) + min;
+        }
+
+        let str = '';
+        let arr = [
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+        ]
+
+        for (let i = 0; i < 4; i++) {
+            str += arr[randomNum(0, 35)]
+        }
+        console.log(str);
+    </script>
+</body>
+
+</html>

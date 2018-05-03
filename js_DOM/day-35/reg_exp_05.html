@@ -28,8 +28,10 @@
     <script>
         // 2、匹配QQ号,要求5到11位数字，第一位不能是0?
         // 5、手机号验证 （11位数字，第一位是1，第二位是34578中任意一位，其余后9位为任意数字）
+
         let QQInput = document.querySelector('#QQ');
         let phoneInput = document.querySelector('#Phone');
+        
         // 为输入框挂接blur事件
         QQInput.addEventListener("blur", qqBlurHandler);
         phoneInput.addEventListener("blur", phoneBlurHandler);
